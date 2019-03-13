@@ -3,6 +3,9 @@ Base settings for mpicms project.
 """
 
 import environ
+import ldap
+from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
+
 
 ROOT_DIR = environ.Path(__file__) - 3  # (mpicms/config/settings/base.py - 3 = mpicms/)
 APPS_DIR = ROOT_DIR.path('mpicms')
@@ -73,8 +76,35 @@ MIGRATION_MODULES = {
 # ------------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = [
     'django_auth_ldap.backend.LDAPBackend',
-    'django.contrib.auth.backends.ModelBackend',
+    # 'django.contrib.auth.backends.ModelBackend',
 ]
+
+AUTH_LDAP_SERVER_URI = "ldap://127.0.0.1:10389/"
+
+AUTH_LDAP_BIND_DN = ""
+AUTH_LDAP_BIND_PASSWORD = ""
+AUTH_LDAP_USER_SEARCH = LDAPSearch(
+    "ou=users,dc=example,dc=com", ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
+
+AUTH_LDAP_FIND_GROUP_PERMS = True
+AUTH_LDAP_GROUP_SEARCH = LDAPSearch(
+    'ou=groups,dc=example,dc=com',
+    ldap.SCOPE_SUBTREE,
+    '(objectClass=groupOfNames)',
+)
+AUTH_LDAP_GROUP_TYPE = GroupOfNamesType(name_attr='cn')
+
+AUTH_LDAP_USER_ATTR_MAP = {
+    'first_name': 'givenName',
+    'last_name': 'sn',
+    'email': 'mail',
+}
+
+AUTH_LDAP_USER_FLAGS_BY_GROUP = {
+    'is_staff': 'cn=staff,ou=groups,dc=example,dc=com',
+    'is_superuser': 'cn=superuser,ou=groups,dc=example,dc=com',
+}
+
 # AUTH_USER_MODEL = 'users.User'
 # LOGIN_REDIRECT_URL = 'users:redirect'
 # LOGIN_URL = 'account_login'
@@ -82,26 +112,25 @@ AUTHENTICATION_BACKENDS = [
 # PASSWORDS
 # ------------------------------------------------------------------------------
 PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.Argon2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
     'django.contrib.auth.hashers.BCryptPasswordHasher',
 ]
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#     },
+# ]
 
 # MIDDLEWARE
 # ------------------------------------------------------------------------------
@@ -186,6 +215,37 @@ ADMINS = [
     ("""Merlin Buczek""", 'merlin.buczek@protonmail.com'),
 ]
 MANAGERS = ADMINS
+
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue'
+        }
+    },
+    'formatters': {
+        'console': {
+            'format': '%(levelname)s %(asctime)s %(name)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'console',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True
+        },
+    }
+}
 
 # Wagtail
 WAGTAIL_SITE_NAME = 'MPI CMS'
