@@ -6,6 +6,8 @@ import environ
 import ldap
 from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
 
+from django.utils.translation import gettext_lazy as _
+
 
 ROOT_DIR = environ.Path(__file__) - 3  # (mpicms/config/settings/base.py - 3 = mpicms/)
 APPS_DIR = ROOT_DIR.path('mpicms')
@@ -58,6 +60,10 @@ THIRD_PARTY_APPS = [
     'wagtail.search',
     'wagtail.admin',
     'wagtail.core',
+
+    'wagtail_modeltranslation',
+    'wagtail_modeltranslation.makemigrations',
+    'wagtail_modeltranslation.migrate',
 
     'modelcluster',
     'taggit',
@@ -138,9 +144,9 @@ PASSWORD_HASHERS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -249,5 +255,11 @@ LOGGING = {
     }
 }
 
-# Wagtail
+# TRANSLATION
+LANGUAGES = (
+    ('en', _('English')),
+    ('de', _('German')),
+)
+
+# WAGTAIL
 WAGTAIL_SITE_NAME = 'MPI CMS'
