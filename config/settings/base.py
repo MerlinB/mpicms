@@ -224,37 +224,6 @@ ADMINS = [
 ]
 MANAGERS = ADMINS
 
-# Logging
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue'
-        }
-    },
-    'formatters': {
-        'console': {
-            'format': '%(levelname)s %(asctime)s %(name)s %(message)s'
-        },
-    },
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'filters': ['require_debug_true'],
-            'class': 'logging.StreamHandler',
-            'formatter': 'console',
-        },
-    },
-    'loggers': {
-        '': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True
-        },
-    }
-}
-
 # TRANSLATION
 LANGUAGES = (
     ('en', _('English')),
