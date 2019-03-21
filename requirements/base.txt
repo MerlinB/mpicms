@@ -4,5 +4,5 @@ Django==2.1.7
 django-environ==0.4.5
 
 wagtail==2.4
-wagtail-modeltranslation==0.10
+wagtail-modeltranslation==0.10.1
 python-ldap==3.2.0
