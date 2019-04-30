@@ -1,0 +1,9 @@
+-r ./base.txt
+
+pytest
+pytest-django
+
+# Code quality
+flake8
+coverage
+django-coverage-plugin
