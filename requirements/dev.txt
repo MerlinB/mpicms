@@ -58,7 +58,7 @@ sqlparse==0.3.0
 text-unidecode==1.2       # via faker
 traitlets==4.3.2          # via ipython
 unidecode==1.0.23
-urllib3==1.24.2
+urllib3==1.25.2
 wagtail-modeltranslation==0.10.1
 wagtail==2.5
 wcwidth==0.1.7            # via prompt-toolkit
