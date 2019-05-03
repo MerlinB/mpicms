@@ -1,7 +1,6 @@
 -r ./test.txt
 
 ipdb
-psycopg2-binary
 pip-tools
 
 # Django

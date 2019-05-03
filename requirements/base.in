@@ -2,5 +2,9 @@
 Django
 django-environ
 
+# Postgres
+psycopg2-binary
+
+# Wagtail
 wagtail
 wagtail-modeltranslation
