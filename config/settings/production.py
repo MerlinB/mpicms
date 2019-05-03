@@ -17,28 +17,13 @@ DATABASES['default'] = env.db('DATABASE_URL')  # noqa F405
 DATABASES['default']['ATOMIC_REQUESTS'] = True  # noqa F405
 DATABASES['default']['CONN_MAX_AGE'] = env.int('CONN_MAX_AGE', default=60)  # noqa F405
 
-# CACHES
-# ------------------------------------------------------------------------------
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': env('REDIS_URL'),
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            # Mimicing memcache behavior.
-            # http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior
-            'IGNORE_EXCEPTIONS': True,
-        }
-    }
-}
-
 # AUTHENTICATION
 AUTHENTICATION_BACKENDS = [
     'django_auth_ldap.backend.LDAPBackend',
     # 'django.contrib.auth.backends.ModelBackend',
 ]
 
-AUTH_LDAP_SERVER_URI = "ldap://127.0.0.1:10389/"
+AUTH_LDAP_SERVER_URI = end('LDAP_URI')
 
 AUTH_LDAP_BIND_DN = ""
 AUTH_LDAP_BIND_PASSWORD = ""
@@ -114,17 +99,6 @@ EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[MPI CMS]')
 # ------------------------------------------------------------------------------
 # Django Admin URL regex.
 ADMIN_URL = env('DJANGO_ADMIN_URL')
-
-# Anymail (Mailgun)
-# ------------------------------------------------------------------------------
-# https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
-INSTALLED_APPS += ['anymail']  # noqa F405
-EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
-# https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
-ANYMAIL = {
-    'MAILGUN_API_KEY': env('MAILGUN_API_KEY'),
-    'MAILGUN_SENDER_DOMAIN': env('MAILGUN_DOMAIN')
-}
 
 # LOGGING
 # ------------------------------------------------------------------------------
