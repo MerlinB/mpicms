@@ -12,18 +12,19 @@ django-modelcluster==4.4  # via wagtail
 django-modeltranslation==0.13.1  # via wagtail-modeltranslation
 django-taggit==0.24.0     # via wagtail
 django-treebeard==4.3     # via wagtail
-django==2.2
+django==2.2.1
 djangorestframework==3.9.3  # via wagtail
 draftjs-exporter==2.1.5   # via wagtail
 html5lib==1.0.1           # via wagtail
 idna==2.8                 # via requests
 pillow==5.4.1             # via wagtail
+psycopg2-binary==2.8.2
 pytz==2019.1              # via django, django-modelcluster, wagtail
 requests==2.21.0          # via wagtail
 six==1.12.0               # via html5lib, wagtail
 sqlparse==0.3.0           # via django
 unidecode==1.0.23         # via wagtail
-urllib3==1.24.2           # via requests
+urllib3==1.24.3           # via requests
 wagtail-modeltranslation==0.10.1
 wagtail==2.5
 webencodings==0.5.1       # via html5lib

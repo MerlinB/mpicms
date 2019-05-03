@@ -42,7 +42,6 @@ pillow==5.4.1
 pip-tools==3.6.1
 pluggy==0.9.0
 prompt-toolkit==2.0.9     # via ipython
-psycopg2-binary==2.8.2
 ptyprocess==0.6.0         # via pexpect
 py==1.8.0
 pycodestyle==2.5.0
