@@ -1,3 +1,6 @@
+import ldap
+from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
+
 from .base import *  # noqa
 from .base import env
 
@@ -27,6 +30,38 @@ CACHES = {
             'IGNORE_EXCEPTIONS': True,
         }
     }
+}
+
+# AUTHENTICATION
+AUTHENTICATION_BACKENDS = [
+    'django_auth_ldap.backend.LDAPBackend',
+    # 'django.contrib.auth.backends.ModelBackend',
+]
+
+AUTH_LDAP_SERVER_URI = "ldap://127.0.0.1:10389/"
+
+AUTH_LDAP_BIND_DN = ""
+AUTH_LDAP_BIND_PASSWORD = ""
+AUTH_LDAP_USER_SEARCH = LDAPSearch(
+    "ou=users,dc=example,dc=com", ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
+
+AUTH_LDAP_FIND_GROUP_PERMS = True
+AUTH_LDAP_GROUP_SEARCH = LDAPSearch(
+    'ou=groups,dc=example,dc=com',
+    ldap.SCOPE_SUBTREE,
+    '(objectClass=groupOfNames)',
+)
+AUTH_LDAP_GROUP_TYPE = GroupOfNamesType(name_attr='cn')
+
+AUTH_LDAP_USER_ATTR_MAP = {
+    'first_name': 'givenName',
+    'last_name': 'sn',
+    'email': 'mail',
+}
+
+AUTH_LDAP_USER_FLAGS_BY_GROUP = {
+    'is_staff': 'cn=staff,ou=groups,dc=example,dc=com',
+    'is_superuser': 'cn=superuser,ou=groups,dc=example,dc=com',
 }
 
 # SECURITY
