@@ -1,19 +1,9 @@
-sudo: true
-before_install:
-  - psql -c 'create database travis_ci_test;' -U postgres
+dist: xenial
+services: postgresql
+env: DJANGO_SETTINGS_MODULE=config.settings.test
 language: python
-services:
-  - postgresql
-env:
-  - DJANGO_SETTINGS_MODULE=config.settings.test
-install:
-  - pip install -r requirements/local.txt
-script:
-  - coverage run manage.py test
-after_success:
-  - coveralls
-notifications:
-  email:
-    - merlin.buczek@gmail.com
-python:
-  - "3.7"
+python: 3.7
+before_script: psql -c 'create database travis_ci_test;' -U postgres
+install: pip install -r requirements/test.txt
+script: coverage run -m pytest
+after_success: coveralls
