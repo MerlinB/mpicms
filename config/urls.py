@@ -5,17 +5,23 @@ from wagtail.core import urls as wagtail_urls
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path, re_path
+from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.views import defaults as default_views
 
 
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),
     re_path(r'^cms/', include(wagtailadmin_urls)),
     re_path(r'^documents/', include(wagtaildocs_urls)),
-    re_path(r'', include(wagtail_urls)),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+)
+
+urlpatterns += i18n_patterns(
+    # These URLs will have /<language_code>/ appended to the beginning
+    re_path(r'', include(wagtail_urls)),
 )
 
 if settings.DEBUG:

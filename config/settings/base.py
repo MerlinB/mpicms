@@ -199,6 +199,7 @@ LANGUAGES = (
     ('en', _('English')),
     ('de', _('German')),
 )
+WAGTAILMODELTRANSLATION_TRANSLATE_SLUGS = False
 
 # WAGTAIL
 WAGTAIL_SITE_NAME = 'MPI CMS'
