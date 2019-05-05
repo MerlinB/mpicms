@@ -1,6 +1,5 @@
 {% load static %}
 {% load i18n %}
-{% load wagtailcore_tags %}
 
 <nav class="navbar is-light" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
@@ -22,8 +21,8 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="select">
-          <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-              <select name="language" onchange="this.form.submit()">
+          <form action="{% url 'set_language' %}" method="post" id=language_form>{% csrf_token %}
+              <select name="language" onchange="language_form.submit()">
                   {% get_current_language as LANGUAGE_CODE %}
                   {% get_available_languages as LANGUAGES %}
                   {% get_language_info_list for LANGUAGES as languages %}
@@ -33,6 +32,9 @@
                       </option>
                   {% endfor %}
               </select>
+              <noscript>
+                <button type="submit" class="button is-small is-pulled-right">{% trans 'Select' %}</button>
+              </noscript>
           </form>
         </div>
       </div>
