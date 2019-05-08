@@ -2,6 +2,8 @@
 
 ipdb
 pip-tools
+pylama
+pylint
 
 # Django
 factory-boy
