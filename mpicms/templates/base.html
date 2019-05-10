@@ -1,4 +1,8 @@
 {% load static %}
+{% load wagtailuserbar %}
+
+{{ wagtailuserbar }}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,6 +13,7 @@
     </head>
     <body>
         {% include 'menus/main.html' %}
+
         {% block content %}
         {% endblock %}
     </body>

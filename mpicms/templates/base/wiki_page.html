@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+<div class="columns is-centered">
+    <div class="column is-half">
+
+        <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+            <ul>
+                {% for ancestor in page.get_ancestors|slice:"2:" %}
+                    <li><a href="{% pageurl ancestor %}">{{ ancestor }}</a></li>
+                {% endfor %}
+                <li class="is-active"><a href="#" aria-current="page">{{ page }}</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <h1 class="title">{{ page.title }}</h1>
+            <div class="content">
+                <p>{{ page.body|richtext }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
