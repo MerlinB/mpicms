@@ -11,9 +11,9 @@ from django.views import defaults as default_views
 
 
 urlpatterns = [
-    path(settings.ADMIN_URL, admin.site.urls),
+    path('django-admin', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
-    re_path(r'^cms/', include(wagtailadmin_urls)),
+    re_path(r'^admin/', include(wagtailadmin_urls)),
     re_path(r'^documents/', include(wagtaildocs_urls)),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
