@@ -1,9 +1,19 @@
 # Setup
 
+## Requirements
+- `Python >= 3.7`
+- `pip`
+- `Postgresql >= 11`
+- `OpenLDAP`
+
+## Set up Python environment
+`pip install -r requirements/production.txt`
+
 ## Set environmental variables
-See [Django's documentation](https://docs.djangoproject.com/en/dev/ref/settings/).
+For Django related variables see [Django's documentation](https://docs.djangoproject.com/en/dev/ref/settings/).
 - `DJANGO_SECRET_KEY`
 - `DATABASE_URL`
+- `DJANGO_ALLOWED_HOSTS` (List)
 - `DJANGO_ADMIN_URL`
 
 ### LDAP
