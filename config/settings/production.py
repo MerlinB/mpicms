@@ -23,7 +23,7 @@ AUTHENTICATION_BACKENDS = [
     # 'django.contrib.auth.backends.ModelBackend',
 ]
 
-AUTH_LDAP_SERVER_URI = end('LDAP_URI')
+AUTH_LDAP_SERVER_URI = env('LDAP_URI')
 
 AUTH_LDAP_BIND_DN = ""
 AUTH_LDAP_BIND_PASSWORD = ""
@@ -94,11 +94,6 @@ DEFAULT_FROM_EMAIL = env(
 SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
 EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[MPI CMS]')
-
-# ADMIN
-# ------------------------------------------------------------------------------
-# Django Admin URL regex.
-ADMIN_URL = env('DJANGO_ADMIN_URL')
 
 # LOGGING
 # ------------------------------------------------------------------------------
