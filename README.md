@@ -14,7 +14,6 @@ For Django related variables see [Django's documentation](https://docs.djangopro
 - `DJANGO_SECRET_KEY`
 - `DATABASE_URL`
 - `DJANGO_ALLOWED_HOSTS` (List)
-- `DJANGO_ADMIN_URL`
 
 ### LDAP
 - `LDAP_SERVER_URI`
