@@ -68,7 +68,7 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     'mpicms.base.apps.BaseAppConfig',
-    'mpicms.users.apps.UserAppConfig'
+    # 'mpicms.users.apps.UserAppConfig'
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -83,7 +83,7 @@ MIGRATION_MODULES = {
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
-AUTH_USER_MODEL = 'users.User'
+# AUTH_USER_MODEL = 'users.User'
 # LOGIN_REDIRECT_URL = 'users:redirect'
 # LOGIN_URL = 'account_login'
 
@@ -204,6 +204,6 @@ WAGTAILMODELTRANSLATION_TRANSLATE_SLUGS = False
 
 # WAGTAIL
 WAGTAIL_SITE_NAME = 'MPI CMS'
-WAGTAIL_USER_EDIT_FORM = 'mpicms.users.forms.CustomUserEditForm'
-WAGTAIL_USER_CREATION_FORM = 'mpicms.users.forms.CustomUserCreationForm'
-WAGTAIL_USER_CUSTOM_FIELDS = ['phone', 'office']
+# WAGTAIL_USER_EDIT_FORM = 'mpicms.users.forms.CustomUserEditForm'
+# WAGTAIL_USER_CREATION_FORM = 'mpicms.users.forms.CustomUserCreationForm'
+# WAGTAIL_USER_CUSTOM_FIELDS = ['phone', 'office']
