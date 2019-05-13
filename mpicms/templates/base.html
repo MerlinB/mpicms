@@ -10,11 +10,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>MolGen CMS</title>
         <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     </head>
     <body>
         {% include 'menus/main.html' %}
+        <div class="columns">
+            <aside class="column is-narrow hero aside is-fullheight">
+                {% include 'menus/side.html' %}
+            </aside>
+            <div class="column">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
 
-        {% block content %}
-        {% endblock %}
     </body>
 </html>

@@ -1,0 +1,12 @@
+{% load wagtailcore_tags %}
+
+<div class="section">
+    <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+        <ul>
+            {% for ancestor in page.get_ancestors|slice:"2:" %}
+                <li><a href="{% pageurl ancestor %}">{{ ancestor }}</a></li>
+            {% endfor %}
+            <li class="is-active"><a href="#" aria-current="page">{{ page }}</a></li>
+        </ul>
+    </nav>
+</div>

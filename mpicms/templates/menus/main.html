@@ -1,9 +1,10 @@
 {% load static %}
 {% load i18n %}
+{% load wagtailcore_tags %}
 
-<nav class="navbar is-light" role="navigation" aria-label="main navigation">
+<nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item">
+    <a href="{% pageurl request.site.root_page %}" class="navbar-item">
       <img src="{% static 'images/molgen-logo.svg' %}">
     </a>
 
@@ -16,6 +17,21 @@
 
   <div class="navbar-menu" id="navMenu">
     <div class="navbar-start">
+      {% for child in request.site.root_page.get_children.live.in_menu %}
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a href="{% pageurl child %}" class="navbar-link">
+          {{ child }}
+        </a>
+
+        <div class="navbar-dropdown">
+          {% for item in child.get_children.live.in_menu %}
+          <a href="{% pageurl item %}" class="navbar-item">
+            {{ item }}
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
     </div>
 
     <div class="navbar-end">
