@@ -5,11 +5,11 @@ from .base import env
 # ------------------------------------------------------------------------------
 DEBUG = True
 SECRET_KEY = env('DJANGO_SECRET_KEY', default='XBlibrFtVb24Dig6CCMAw7Kv3FpXpJYmEZMdpRlnRdTzQpNdTPZ1TtvqKiQu9caf')
-ALLOWED_HOSTS = [
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[
     "localhost",
     "0.0.0.0",
     "127.0.0.1",
-]
+])
 
 # CACHES
 # ------------------------------------------------------------------------------
