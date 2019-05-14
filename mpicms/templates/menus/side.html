@@ -1,7 +1,8 @@
+{% load wagtailcore_tags %}
 {% load i18n %}
 
 <div class="field has-addons">
-    <div class="control">
+    <div class="control is-expanded">
         <input type="text" class="input" placeholder="{% trans 'Search' %}">
     </div>
     <div class="control">
@@ -14,37 +15,26 @@
 </div>
 
 
-<div class="menu">
-  <p class="menu-label">
-    General
-  </p>
-  <ul class="menu-list">
-    <li><a>Dashboard</a></li>
-    <li><a>Customers</a></li>
-  </ul>
-  <p class="menu-label">
-    Administration
-  </p>
-  <ul class="menu-list">
-    <li><a>Team Settings</a></li>
-    <li>
-      <a class="is-active">Manage Your Team</a>
-      <ul>
-        <li><a>Members</a></li>
-        <li><a>Plugins</a></li>
-        <li><a>Add a member</a></li>
-      </ul>
-    </li>
-    <li><a>Invitations</a></li>
-    <li><a>Cloud Storage Environment Settings</a></li>
-    <li><a>Authentication</a></li>
-  </ul>
-  <p class="menu-label">
-    Transactions
-  </p>
-  <ul class="menu-list">
-    <li><a>Payments</a></li>
-    <li><a>Transfers</a></li>
-    <li><a>Balance</a></li>
-  </ul>
+<div class="section">
+  <div class="menu">
+    <p class="menu-label">
+      {{ page.category|truncatechars:40 }}
+    </p>
+    <ul class="menu-list">
+      {% for menu_page in page.category.get_children.live.in_menu %}
+        <li>
+          <a href="{% pageurl menu_page %}" class="{% if menu_page.specific == page %}has-text-weight-bold{% endif %}">{{ menu_page }}</a>
+          {% with menu_page.get_children.live.in_menu as children %}
+            {% if children %}
+              <ul>
+                {% for child in children %}
+                  <li><a href="{% pageurl child %}" class="{% if child.specific == page %}has-text-weight-bold{% endif %}">{{ child }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endwith %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
 </div>

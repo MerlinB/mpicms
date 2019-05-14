@@ -36,6 +36,7 @@
 
     <div class="navbar-end">
       <div class="navbar-item">
+        <div class="field"><div class="control">
         <div class="select">
           <form action="{% url 'set_language' %}" method="post" id=language_form>{% csrf_token %}
               <select name="language" onchange="language_form.submit()">
@@ -52,7 +53,7 @@
                 <button type="submit" class="button is-small is-pulled-right">{% trans 'Select' %}</button>
               </noscript>
           </form>
-        </div>
+        </div></div></div>
       </div>
     </div>
   </div>

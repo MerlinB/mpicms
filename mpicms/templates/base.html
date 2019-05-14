@@ -15,14 +15,14 @@
     </head>
     <body>
         {% include 'menus/main.html' %}
-        <div class="columns">
-            <aside class="column is-narrow hero aside is-fullheight">
-                {% include 'menus/side.html' %}
-            </aside>
+        <div class="columns" style="flex-direction: row-reverse;">
             <div class="column">
                 {% block content %}
                 {% endblock %}
             </div>
+            <aside class="column is-narrow hero aside is-fullheight">
+                {% include 'menus/side.html' %}
+            </aside>
         </div>
 
     </body>
