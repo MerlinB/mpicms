@@ -1,6 +1,7 @@
 .aside {
   display:block;
-  padding: 40px;
+  padding: 30px;
+  padding-right: 19px;
   background-color: #F9F9F9;
   border-right: 1px solid #DEDEDE;
 }
