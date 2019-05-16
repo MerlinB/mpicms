@@ -35,6 +35,19 @@
     </div>
 
     <div class="navbar-end">
+      {% if request.user.is_authenticated %}
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a href="{% url 'wagtailadmin_account' %}" class="navbar-link">{{ request.user }}</a>
+        <div class="navbar-dropdown">
+            <a href="{% url 'wagtailadmin_home' %}" class="navbar-item">Dashboard</a>
+            <a href="{% url 'wagtailadmin_account' %}" class="navbar-item">Settings</a>
+            <hr class="navbar-divider"></hr>
+            <a href="{% url 'wagtailadmin_logout' %}" class="navbar-item">Logout</a>
+        </div>
+      </div>
+      {% else %}
+        <a href="{% url 'wagtailadmin_home' %}" class="navbar-item">Login</a>
+      {% endif %}
       <div class="navbar-item">
         <div class="field"><div class="control">
         <div class="select">
@@ -50,7 +63,7 @@
                   {% endfor %}
               </select>
               <noscript>
-                <button type="submit" class="button is-small is-pulled-right">{% trans 'Select' %}</button>
+                <button type="submit" class="button is-pulled-right">{% trans 'Select' %}</button>
               </noscript>
           </form>
         </div></div></div>
