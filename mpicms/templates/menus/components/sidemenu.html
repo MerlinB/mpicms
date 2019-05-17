@@ -1,11 +1,13 @@
 {% load wagtailcore_tags %}
 
+{% with page.category as category %}
+
 <div class="menu" style="padding-top: 2rem;">
 <p class="menu-label">
-    {{ page.category }}
+    {{ category }}
 </p>
 <ul class="menu-list">
-    {% for menu_page in page.category.get_children.live.in_menu %}
+    {% for menu_page in category.get_children.live.in_menu %}
     <li>
         <a href="{% pageurl menu_page %}" class="{% if menu_page.specific == page %}has-text-weight-bold{% endif %}">{{ menu_page }}</a>
         {% with menu_page.get_children.live.in_menu as children %}
@@ -21,3 +23,12 @@
     {% endfor %}
 </ul>
 </div>
+
+<div class="content" style="padding-top: 2rem;">
+{% for block in category.specific.side_content %}
+<p class="menu-label">{% include_block block.value.heading %}</p>
+<p>{% include_block block.value.content %}</p>
+{% endfor %}
+</div>
+
+{% endwith %}
