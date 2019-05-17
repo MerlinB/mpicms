@@ -32,7 +32,10 @@ EMAIL_PORT = 1025
 
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ['debug_toolbar']  # noqa F405
+INSTALLED_APPS += [  # noqa F405
+    'debug_toolbar',
+    'wagtail.contrib.styleguide',
+]
 MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']  # noqa F405
 DEBUG_TOOLBAR_CONFIG = {
     'DISABLE_PANELS': [
