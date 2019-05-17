@@ -7,10 +7,17 @@ from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, StreamField
 from wagtail.search import index
 from wagtail.images.blocks import ImageChooserBlock
 
-from .behaviours import CategoryMixin
-
 
 Page.show_in_menus_default = True
+
+
+class CategoryMixin(models.Model):
+    @property
+    def category(self):
+        return Page.objects.ancestor_of(self, inclusive=True).type(CategoryPage).order_by('-depth').first()
+
+    class Meta:
+        abstract = True
 
 
 class HomePage(Page):
@@ -19,18 +26,29 @@ class HomePage(Page):
     content_panels = Page.content_panels
 
 
-class CategoryPage(CategoryMixin, Page):
+class CategoryPage(Page):
     body = RichTextField(blank=True)
+    side_content = StreamField([
+        ('information', blocks.StructBlock([
+                ('heading', blocks.CharBlock(classname="full title")),
+                ('content', blocks.TextBlock()),
+        ], icon="list-ul"))
+    ])
 
     content_panels = Page.content_panels + [
         FieldPanel('body', classname="full"),
+        StreamFieldPanel('side_content')
     ]
 
     parent_page_types = ['HomePage', 'CategoryPage']
 
+    @property
+    def category(self):
+        return self
+
 
 class WikiPage(CategoryMixin, Page):
-    body = RichTextField()
+    body = RichTextField(blank=True)
     date = models.DateField("Post date", auto_now_add=True)
 
     search_fields = Page.search_fields + [
