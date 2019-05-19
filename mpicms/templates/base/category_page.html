@@ -11,7 +11,11 @@
             <div class="container is-fluid">
                 <h1 class="title">{{ page.title }}</h1>
                 <div class="content">
-                    <p>{{ page.body|richtext }}</p>
+                    <p>
+                        {% for block in page.body %}
+                            {% include_block block %}
+                        {% endfor %}
+                    </p>
                 </div>
                 {% for child in page.get_children.live %}
                     <a href="{% pageurl child %}">

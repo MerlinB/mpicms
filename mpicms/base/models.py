@@ -8,6 +8,7 @@ from wagtail.search import index
 from wagtail.images.blocks import ImageChooserBlock
 
 
+
 Page.show_in_menus_default = True
 
 
@@ -27,16 +28,21 @@ class HomePage(Page):
 
 
 class CategoryPage(Page):
-    body = RichTextField(blank=True)
+    body = StreamField([
+        ('heading', blocks.CharBlock(classname="full title")),
+        ('text', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('url', blocks.URLBlock())
+    ], blank=True)
     side_content = StreamField([
         ('information', blocks.StructBlock([
                 ('heading', blocks.CharBlock(classname="full title")),
                 ('content', blocks.TextBlock()),
         ], icon="list-ul"))
-    ])
+    ], blank=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full"),
+        StreamFieldPanel('body', classname="full"),
         StreamFieldPanel('side_content')
     ]
 
@@ -48,7 +54,12 @@ class CategoryPage(Page):
 
 
 class WikiPage(CategoryMixin, Page):
-    body = RichTextField(blank=True)
+    body = StreamField([
+        ('heading', blocks.CharBlock(classname="full title")),
+        ('text', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('url', blocks.URLBlock())
+    ], blank=True)
     date = models.DateField("Post date", auto_now_add=True)
 
     search_fields = Page.search_fields + [
@@ -57,7 +68,7 @@ class WikiPage(CategoryMixin, Page):
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full"),
+        StreamFieldPanel('body', classname="full"),
     ]
 
     promote_panels = [
