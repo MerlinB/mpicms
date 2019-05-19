@@ -81,18 +81,3 @@ class WikiPage(CategoryMixin, Page):
         MultiFieldPanel(Page.promote_panels, "Common page configuration"),
     ]
 
-
-class StreamPage(CategoryMixin, Page):
-    author = models.CharField(max_length=255)
-    date = models.DateField("Post date")
-    body = StreamField([
-        ('heading', blocks.CharBlock(classname="full title")),
-        ('paragraph', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-    ])
-
-    content_panels = Page.content_panels + [
-        FieldPanel('author'),
-        FieldPanel('date'),
-        StreamFieldPanel('body'),
-    ]
