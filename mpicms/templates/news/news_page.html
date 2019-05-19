@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+    {% include 'base/components/breadcrump.html' %}
+    <section class="section">
+            <h1 class="title">{{ page.title }}</h1>
+            {% for child in page.get_children.live %}
+            <a href="{% pageurl child %}">
+                <div class="card">
+                <!-- <div class="card-image">
+                    <figure class="image is-4by3">
+                    </figure>
+                </div> -->
+                <div class="card-content">
+                    <time datetime="2016-1-1">1 Jan 2016</time>
+                    <p class="title">{{ child.title }}</p>
+                    <div class="content">
+                        {{ child.specific.preview }}
+                    </div>
+                </div>
+                </div>
+                </a>
+            {% endfor %}
+    </section>
+
+{% endblock %}
