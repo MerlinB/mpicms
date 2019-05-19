@@ -7,6 +7,7 @@ from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, StreamField
 from wagtail.search import index
 from wagtail.images.blocks import ImageChooserBlock
 
+from mpicms.news.models import NewsPage
 
 
 Page.show_in_menus_default = True
@@ -25,6 +26,11 @@ class HomePage(Page):
     parent_page_types = ['wagtailcore.Page']  # Restrict parent to be root
 
     content_panels = Page.content_panels
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        context['news'] = NewsPage.objects.first()
+        return context
 
 
 class CategoryPage(Page):

@@ -7,12 +7,11 @@ from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, StreamField
 from wagtail.search import index
 from wagtail.images.blocks import ImageChooserBlock
 
-from mpicms.base.models import HomePage
-
 
 class NewsPage(Page):
     content_panels = Page.content_panels
-    parent_page_types = [HomePage]
+
+    child_page_types = ['NewsEntry']
 
 
 class NewsEntry(Page):
