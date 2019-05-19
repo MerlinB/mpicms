@@ -13,6 +13,17 @@
                 <div class="content">
                     <p>{{ page.body|richtext }}</p>
                 </div>
+                {% for child in page.get_children.live %}
+                    <a href="{% pageurl child %}">
+                        <div class="card">
+                        <div class="card-content">
+                            <p class="subtitle">
+                            {{ child.title }}
+                            </p>
+                        </div>
+                    </div>
+                    </a>
+                {% endfor %}
             </div>
         </section>
     <!-- </div> -->
