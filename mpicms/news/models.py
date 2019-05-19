@@ -10,9 +10,6 @@ from wagtail.images.blocks import ImageChooserBlock
 from mpicms.base.models import HomePage
 
 
-Page.show_in_menus_default = True
-
-
 class NewsPage(Page):
     content_panels = Page.content_panels
     parent_page_types = [HomePage]
