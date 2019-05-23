@@ -1,35 +1,25 @@
-{% extends 'base.html' %}
+{% extends 'base/page.html' %}
 
 {% load wagtailcore_tags %}
 
-{% block content %}
-<!-- <div class="columns is-centered"> -->
-    <!-- <div class="column is-half"> -->
-
-        {% include 'base/components/breadcrump.html' %}
-        <section class="section">
-            <div class="container is-fluid">
-                <h1 class="title">{{ page.title }}</h1>
-                <div class="content">
-                    <p>
-                        {% for block in page.body %}
-                            {% include_block block %}
-                        {% endfor %}
-                    </p>
-                </div>
-                {% for child in page.get_children.live %}
-                    <a href="{% pageurl child %}">
-                        <div class="card">
-                        <div class="card-content">
-                            <p class="subtitle">
-                            {{ child.title }}
-                            </p>
-                        </div>
-                    </div>
-                    </a>
-                {% endfor %}
+{% block page_content %}
+    <h1 class="title is-2">{{ page.title }}</h1>
+    <div class="content">
+        <p>
+            {% for block in page.body %}
+                {% include_block block %}
+            {% endfor %}
+        </p>
+    </div>
+    {% for child in page.get_children.live %}
+        <a href="{% pageurl child %}">
+            <div class="card">
+            <div class="card-content">
+                <p class="subtitle">
+                {{ child.title }}
+                </p>
             </div>
-        </section>
-    <!-- </div> -->
-<!-- </div> -->
+        </div>
+        </a>
+    {% endfor %}
 {% endblock %}

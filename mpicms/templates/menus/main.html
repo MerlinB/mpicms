@@ -2,24 +2,67 @@
 {% load i18n %}
 {% load wagtailcore_tags %}
 
-<nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a href="{% pageurl request.site.root_page %}" class="navbar-item">
-      <img src="{% static 'images/molgen-logo.svg' %}">
-    </a>
 
-    <a role="button" class="navbar-burger burger" data-target="navMenu" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
+<nav class="navbar is-light is-hidden-touch" style="height: 10rem;">
+  <div class="container">
+    <div class="navbar-brand">
+      <a href="{% pageurl request.site.root_page %}" class="navbar-item">
+        <img src="{% static 'images/molgen-logo.svg' %}" style="max-height: 6rem; height: 6rem;">
+        <h1 class="title is-1">Intranet</h1>
+      </a>
+    </div>
+    <div class="navbar-end">
+        {% if request.user.is_authenticated %}
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a href="{% url 'wagtailadmin_account' %}" class="navbar-link navbar-title">{{ request.user }}</a>
+          <div class="navbar-dropdown">
+              <a href="{% url 'wagtailadmin_home' %}" class="navbar-item">Dashboard</a>
+              <a href="{% url 'wagtailadmin_account' %}" class="navbar-item">Settings</a>
+              <hr class="navbar-divider"></hr>
+              <a href="{% url 'wagtailadmin_logout' %}" class="navbar-item">Logout</a>
+          </div>
+        </div>
+        {% else %}
+          <a href="{% url 'wagtailadmin_home' %}" class="navbar-item navbar-title">Login</a>
+        {% endif %}
+        <div class="navbar-item">
+          <div class="field"><div class="control">
+          <div class="select">
+            <form action="{% url 'set_language' %}" method="post" id=language_form>{% csrf_token %}
+                <select name="language" onchange="language_form.submit()">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                            {{ language.name_local }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <noscript>
+                  <button type="submit" class="button is-pulled-right">{% trans 'Select' %}</button>
+                </noscript>
+            </form>
+          </div></div></div>
+        </div>
+    </div>
   </div>
+</nav>
 
+<nav class="navbar has-shadow is-light" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger burger" data-target="navMenu" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+    </div>
   <div class="navbar-menu" id="navMenu">
     <div class="navbar-start">
       {% for child in request.site.root_page.get_children.live.in_menu %}
       <div class="navbar-item has-dropdown is-hoverable">
-        <a href="{% pageurl child %}" class="navbar-link">
+        <a href="{% pageurl child %}" class="navbar-link navbar-title">
           {{ child }}
         </a>
 
@@ -35,40 +78,23 @@
     </div>
 
     <div class="navbar-end">
-      {% if request.user.is_authenticated %}
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a href="{% url 'wagtailadmin_account' %}" class="navbar-link">{{ request.user }}</a>
-        <div class="navbar-dropdown">
-            <a href="{% url 'wagtailadmin_home' %}" class="navbar-item">Dashboard</a>
-            <a href="{% url 'wagtailadmin_account' %}" class="navbar-item">Settings</a>
-            <hr class="navbar-divider"></hr>
-            <a href="{% url 'wagtailadmin_logout' %}" class="navbar-item">Logout</a>
+      <div class="navbar-item">
+        <div class="field has-addons">
+            <div class="control is-expanded">
+                <input type="text" class="input" placeholder="{% trans 'Search' %}">
+            </div>
+            <div class="control">
+                <a class="button">
+                    <span class="icon has-text-grey">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </a>
+            </div>
         </div>
       </div>
-      {% else %}
-        <a href="{% url 'wagtailadmin_home' %}" class="navbar-item">Login</a>
-      {% endif %}
-      <div class="navbar-item">
-        <div class="field"><div class="control">
-        <div class="select">
-          <form action="{% url 'set_language' %}" method="post" id=language_form>{% csrf_token %}
-              <select name="language" onchange="language_form.submit()">
-                  {% get_current_language as LANGUAGE_CODE %}
-                  {% get_available_languages as LANGUAGES %}
-                  {% get_language_info_list for LANGUAGES as languages %}
-                  {% for language in languages %}
-                      <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                          {{ language.name_local }}
-                      </option>
-                  {% endfor %}
-              </select>
-              <noscript>
-                <button type="submit" class="button is-pulled-right">{% trans 'Select' %}</button>
-              </noscript>
-          </form>
-        </div></div></div>
-      </div>
+
     </div>
+  </div>
   </div>
 </nav>
 

@@ -1,17 +1,18 @@
 {% load wagtailcore_tags %}
 {% load i18n %}
-
-<div class="field has-addons">
-    <div class="control is-expanded">
-        <input type="text" class="input" placeholder="{% trans 'Search' %}">
+<div class="sidebar">
+    <div class="field has-addons">
+        <div class="control is-expanded">
+            <input type="text" class="input" placeholder="{% trans 'Search' %}">
+        </div>
+        <div class="control">
+            <a class="button">
+                <span class="icon has-text-grey">
+                    <i class="fas fa-search"></i>
+                </span>
+            </a>
+        </div>
     </div>
-    <div class="control">
-        <a class="button">
-            <span class="icon has-text-grey">
-                <i class="fas fa-search"></i>
-            </span>
-        </a>
-    </div>
+    {% include 'menus/components/sidemenu.html' %}
 </div>
 
-{% include 'menus/components/sidemenu.html' %}

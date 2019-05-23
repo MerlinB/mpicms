@@ -1,13 +1,49 @@
 html, body {
-  font-family: 'Open Sans', serif;
+  font-family: "Merriweather", serif;
+  /* font-family: 'Open Sans', serif; */
   font-size: 14px;
   line-height: 1.5;
 }
 
-.aside {
-  display:block;
-  padding: 30px;
-  padding-right: 19px;
-  background-color: #F9F9F9;
-  border-right: 1px solid #DEDEDE;
+h1.is-1 {
+  font-family: "Merriweather Sans", sans-serif;
+  color: #006c66;
+  padding-left: 2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 4rem;
+  letter-spacing: 0.2em;
+}
+
+.sidebar {
+  margin-top: 3rem;
+}
+
+.contains-breadcrump {
+  padding-top: 1rem;
+}
+
+.title {
+  color: #006c66;
+}
+
+.navbar-title {
+  text-transform: uppercase !important;
+  font-family: "Merriweather Sans", sans-serif !important;
+  color: grey !important;
+}
+
+.sidebar {
+  width: 18rem;
+  padding: 1rem;
+}
+
+.breadcrumb {
+  margin: 0.5rem;
+  font-size: 80%;
+  font-family: "Merriweather Sans", sans-serif;
+}
+
+.navbar-link:not(.is-arrowless)::after {
+  border-color: #006c66 !important;
 }
