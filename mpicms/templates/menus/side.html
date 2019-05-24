@@ -1,18 +1,36 @@
 {% load wagtailcore_tags %}
 {% load i18n %}
-<div class="sidebar">
-    <div class="field has-addons">
-        <div class="control is-expanded">
-            <input type="text" class="input" placeholder="{% trans 'Search' %}">
-        </div>
-        <div class="control">
-            <a class="button">
-                <span class="icon has-text-grey">
-                    <i class="fas fa-search"></i>
-                </span>
-            </a>
-        </div>
-    </div>
-    {% include 'menus/components/sidemenu.html' %}
+
+{% with page.category as category %}
+
+<div class="menu" style="padding-top: 2rem;">
+<p class="menu-label">
+    {{ category }}
+</p>
+<ul class="menu-list">
+    {% for menu_page in category.get_children.live.in_menu %}
+    <li>
+        <a href="{% pageurl menu_page %}" class="{% if menu_page.specific == page %}has-text-weight-bold{% endif %}">{{ menu_page }}</a>
+        {% with menu_page.get_children.live.in_menu as children %}
+        {% if children %}
+            <ul>
+            {% for child in children %}
+                <li><a href="{% pageurl child %}" class="{% if child.specific == page %}has-text-weight-bold{% endif %}">{{ child }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+    </li>
+    {% endfor %}
+</ul>
 </div>
+
+<div class="content" style="padding-top: 2rem;">
+    {% for block in category.specific.side_content %}
+        <p class="menu-label">{% include_block block.value.heading %}</p>
+        <p>{% include_block block.value.content %}</p>
+    {% endfor %}
+</div>
+
+{% endwith %}
 

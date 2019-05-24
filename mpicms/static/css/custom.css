@@ -1,6 +1,6 @@
 html, body {
-  font-family: "Merriweather", serif;
-  /* font-family: 'Open Sans', serif; */
+  /* font-family: "Merriweather", serif; */
+  font-family: 'Open Sans', serif;
   font-size: 14px;
   line-height: 1.5;
 }
@@ -15,16 +15,44 @@ h1.is-1 {
   letter-spacing: 0.2em;
 }
 
-.sidebar {
-  margin-top: 3rem;
+.logo {
+  max-height: 5rem !important;
+  height: 5rem !important;
 }
 
-.contains-breadcrump {
+.contains-breadcrumb {
   padding-top: 1rem;
 }
 
 .title {
   color: #006c66;
+}
+
+.navbar {
+  flex-wrap: wrap;
+  max-height: 13rem;
+}
+
+.navbar-bottom {
+  padding: 0 1rem;
+}
+
+.navbar-container-top {
+  align-items: center !important;
+}
+
+.navbar-menu-top {
+  height: fit-content;
+}
+
+.navbar-menu-bottom {
+  display: flex !important;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.navbar-brand-top {
+  padding-top: 1rem;
 }
 
 .navbar-title {
@@ -34,8 +62,16 @@ h1.is-1 {
 }
 
 .sidebar {
-  width: 18rem;
+  flex: 0 0 18rem !important;
+  flex-wrap: wrap;
   padding: 1rem;
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+  margin-top: 3rem;
+}
+
+.sidebar > div {
+  flex: 0 0 100%;
 }
 
 .breadcrumb {
@@ -46,4 +82,10 @@ h1.is-1 {
 
 .navbar-link:not(.is-arrowless)::after {
   border-color: #006c66 !important;
+}
+
+.menu-label {
+  padding-top: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
 }
