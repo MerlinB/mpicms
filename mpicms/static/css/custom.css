@@ -1,18 +1,34 @@
 html, body {
+  font-family: "Merriweather Sans", sans-serif;
   /* font-family: "Merriweather", serif; */
-  font-family: 'Open Sans', serif;
+  /* font-family: 'Open Sans', serif; */
   font-size: 14px;
   line-height: 1.5;
+  font-weight: 300;
 }
 
-h1.is-1 {
+select {
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: 300;
+  border-radius: 0 !important;
+}
+
+.title {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+}
+
+.title.is-1 {
   font-family: "Merriweather Sans", sans-serif;
   color: #006c66;
   padding-left: 2rem;
-  font-weight: 400;
   text-transform: uppercase;
-  font-size: 4rem;
+  font-size: 3.5rem;
   letter-spacing: 0.2em;
+}
+
+.title.is-2 {
+  font-family: "Merriweather Sans", sans-serif;
 }
 
 .logo {
@@ -61,6 +77,10 @@ h1.is-1 {
   color: grey !important;
 }
 
+.navbar-dropdown {
+  border-radius: 0 !important;
+}
+
 .sidebar {
   flex: 0 0 18rem !important;
   flex-wrap: wrap;
@@ -88,4 +108,62 @@ h1.is-1 {
   padding-top: 1rem;
   font-size: 1rem;
   font-weight: bold;
+}
+
+.card {
+  /* background: #eeeeee; */
+  /* border: none; */
+  /* box-shadow: none; */
+  margin: 1rem;
+  min-width: 20rem;
+  flex-grow: 1;
+}
+
+.flex-base {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+
+.card-content > time {
+  font-size: 90%;
+  font-weight: bold;
+}
+
+.card-content > .content {
+  padding: 1rem 0;
+}
+
+.card-content > .title {
+  margin: 0;
+  display: block;
+}
+
+.card-link {
+  padding: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #006c66;
+  float: right;
+}
+
+.section-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.button {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-size: 110%;
+  border-radius: 0;
+  background: #3d3d3f;
+  color: white;
+}
+
+.fa-chevron-right {
+  padding-left: 0.8rem;
 }
