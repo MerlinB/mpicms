@@ -6,7 +6,6 @@
 
 {% block content %}
     <section class="section">
-        <h2 class="title is-2">{{ page.title }}</h2>
-        {% include 'base/components/news_preview.html' with news=news %}
+        {% include 'news/components/news_preview.html' with news=news %}
     </section>
 {% endblock %}

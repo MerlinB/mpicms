@@ -1,0 +1,27 @@
+{% load wagtailcore_tags %}
+{% load base_tags %}
+
+{% is_ancestor page menu_page as is_ancestor %}
+{% with menu_page.get_children.live.in_menu as children %}
+
+<a href="{% pageurl menu_page %}" class="{% if menu_page.specific == page %}is-current{% endif %} {% if is_root %}menu-item{% endif %} flex-align">
+    <div>
+    {{ menu_page }}
+    </div>
+    {% if children %}
+    <i class="fas fa-chevron-down padded"></i>
+    {% endif %}
+</a>
+
+{% if is_ancestor or page == menu_page.specific %}
+    {% if children %}
+        <ul>
+        {% for child in children %}
+            {% include 'menus/components/menu_item.html' with menu_page=child is_root=False %}
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endif %}
+
+
+{% endwith %}

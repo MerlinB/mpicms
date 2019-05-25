@@ -1,31 +1,34 @@
 from django.db import models
+from django.utils.translation import gettext as _
 
 from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core import blocks
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, StreamFieldPanel
-from wagtail.search import index
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel
 
 
 class NewsPage(Page):
     content_panels = Page.content_panels
 
-    child_page_types = ['NewsEntry']
+    parent_page_types = ['base.CategoryPage']
+    subpage_types = ['NewsEntry']
+    show_in_menus_default = True
+
+    class Meta:  # noqa
+        verbose_name = _("news Blog")
+        verbose_name_plural = _("news Blogs")
 
 
 class NewsEntry(Page):
-    preview = models.TextField(blank=True)
-    body = StreamField([
-        ('heading', blocks.CharBlock(classname="full title")),
-        ('text', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-        ('url', blocks.URLBlock())
-    ], blank=True)
+    preview = models.TextField(_("preview"), blank=True)
+    body = RichTextField(_("content"))
 
     content_panels = Page.content_panels + [
         FieldPanel('preview'),
-        StreamFieldPanel('body', classname="full"),
+        FieldPanel('body', classname="full"),
     ]
 
     parent_page_types = ['NewsPage']
+
+    class Meta:  # noqa
+        verbose_name = _("news entry")
+        verbose_name_plural = _("news entries")

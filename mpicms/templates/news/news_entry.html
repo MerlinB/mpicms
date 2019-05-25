@@ -3,22 +3,13 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-<!-- <div class="columns is-centered"> -->
-    <!-- <div class="column is-half"> -->
-
-        {% include 'base/components/breadcrumb.html' %}
-        <section class="section">
-            <!-- <div class="container is-fluid"> -->
-                <h1 class="title">{{ page.title }}</h1>
-                <div class="content">
-                    <p>
-                        {% for block in page.body %}
-                            {% include_block block %}
-                        {% endfor %}
-                    </p>
-                </div>
-            <!-- </div> -->
-        </section>
-    <!-- </div> -->
-<!-- </div> -->
+    {% include 'base/components/breadcrumb.html' %}
+    <section class="section">
+            <h1 class="title">{{ page.title }}</h1>
+            <div class="content">
+                <p>
+                    {{ page.body|richtext }}
+                </p>
+            </div>
+    </section>
 {% endblock %}

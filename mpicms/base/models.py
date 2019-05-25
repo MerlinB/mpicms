@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext as _
 
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
@@ -32,24 +33,23 @@ class HomePage(Page):
         context['news'] = NewsPage.objects.first()
         return context
 
+    class Meta: # noqa
+        verbose_name = _("homepage")
+        verbose_name_plural = _("homepages")
+
 
 class CategoryPage(Page):
-    body = StreamField([
-        ('heading', blocks.CharBlock(classname="full title")),
-        ('text', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-        ('url', blocks.URLBlock())
-    ], blank=True)
-    side_content = StreamField([
-        ('information', blocks.StructBlock([
-                ('heading', blocks.CharBlock(classname="full title")),
-                ('content', blocks.TextBlock()),
-        ], icon="list-ul"))
-    ], blank=True)
+    body = RichTextField(_("content"), blank=True)
+    side_content = RichTextField(
+        _("sidebar content"), blank=True,
+        features=['h4', 'h5', 'h6', 'bold', 'italic', 'link', 'document-link'],
+        help_text=_("Information displayed on the page in the sidebar")
+    )
+    # contact = models.ManyToManyField()
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel('body', classname="full"),
-        StreamFieldPanel('side_content')
+        FieldPanel('body', classname="full"),
+        FieldPanel('side_content')
     ]
 
     parent_page_types = ['HomePage', 'CategoryPage']
@@ -57,6 +57,10 @@ class CategoryPage(Page):
     @property
     def category(self):
         return self
+
+    class Meta: # noqa
+        verbose_name = _("category")
+        verbose_name_plural = _("categories")
 
 
 class WikiPage(CategoryMixin, Page):

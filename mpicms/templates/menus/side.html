@@ -1,35 +1,31 @@
 {% load wagtailcore_tags %}
 {% load i18n %}
 
+
 {% with page.category as category %}
+{% with category.get_children.live.in_menu as children %}
+
+{% if children %}
 
 <div class="menu" style="padding-top: 2rem;">
-<p class="menu-label">
+<a href="{% pageurl category %}" class="menu-label">
     {{ category }}
-</p>
+</a>
 <ul class="menu-list">
-    {% for menu_page in category.get_children.live.in_menu %}
-    <li>
-        <a href="{% pageurl menu_page %}" class="{% if menu_page.specific == page %}has-text-weight-bold{% endif %}">{{ menu_page }}</a>
-        {% with menu_page.get_children.live.in_menu as children %}
-        {% if children %}
-            <ul>
-            {% for child in children %}
-                <li><a href="{% pageurl child %}" class="{% if child.specific == page %}has-text-weight-bold{% endif %}">{{ child }}</a></li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-        {% endwith %}
-    </li>
-    {% endfor %}
+        {% for menu_page in children %}
+        <li>
+            {% include 'menus/components/menu_item.html' with menu_page=menu_page is_root=True %}
+        </li>
+        {% endfor %}
 </ul>
 </div>
 
+
+{% endif %}
+{% endwith %}
+
 <div class="content" style="padding-top: 2rem;">
-    {% for block in category.specific.side_content %}
-        <p class="menu-label">{% include_block block.value.heading %}</p>
-        <p>{% include_block block.value.content %}</p>
-    {% endfor %}
+    {{ category.specific.side_content|richtext }}
 </div>
 
 {% endwith %}

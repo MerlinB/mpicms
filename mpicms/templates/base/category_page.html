@@ -6,9 +6,7 @@
     <h2 class="title is-2">{{ page.title }}</h2>
     <div class="content">
         <p>
-            {% for block in page.body %}
-                {% include_block block %}
-            {% endfor %}
+            {{ page.body|richtext }}
         </p>
     </div>
     {% for child in page.get_children.live %}
