@@ -1,0 +1,22 @@
+{% load i18n %}
+{% load wagtailcore_tags %}
+
+
+<h3 class="title is-3">News</h3>
+<div class="flex-base">
+{% for child in news.get_children.live|slice:3 %}
+    <div class="card">
+        <div class="card-content">
+            <a href="{% pageurl child %}" class="title is-4">{{ child.title }}</a>
+            <time datetime="2016-1-1">1 Jan 2016</time>
+            <div class="content">
+                {{ child.specific.preview }}
+            </div>
+        </div>
+        <a href="{% pageurl child %}" class="card-footer-item card-link"><i class="fas fa-chevron-right"></i></a>
+    </div>
+{% endfor %}
+</div>
+<div class="section-button">
+    <a href="{% pageurl news %}"><button class="button">{% trans 'All news' %}<i class="fas fa-chevron-right"></i></button></a>
+</div>
