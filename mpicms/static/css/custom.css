@@ -90,8 +90,35 @@ select, input {
   margin-top: 3rem;
 }
 
+.sidebar ul {
+  list-style: none;
+  margin: 0;
+}
+
+.sidebar a {
+  color: #006c66;
+  font-weight: 400;
+}
+
+.sidebar li {
+  list-style: none;
+}
+
+.sidebar h4 {
+  color: #006c66;
+  font-weight: 400;
+  letter-spacing: .1em;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
 .sidebar > div {
   flex: 0 0 100%;
+}
+
+.contact {
+  padding-bottom: 1em;
+  line-height: 90%;
 }
 
 .fas {
@@ -128,8 +155,7 @@ select, input {
 
 .menu-label {
   display: block;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .is-current {

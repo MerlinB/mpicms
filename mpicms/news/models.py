@@ -9,9 +9,9 @@ from wagtail.admin.edit_handlers import FieldPanel
 class NewsPage(Page):
     content_panels = Page.content_panels
 
-    parent_page_types = ['base.CategoryPage']
+    parent_page_types = ['base.CategoryPage', 'base.HomePage']
     subpage_types = ['NewsEntry']
-    show_in_menus_default = True
+    show_in_menus_default = False
 
     class Meta:  # noqa
         verbose_name = _("news Blog")
