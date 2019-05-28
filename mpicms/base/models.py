@@ -1,3 +1,4 @@
+from django.apps import apps
 from django.db import models
 from django.utils.translation import gettext as _
 
@@ -11,7 +12,7 @@ from wagtail.search import index
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
-from mpicms.news.models import NewsPage
+from mpicms.news.mixins import NewsMixin
 
 
 Page.show_in_menus_default = True
@@ -45,22 +46,17 @@ class CategoryMixin(models.Model):
         abstract = True
 
 
-class HomePage(Page):
+class HomePage(NewsMixin, Page):
     parent_page_types = ['wagtailcore.Page']  # Restrict parent to be root
 
     content_panels = Page.content_panels
-
-    def get_context(self, request):
-        context = super().get_context(request)
-        context['news'] = NewsPage.objects.first()
-        return context
 
     class Meta: # noqa
         verbose_name = _("homepage")
         verbose_name_plural = _("homepages")
 
 
-class CategoryPage(Page):
+class CategoryPage(NewsMixin, Page):
     body = RichTextField(_("content"), blank=True)
     side_content = RichTextField(
         _("sidebar content"), blank=True,
@@ -94,7 +90,6 @@ class WikiPage(CategoryMixin, Page):
         ('image', ImageChooserBlock()),
         ('url', blocks.URLBlock())
     ], blank=True)
-    date = models.DateField("Post date", auto_now_add=True)
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),

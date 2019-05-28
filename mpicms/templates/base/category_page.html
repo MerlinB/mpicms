@@ -9,6 +9,9 @@
             {{ page.body|richtext }}
         </p>
     </div>
+
+    {% include 'news/components/news_preview.html' with news=page.news %}
+
     {% for child in page.get_children.live %}
         <a href="{% pageurl child %}">
             <div class="card">

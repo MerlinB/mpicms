@@ -3,50 +3,55 @@
 
 
 {% with page.category as category %}
-{% with category.get_children.live.in_menu as children %}
 
-{% if children %}
+    {% with category.get_children.live.in_menu as children %}
 
-<div class="menu" style="padding-top: 2rem;">
-<a href="{% pageurl category %}" class="menu-label">
-    {{ category }}
-</a>
-<ul class="menu-list">
-        {% for menu_page in children %}
-        <li>
-            {% include 'menus/components/menu_item.html' with menu_page=menu_page is_root=True %}
-        </li>
-        {% endfor %}
-</ul>
-</div>
+    {% if children %}
 
-
-{% endif %}
-{% endwith %}
-
-<div class="content" style="padding-top: 2rem;">
-    {{ category.specific.side_content|richtext }}
-</div>
-
-
-{% with category.specific.contacts.all as contacts %}
-    {% if contacts %}
-    <div class="content">
-        <h4 class="">{% trans 'Contact' %}</h4>
-        <ul>
-            {% for contact in contacts %}
-                <li>
-                    <ul class="contact">
-                        <li style="font-weight: 400;">{{ contact.person.first_name }} {{ contact.person.last_name }}</li>
-                        <li>{{ contact.position }}</li>
-                        <li><i class="fas fa-at"></i> <a href="mailto:{{ contact.person.email }}">{{ contact.person.email }}</a></li>
-                        <li><i class="fas fa-phone"></i> {{ contact.person.phone }}</li>
-                    </ul>
-                </li>
+    <div class="menu" style="padding-top: 2rem;">
+    <a href="{% pageurl category %}" class="menu-label">
+        {{ category }}
+    </a>
+    <ul class="menu-list">
+            {% for menu_page in children %}
+            <li>
+                {% include 'menus/components/menu_item.html' with menu_page=menu_page is_root=True %}
+            </li>
             {% endfor %}
-        </ul>
+    </ul>
     </div>
+
+
     {% endif %}
-{% endwith %}
+    {% endwith %}
+
+    <div class="content" style="padding-top: 2rem;">
+        {% include 'news/components/news_list.html' with news=category.specific.news %}
+    </div>
+
+    <div class="content" style="padding-top: 2rem;">
+        {{ category.specific.side_content|richtext }}
+    </div>
+
+
+    {% with category.specific.contacts.all as contacts %}
+        {% if contacts %}
+        <div class="content">
+            <h4 class="">{% trans 'Contact' %}</h4>
+            <ul>
+                {% for contact in contacts %}
+                    <li>
+                        <ul class="contact">
+                            <li style="font-weight: 400;">{{ contact.person.first_name }} {{ contact.person.last_name }}</li>
+                            <li>{{ contact.position }}</li>
+                            <li><i class="fas fa-at"></i> <a href="mailto:{{ contact.person.email }}">{{ contact.person.email }}</a></li>
+                            <li><i class="fas fa-phone"></i> {{ contact.person.phone }}</li>
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    {% endwith %}
 
 {% endwith %}

@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base/page.html' %}
 
 {% load wagtailcore_tags %}
 
-{% block content %}
-    {% include 'base/components/breadcrumb.html' %}
+{% block page_content %}
     <section class="section">
             <h1 class="title">{{ page.title }}</h1>
+            {{ page.date }}
             <div class="content">
                 <p>
                     {{ page.body|richtext }}

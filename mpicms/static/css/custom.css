@@ -88,6 +88,7 @@ select, input {
   padding-left: 2rem;
   padding-bottom: 2rem;
   margin-top: 3rem;
+  align-content: flex-start;
 }
 
 .sidebar ul {
@@ -114,6 +115,18 @@ select, input {
 
 .sidebar > div {
   flex: 0 0 100%;
+}
+
+.sidebar time {
+  color: black;
+  font-size: 85%;
+  text-align: end;
+  flex-basis: 100%;
+}
+
+.event-button {
+  display: flex !important;
+  flex-wrap: wrap;
 }
 
 .contact {
@@ -166,8 +179,9 @@ select, input {
 .card {
   margin: 1rem;
   flex-grow: 1;
-  flex-basis: auto;
+  flex-basis: 18rem;
   width: inherit;
+  flex-shrink: 0;
 }
 
 .flex-align {
@@ -175,12 +189,11 @@ select, input {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
 }
 
 .flex-base {
   display: flex !important;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
 }
@@ -224,4 +237,8 @@ select, input {
 
 .fa-chevron-right {
   padding-left: 0.8rem;
+}
+
+.select:not(.is-multiple):not(.is-loading)::after {
+  border-color: #006c66;
 }
