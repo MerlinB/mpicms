@@ -3,23 +3,10 @@
 
 
 {% for news_page in news %}
-    {% with news_page.get_children.live as news_entries %}
+    {% with news_page.specific.news_items as news_entries %}
         {% if news_entries %}
         <h3 class="title is-3">{{ news_page.title }}</h3>
-        <div class="flex-base">
-            {% for child in news_entries|slice:3 %}
-                <div class="card">
-                    <div class="card-content">
-                        <a href="{% pageurl child %}" class="title is-4">{{ child.title }}</a>
-                        <time datetime="{{ child.specific.date }}">{{ child.specific.date }}</time>
-                        <div class="content">
-                            {{ child.specific.preview }}
-                        </div>
-                    </div>
-                    <a href="{% pageurl child %}" class="card-footer-item card-link"><i class="fas fa-chevron-right"></i></a>
-                </div>
-            {% endfor %}
-        </div>
+        {% include 'news/components/cards.html' with items=news_entries %}
         <div class="section-button">
             <a href="{% pageurl news_page %}"><button class="button">{% trans 'All news' %}<i class="fas fa-chevron-right"></i></button></a>
         </div>

@@ -1,0 +1,12 @@
+{% extends 'base/page.html' %}
+
+{% load wagtailcore_tags %}
+
+{% block page_content %}
+    <h2 class="title is-2">{{ page.title }}</h2>
+    <div class="content">
+        <p>
+            {{ page.start }} {{ page.end }} {{ page.body }}
+        </p>
+    </div>
+{% endblock %}

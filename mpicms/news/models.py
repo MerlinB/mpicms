@@ -9,11 +9,21 @@ from mpicms.base.models import CategoryMixin
 
 
 class NewsPage(CategoryMixin, Page):
-    content_panels = Page.content_panels
+    content_panels = Page.content_panels + [
+        FieldPanel('show_all')
+    ]
+    show_all = models.BooleanField(default=False)
 
     parent_page_types = ['base.CategoryPage', 'base.HomePage']
     subpage_types = ['NewsEntry']
     show_in_menus_default = False
+
+    @property
+    def news_items(self):
+        if self.show_all:
+            return NewsEntry.objects.descendant_of(self.get_parent()).live().order_by('-date')
+        return NewsEntry.objects.child_of(self).live().order_by('-date')
+
 
     class Meta:  # noqa
         verbose_name = _("news Blog")

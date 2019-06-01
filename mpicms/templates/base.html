@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {% block head %}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>MolGen CMS</title>
@@ -25,8 +26,21 @@
 
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,400|Merriweather:300,400&display=swap" rel="stylesheet">
 
+        <!-- Event calendar -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/@fullcalendar/daygrid/main.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/@fullcalendar/timegrid@4.1.0/main.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/@fullcalendar/list@4.1.0/main.min.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
+        <script src="https://unpkg.com/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
+        <script src="https://unpkg.com/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
+        <script src="https://unpkg.com/@fullcalendar/list@4.1.0/main.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/locales/de.min.js"></script>
+
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
         <script src="{% static 'js/main.js' %}" defer></script>
+        {% endblock %}
     </head>
     <body>
         {% wagtailuserbar %}
