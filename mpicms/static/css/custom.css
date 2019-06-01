@@ -242,3 +242,8 @@ select, input {
 .select:not(.is-multiple):not(.is-loading)::after {
   border-color: #006c66;
 }
+
+/* Full Calendar */
+.fc-button {
+  border-radius: 0 !important;
+}

@@ -1,3 +1,4 @@
+import json
 from django.apps import apps
 from django.db import models
 from django.utils.translation import gettext as _
@@ -13,6 +14,7 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from mpicms.news.mixins import NewsMixin
+from mpicms.events.models import Event
 
 
 Page.show_in_menus_default = True
@@ -50,6 +52,24 @@ class HomePage(NewsMixin, Page):
     parent_page_types = ['wagtailcore.Page']  # Restrict parent to be root
 
     content_panels = Page.content_panels
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+
+        # Events
+        events = []
+        for event in Event.objects.live():
+            events.append({
+                'title': event.title,
+                'start': event.start.isoformat(),
+                'end': event.end.isoformat(),
+                'url': event.get_url(request=request),
+                'color': '#006c66'
+            })
+
+        context["events"] = json.dumps(events)
+
+        return context
 
     class Meta: # noqa
         verbose_name = _("homepage")

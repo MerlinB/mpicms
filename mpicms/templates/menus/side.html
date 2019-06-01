@@ -25,6 +25,12 @@
     {% endif %}
     {% endwith %}
 
+    {% if events %}
+        <div class="content" style="padding-top: 2rem;">
+            {% include 'events/components/event_list.html' %}
+        </div>
+    {% endif %}
+
     <div class="content" style="padding-top: 2rem;">
         {% include 'news/components/news_list.html' with news=category.specific.news %}
     </div>

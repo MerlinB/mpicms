@@ -1,0 +1,25 @@
+<h4>Upcoming events</h4>
+
+<div id="event_list"></div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('event_list');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: [ 'list' ],
+            defaultView: 'listWeek',
+            events: {{ events|safe }},
+            locale: '{{ LANGUAGE_CODE }}',
+            header: {
+                    left:   '',
+                    center: '',
+                    right:  ''
+                }
+        });
+
+        calendar.render();
+    });
+
+</script>

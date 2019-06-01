@@ -1,0 +1,16 @@
+{% load wagtailcore_tags %}
+
+<div class="flex-base">
+    {% for item in items|slice:3 %}
+        <div class="card">
+            <div class="card-content">
+                <a href="{% pageurl item %}" class="title is-4">{{ item.title }}</a>
+                <time datetime="{{ item.specific.date }}">{{ item.specific.date }}</time>
+                <div class="content">
+                    {{ item.specific.preview }}
+                </div>
+            </div>
+            <a href="{% pageurl item %}" class="card-footer-item card-link"><i class="fas fa-chevron-right"></i></a>
+        </div>
+    {% endfor %}
+</div>
