@@ -1,0 +1,61 @@
+{% load url_tags %}
+
+{% firstof items.number '1' as current %}
+
+<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+    <a class="pagination-previous"><i class="fas fa-chevron-left"></i></a>
+    <ul class="pagination-list">
+        {% if current|add:0 >= 3 %}
+            <li>
+                <a class="pagination-link" href="?{% url_replace request 'page' 1 %}">1</a>
+            </li>
+            {% if current|add:0 >= 4 %}
+                <li>
+                    <span class="pagination-ellipsis">&hellip;</span>
+                </li>
+            {% endif %}
+        {% endif %}
+
+        {% if current|add:0 >= 2 %}
+        <li>
+            <a class="pagination-link" href="?{% url_replace request 'page' current|add:'-1' %}">{{ current|add:'-1' }}</a>
+        </li>
+        {% endif %}
+
+        <li>
+            <a class="pagination-link is-current" aria-current="page">{{ current }}</a>
+        </li>
+
+        {% if current|add:0 <= paginator.num_pages|add:'-1' %}
+        <li>
+            <a class="pagination-link" href="?{% url_replace request 'page' current|add:'1' %}">{{ current|add:'1' }}</a>
+        </li>
+        {% endif %}
+
+        {% if current|add:2 <= paginator.num_pages %}
+            {% if current|add:3 <= paginator.num_pages %}
+                <li>
+                    <span class="pagination-ellipsis">&hellip;</span>
+                </li>
+            {% endif %}
+            <li>
+                <a class="pagination-link" href="?{% url_replace request 'page' paginator.num_pages %}">{{ paginator.num_pages }}</a>
+            </li>
+        {% endif %}
+    </ul>
+    <a class="pagination-next"><i class="fas fa-chevron-right"></i></a>
+</nav>
+
+<!-- <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <a class="pagination-previous">Previous</a>
+        <a class="pagination-next">Next page</a>
+        <ul class="pagination-list">
+          <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
+          <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
+          <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+        </ul>
+      </nav> -->

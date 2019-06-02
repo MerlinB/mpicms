@@ -177,11 +177,22 @@ select, input {
 }
 
 .card {
-  margin: 1rem;
+  margin: 1rem 2rem 1rem 0;
   flex-grow: 1;
-  flex-basis: 18rem;
   width: inherit;
   flex-shrink: 0;
+}
+
+.is-preview {
+  flex-basis: 18rem;
+}
+
+.category-label {
+  float: right;
+  font-size: 90%;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: grey;
 }
 
 .flex-align {
@@ -235,10 +246,6 @@ select, input {
   background: #eeeeee;
 }
 
-.fa-chevron-right {
-  padding-left: 0.8rem;
-}
-
 .select:not(.is-multiple):not(.is-loading)::after {
   border-color: #006c66;
 }
@@ -246,4 +253,17 @@ select, input {
 /* Full Calendar */
 .fc-button {
   border-radius: 0 !important;
+}
+
+/* Pagination */
+.is-current {
+  background-color: transparent !important;
+  border-color: #006c66 !important;
+  /* font-weight: bold; */
+}
+
+.pagination-link, .pagination-next, .pagination-previous {
+  border-radius: 0 !important;
+  color: black !important;
+  /* box-shadow: 1px 1px 0px 0px #eeeeee; */
 }

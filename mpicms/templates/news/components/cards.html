@@ -2,7 +2,7 @@
 
 <div class="flex-base">
     {% for item in items|slice:3 %}
-        <div class="card">
+        <div class="card is-preview">
             <div class="card-content">
                 <a href="{% pageurl item %}" class="title is-4">{{ item.title }}</a>
                 <time datetime="{{ item.specific.date }}">{{ item.specific.date }}</time>

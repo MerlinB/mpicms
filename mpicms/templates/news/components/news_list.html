@@ -2,7 +2,7 @@
 {% load wagtailcore_tags %}
 
 {% for news_page in news %}
-    {% with news_page.get_children.live as news_entries %}
+    {% with news_page.specific.news_items as news_entries %}
         {% if news_entries %}
         <h4>{{ news_page.title }}</h4>
         <ul class="menu-list">

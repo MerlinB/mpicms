@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext as _
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
@@ -17,6 +18,24 @@ class NewsPage(CategoryMixin, Page):
     parent_page_types = ['base.CategoryPage', 'base.HomePage']
     subpage_types = ['NewsEntry']
     show_in_menus_default = False
+    paginated_by = 2
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+
+        paginator = Paginator(self.news_items, self.paginated_by)
+
+        page = request.GET.get("page")
+        try:
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            posts = paginator.page(1)
+        except EmptyPage:
+            posts = paginator.page(paginator.num_pages)
+
+        context['paginator'] = paginator
+        context["news_items"] = posts
+        return context
 
     @property
     def news_items(self):
@@ -43,5 +62,6 @@ class NewsEntry(CategoryMixin, Page):
     parent_page_types = ['NewsPage']
 
     class Meta:  # noqa
+        ordering = ['-date']
         verbose_name = _("news entry")
         verbose_name_plural = _("news entries")
