@@ -71,6 +71,7 @@ LOCAL_APPS = [
     'mpicms.news.apps.NewsAppConfig',
     'mpicms.personal.apps.PersonalAppConfig',
     # 'mpicms.users.apps.UserAppConfig'
+    'mpicms.events.apps.EventAppConfig',
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
