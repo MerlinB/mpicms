@@ -5,6 +5,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.search import index
 
 from mpicms.base.models import CategoryMixin
 
@@ -18,7 +19,7 @@ class NewsPage(CategoryMixin, Page):
     parent_page_types = ['base.CategoryPage', 'base.HomePage']
     subpage_types = ['NewsEntry']
     show_in_menus_default = False
-    paginated_by = 2
+    paginated_by = 8
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
@@ -57,6 +58,12 @@ class NewsEntry(CategoryMixin, Page):
     content_panels = Page.content_panels + [
         FieldPanel('preview'),
         FieldPanel('body', classname="full"),
+    ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
+        index.SearchField('preview'),
+        index.FilterField('date')
     ]
 
     parent_page_types = ['NewsPage']

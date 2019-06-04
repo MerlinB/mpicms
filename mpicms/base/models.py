@@ -92,6 +92,10 @@ class CategoryPage(NewsMixin, Page):
             panels=None),
     ]
 
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
+    ]
+
     parent_page_types = ['HomePage', 'CategoryPage']
 
     @property
@@ -113,7 +117,6 @@ class WikiPage(CategoryMixin, Page):
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
-        index.FilterField('date'),
     ]
 
     content_panels = Page.content_panels + [

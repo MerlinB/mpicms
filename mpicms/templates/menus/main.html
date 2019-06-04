@@ -78,18 +78,18 @@
 
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="field has-addons">
+          <form action="{% url 'search' %}" method="get" class="field has-addons">
               <div class="control is-expanded">
-                  <input type="text" class="input" placeholder="{% trans 'Search' %}" style="height: 100%">
+                  <input type="text" name="query" value="{{ search_query }}" class="input" placeholder="{% trans 'Search' %}" style="height: 100%">
               </div>
               <div class="control">
-                  <a class="button">
+                  <button type="submit" class="button">
                       <span class="icon has-text-grey">
                           <i class="fas fa-search"></i>
                       </span>
-                  </a>
+                    </button>
               </div>
-          </div>
+            </form>
         </div>
       </div>
 

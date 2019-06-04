@@ -13,6 +13,10 @@ select, input {
   border-radius: 0 !important;
 }
 
+.content .fa-chevron-right {
+  padding-left: 1em;
+}
+
 .title {
   font-family: "Merriweather", serif;
   font-weight: 400;
@@ -231,6 +235,20 @@ select, input {
   float: right;
 }
 
+.card-head {
+  /* font-color: gray !important; */
+  padding: 0 !important;
+  margin: 0 0 0.8em 0 !important;
+}
+
+.card-head a {
+  color: #4a4a4a;
+}
+
+.card-head a:hover {
+  color: black;
+}
+
 .section-button {
   display: flex;
   align-items: center;
@@ -248,6 +266,11 @@ select, input {
 
 .select:not(.is-multiple):not(.is-loading)::after {
   border-color: #006c66;
+}
+
+.is-important .card-content{
+  /* background-color: #eeeeee */
+  border: 1px solid grey;
 }
 
 /* Full Calendar */

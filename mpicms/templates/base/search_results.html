@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailsearchpromotions_tags %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<div class="section">
+
+    <h2 class="title is-2">Search: {{ search_query }}</h2>
+
+    {% get_search_promotions search_query as search_promotions %}
+    {% firstof search_results.number '1' as current %}
+
+    {% if search_promotions and current|add:0 == 1 %}
+        {% for search_promotion in search_promotions %}
+            <div class="card is-important">
+                <div class="card-content">
+                    {% if result.specific.category %}
+                        <a href="{% pageurl search_promotion.page.specific.category %}" class="category-label">{{ search_promotion.page.specific.category }}</a>
+                    {% endif %}
+                    <a href="{% pageurl search_promotion.page %}" class="title is-4">{{ search_promotion.page.title }}</a>
+                    {% if search_promotion.description %}
+                    <div class="content">
+
+                        {{ search_promotion.description }}
+                    </div>
+
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+        <br>
+    {% endif %}
+
+    {% for result in search_results %}
+        <div class="card">
+            <div class="card-content">
+                    <nav class="breadcrumb card-head">
+                        <ul>
+                            {% for ancestor in result.get_ancestors|slice:"2:" %}
+                                <li><a href="{% pageurl ancestor %}">{{ ancestor }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+                <a href="{% pageurl result %}" class="title is-4">{{ result.title }}</a>
+                {% if result.search_description %}
+                <div class="content">
+
+                    {{ result.search_description|safe }}
+                </div>
+
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+    {% if not search_promotion and not search_results %}
+        {% if search_query %}
+            <p>No results found</p>
+        {% else %}
+            <p>Please type something into the search box</p>
+        {% endif %}
+    {% endif %}
+
+</div>
+
+<div class="section">
+    {% include 'base/components/pagination.html' with items=search_results %}
+</div>
+{% endblock %}
