@@ -57,12 +57,32 @@ class Event(Page):
             return datetime.combine(self.end_date, self.end_time)
         return self.end_date
 
+    def get_dict(self, request):
+        return {
+            'title': self.title,
+            'start': self.start.isoformat(),
+            'end': self.end.isoformat() if self.end else None,
+            'url': self.get_url(request=request),
+            'color': '#006c66'
+        }
+
     def clean(self):
         """Clean the model fields, if end_date is before start_date raise a ValidationError."""
         super().clean()
 
         if self.end_date and self.end_date < self.start_date:
             raise ValidationError({'end_date': 'The end date cannot be before the start date.'})
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+
+        events = []
+        for child in self.get_parent().get_children().type(Event).live().specific():
+            events.append(child.get_dict(request))
+
+        context["events"] = json.dumps(events)
+
+        return context
 
     class Meta(object):  # noqa
         ordering = ['start_date']
@@ -89,13 +109,7 @@ class EventIndex(Page):
 
         events = []
         for child in self.get_children().type(Event).live().specific():
-            events.append({
-                'title': child.title,
-                'start': child.start.isoformat(),
-                'end': child.end.isoformat(),
-                'url': child.get_url(request=request),
-                'color': '#006c66'
-            })
+            events.append(child.get_dict(request))
 
         context["events"] = json.dumps(events)
 

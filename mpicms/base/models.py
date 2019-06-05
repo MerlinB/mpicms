@@ -16,8 +16,24 @@ from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from mpicms.news.mixins import NewsMixin
 from mpicms.events.models import Event
 
+from wagtail.snippets.models import register_snippet
+
 
 Page.show_in_menus_default = True
+
+
+@register_snippet
+class Banner(models.Model):
+    title = models.CharField(max_length=200, blank=True)
+    text = RichTextField(features=['bold', 'italic', 'link', 'document-link'])
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('text'),
+    ]
+
+    def __str__(self):
+        return self.title
 
 
 class Contacts(Orderable, models.Model):
@@ -49,9 +65,23 @@ class CategoryMixin(models.Model):
 
 
 class HomePage(NewsMixin, Page):
+    banner = models.ForeignKey(
+        'Banner',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
     parent_page_types = ['wagtailcore.Page']  # Restrict parent to be root
 
-    content_panels = Page.content_panels
+    content_panels = Page.content_panels + [
+        SnippetChooserPanel('banner'),
+    ]
+
+    @property
+    def categories(self):
+        return self.get_children().type(CategoryPage).live()
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
@@ -59,13 +89,7 @@ class HomePage(NewsMixin, Page):
         # Events
         events = []
         for event in Event.objects.live():
-            events.append({
-                'title': event.title,
-                'start': event.start.isoformat(),
-                'end': event.end.isoformat(),
-                'url': event.get_url(request=request),
-                'color': '#006c66'
-            })
+            events.append(event.get_dict(request))
 
         context["events"] = json.dumps(events)
 
@@ -77,6 +101,7 @@ class HomePage(NewsMixin, Page):
 
 
 class CategoryPage(NewsMixin, Page):
+    preview = models.TextField(_("preview"), blank=True)
     body = RichTextField(_("content"), blank=True)
     side_content = RichTextField(
         _("sidebar content"), blank=True,
@@ -86,6 +111,7 @@ class CategoryPage(NewsMixin, Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('body', classname="full"),
+        FieldPanel('preview'),
         FieldPanel('side_content'),
         InlinePanel(
             'contacts', label="Contacts",

@@ -18,6 +18,11 @@ For Django related variables see [Django's documentation](https://docs.djangopro
 ### LDAP
 - `LDAP_SERVER_URI`
 
-## Run Migrations
+## Run database migrations
 - `python manage.py migrate --no-input`. See [Django docs](https://docs.djangoproject.com/en/2.2/ref/django-admin/#django-admin-migrate).
+
+## Update translation fields
 - `python manage.py update_translation_fields`. See [wagtail-modeltranslation docs](https://wagtail-modeltranslation.readthedocs.io/en/latest/management%20commands.html#the-update-translation-fields-command).
+
+## Update search index
+- `python manage.py update_index`. See [Wagtail docs](https://docs.wagtail.io/en/latest/reference/management_commands.html#update-index)

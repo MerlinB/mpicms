@@ -1,12 +1,30 @@
 {% extends 'base/page.html' %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags humanize %}
 
 {% block page_content %}
     <h2 class="title is-2">{{ page.title }}</h2>
-    <div class="content">
-        <p>
-            {{ page.start }} {{ page.end }} {{ page.body }}
+
+    <p class="field">
+        <div class="tag is-medium">
+            <i class="fa fa-calendar"></i>
+            {{ page.start_date | naturalday }}
+            {% if page.end_date %}
+                - {{ page.end_date | naturalday }}
+            {% endif %}
+        </div>
+    </p>
+
+    {% if page.start_time %}
+        <p class="field">
+            <div class="tag is-medium">
+                <i class="fa fa-clock"></i>
+                {{ page.start_time | naturaltime }}
+            </div>
         </p>
+    {% endif %}
+
+    <div class="content">
+        <p>{{ page.body|richtext }}</p>
     </div>
 {% endblock %}

@@ -1,11 +1,60 @@
-{% extends 'base/page.html' %}
+{% extends 'base/page_wide.html' %}
 
 {% load i18n %}
 {% load wagtailcore_tags %}
 
 
 {% block page_content %}
-    <section class="section">
-        {% include 'news/components/news_preview.html' with news=page.news %}
-    </section>
+
+    {% if page.banner %}
+        <article class="message">
+            {% if page.banner.title %}
+            <div class="message-header">
+                <p>{{ page.banner.title }}</p>
+            </div>
+            {% endif %}
+            <div class="message-body">
+                {{ page.banner.text|richtext }}
+            </div>
+        </article>
+    {% endif %}
+
+    <div class="columns">
+        <div class="column">
+            {% include 'news/components/news_preview.html' with news=page.news %}
+        </div>
+        <div class="column">
+            <h3 class="title is-3">Upcoming events</h3>
+            {% include 'events/components/event_list.html' %}
+            <div class="section-button" >
+                <a href=""><button class="button">{% trans 'All events' %}&nbsp&nbsp<i class="fas fa-chevron-right"></i></button></a>
+            </div>
+        </div>
+    </div>
+
+
+    <h3 class="title is-3">Content</h3>
+    <div class="flex-base">
+        {% for item in page.categories %}
+            <div class="card is-preview-wide">
+                <div class="card-content">
+                    <a href="{% pageurl item %}" class="title is-4">{{ item.title }}</a>
+                    <div class="content">
+                        {{ item.specific.preview|richtext }}
+                        <div class="menu">
+                            <ul class="menu-list card-list">
+                            {% for child in item.get_children.live %}
+                                <li>
+                                    <a class="menu-item" href="{% pageurl child %}"><div>{{ child }}</div></a>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- </section> -->
 {% endblock %}

@@ -13,6 +13,23 @@ select, input {
   border-radius: 0 !important;
 }
 
+.message {
+  margin-bottom: 4rem !important;
+}
+
+.message, .message * {
+  border-radius: 0;
+}
+
+.message-header {
+  background-color: #006c66;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
 .content .fa-chevron-right {
   padding-left: 1em;
 }
@@ -31,7 +48,7 @@ select, input {
   letter-spacing: 0.2em;
 }
 
-.title.is-2 {
+.title.is-2, .title.is-3 {
   font-family: "Merriweather Sans", sans-serif;
 }
 
@@ -118,7 +135,7 @@ select, input {
 }
 
 .sidebar > div {
-  flex: 0 0 100%;
+  /* flex: 0 0 100%; */
 }
 
 .sidebar time {
@@ -140,6 +157,10 @@ select, input {
 
 .fas {
   color: #006c66 !important;
+}
+
+.menu {
+  width: 100%;
 }
 
 .menu-item {
@@ -175,13 +196,49 @@ select, input {
   font-size: 1.2rem;
 }
 
+/* .menu-list a {
+  color: #006c66;
+  font-weight: 400;
+} */
+
+.card-list {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+  margin-top: 1rem;
+  line-height: 1.5;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-list li {
+  width: 50%;
+  list-style: none;
+  margin: 0 !important;
+}
+
+
+.card-list a {
+  color: #006c66;
+  font-weight: 400;
+  /* border-top: none;
+  border-left: none;
+  border-right: none;
+  margin: 0; */
+}
+
+/* .card-list li:last-child .menu-item {
+  border: none;
+} */
+
 .is-current {
   background: #eeeeee;
   font-weight: 400;
 }
 
 .card {
-  margin: 1rem 2rem 1rem 0;
+  /* margin: 1rem 2rem 1rem 0; */
+  margin: 1rem;
   flex-grow: 1;
   width: inherit;
   flex-shrink: 0;
@@ -189,6 +246,10 @@ select, input {
 
 .is-preview {
   flex-basis: 18rem;
+}
+
+.is-preview-wide {
+  flex-basis: 30rem;
 }
 
 .category-label {
@@ -251,6 +312,7 @@ select, input {
 
 .section-button {
   display: flex;
+  margin-top: auto;
   align-items: center;
   justify-content: center;
   padding: 1rem 0;
@@ -273,9 +335,26 @@ select, input {
   border: 1px solid grey;
 }
 
+.tag .fa {
+  padding-right: 0.8em;
+}
+
 /* Full Calendar */
 .fc-button {
   border-radius: 0 !important;
+}
+
+.fc-scroller {
+  max-height: 30rem;
+  height: fit-content !important;
+}
+
+.fc-toolbar.fc-header-toolbar {
+  margin-bottom: 0 !important;
+}
+
+.fc {
+  padding: 1rem;
 }
 
 /* Pagination */

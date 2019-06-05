@@ -4,30 +4,30 @@
 
 {% block page_content %}
 
-<section class="section">
-    <h1 class="title">{{ page.title }}</h1>
-    <div class="flex-base">
-    {% for child in news_items %}
-        <!-- <a href="{% pageurl child %}"> -->
-            <div class="card">
-                <div class="card-content">
-                    <time datetime="{{ child.specific.date }}">{{ child.specific.date }}</time>
-                    {% if page.show_all and child.category %}
-                        <a href="{% pageurl child.category %}" class="category-label">{{ child.category }}</a>
-                    {% endif %}
-                    <a href="{% pageurl child %}" class="title is-4">{{ child.title }}</a>
-                    <div class="content">
-                        {{ child.specific.preview }}
-                        <a href="{% pageurl child %}" class="card-footer-item card-link"><i class="fas fa-chevron-right"></i></a>
-                    </div>
+
+<h1 class="title">{{ page.title }}</h1>
+<div class="flex-base">
+{% for child in news_items %}
+    <!-- <a href="{% pageurl child %}"> -->
+        <div class="card">
+            <div class="card-content">
+                <time datetime="{{ child.specific.date }}">{{ child.specific.date }}</time>
+                {% if page.show_all and child.category %}
+                    <a href="{% pageurl child.category %}" class="category-label">{{ child.category }}</a>
+                {% endif %}
+                <a href="{% pageurl child %}" class="title is-4">{{ child.title }}</a>
+                <div class="content">
+                    {{ child.specific.preview }}
+                    <a href="{% pageurl child %}" class="card-footer-item card-link"><i class="fas fa-chevron-right"></i></a>
                 </div>
             </div>
-        <!-- </a> -->
-    {% endfor %}
+        </div>
+    <!-- </a> -->
+{% endfor %}
 </div>
-</section>
-<div class="section">
+
+<br>
+<br>
 {% include 'base/components/pagination.html' with items=news_items %}
-</div>
 
 {% endblock %}
