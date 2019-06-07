@@ -24,7 +24,7 @@
             {% include 'news/components/news_preview.html' with news=page.news %}
         </div>
         <div class="column">
-            <h3 class="title is-3">Upcoming events</h3>
+            <h3 class="title is-3">{% trans 'Upcoming events' %}</h3>
             {% include 'events/components/event_list.html' %}
             <div class="section-button" >
                 <a href=""><button class="button">{% trans 'All events' %}&nbsp&nbsp<i class="fas fa-chevron-right"></i></button></a>
@@ -33,7 +33,7 @@
     </div>
 
 
-    <h3 class="title is-3">Content</h3>
+    <h3 class="title is-3">{% trans 'Content' %}</h3>
     <div class="flex-base">
         {% for item in page.categories %}
             <div class="card is-preview-wide">

@@ -58,6 +58,8 @@ THIRD_PARTY_APPS = [
     'wagtail.search',
     'wagtail.admin',
     'wagtail.core',
+    'wagtail.contrib.postgres_search',
+    'wagtail.contrib.search_promotions',
 
     'wagtail_modeltranslation',
     'wagtail_modeltranslation.makemigrations',
@@ -203,6 +205,11 @@ LANGUAGES = (
     ('en', _('English')),
     ('de', _('German')),
 )
+
+LOCALE_PATHS = [
+    ROOT_DIR.path('locale'),
+]
+
 WAGTAILMODELTRANSLATION_TRANSLATE_SLUGS = False
 
 # WAGTAIL
@@ -210,3 +217,10 @@ WAGTAIL_SITE_NAME = 'MPI CMS'
 # WAGTAIL_USER_EDIT_FORM = 'mpicms.users.forms.CustomUserEditForm'
 # WAGTAIL_USER_CREATION_FORM = 'mpicms.users.forms.CustomUserCreationForm'
 # WAGTAIL_USER_CUSTOM_FIELDS = ['phone', 'office']
+
+# SEARCH
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.contrib.postgres_search.backend',
+    }
+}

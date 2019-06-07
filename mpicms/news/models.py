@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from wagtail.core.models import Page
@@ -14,7 +14,10 @@ class NewsPage(CategoryMixin, Page):
     content_panels = Page.content_panels + [
         FieldPanel('show_all')
     ]
-    show_all = models.BooleanField(default=False)
+    show_all = models.BooleanField(
+        _('show all news'), default=False,
+        help_text=_('Include all news from subpages')
+    )
 
     parent_page_types = ['base.CategoryPage', 'base.HomePage']
     subpage_types = ['NewsEntry']
@@ -46,14 +49,14 @@ class NewsPage(CategoryMixin, Page):
 
 
     class Meta:  # noqa
-        verbose_name = _("news Blog")
-        verbose_name_plural = _("news Blogs")
+        verbose_name = _("news blog")
+        verbose_name_plural = _("news blogs")
 
 
 class NewsEntry(CategoryMixin, Page):
     preview = models.TextField(_("preview"), blank=True)
     body = RichTextField(_("content"))
-    date = models.DateField("Post date", auto_now_add=True)
+    date = models.DateField(_("post date"), auto_now_add=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('preview'),

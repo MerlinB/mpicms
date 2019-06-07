@@ -26,3 +26,6 @@ For Django related variables see [Django's documentation](https://docs.djangopro
 
 ## Update search index
 - `python manage.py update_index`. See [Wagtail docs](https://docs.wagtail.io/en/latest/reference/management_commands.html#update-index)
+
+## Compile translation
+- `python manage.py compilemessages`.

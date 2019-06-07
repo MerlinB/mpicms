@@ -1,7 +1,7 @@
 import json
 from django.apps import apps
 from django.db import models
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 from modelcluster.fields import ParentalKey
 
@@ -24,8 +24,8 @@ Page.show_in_menus_default = True
 
 @register_snippet
 class Banner(models.Model):
-    title = models.CharField(max_length=200, blank=True)
-    text = RichTextField(features=['bold', 'italic', 'link', 'document-link'])
+    title = models.CharField(_('title'), max_length=200, blank=True)
+    text = RichTextField(_('text'), features=['bold', 'italic', 'link', 'document-link'])
 
     panels = [
         FieldPanel('title'),
@@ -35,6 +35,10 @@ class Banner(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:  # noqa
+        verbose_name = _('banner')
+        verbose_name_plural = _('banners')
+
 
 class Contacts(Orderable, models.Model):
     """
@@ -42,10 +46,13 @@ class Contacts(Orderable, models.Model):
     app and the CategoryPage below. This allows People to be added to the contact field.
     """
     page = ParentalKey(
-        'CategoryPage', related_name='contacts', on_delete=models.CASCADE
+        'CategoryPage', related_name=_('contacts'), on_delete=models.CASCADE
     )
     person = models.ForeignKey(
-        'personal.Person', related_name='contact_references', on_delete=models.CASCADE
+        'personal.Person',
+        related_name='contact_references',
+        on_delete=models.CASCADE,
+        verbose_name=_('person')
     )
     position = models.CharField(max_length=50, blank=True)
 
@@ -53,6 +60,10 @@ class Contacts(Orderable, models.Model):
         SnippetChooserPanel('person'),
         FieldPanel('position')
     ]
+
+    class Meta:  # noqa
+        verbose_name = _('contact')
+        verbose_name_plural = _('contacts')
 
 
 class CategoryMixin(models.Model):
@@ -70,7 +81,8 @@ class HomePage(NewsMixin, Page):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name='+',
+        verbose_name=_('banner')
     )
 
     parent_page_types = ['wagtailcore.Page']  # Restrict parent to be root
@@ -101,12 +113,15 @@ class HomePage(NewsMixin, Page):
 
 
 class CategoryPage(NewsMixin, Page):
-    preview = models.TextField(_("preview"), blank=True)
+    preview = models.TextField(
+        _("preview"), blank=True,
+        help_text=_("Short description of this category")
+    )
     body = RichTextField(_("content"), blank=True)
     side_content = RichTextField(
         _("sidebar content"), blank=True,
         features=['h4', 'h5', 'h6', 'bold', 'italic', 'link', 'document-link'],
-        help_text=_("Information displayed on the page in the sidebar")
+        help_text=_("Text displayed in the sidebar of all child pages")
     )
 
     content_panels = Page.content_panels + [
@@ -120,6 +135,8 @@ class CategoryPage(NewsMixin, Page):
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
+        index.SearchField('preview'),
+        index.SearchField('side_content'),
     ]
 
     parent_page_types = ['HomePage', 'CategoryPage']
@@ -152,4 +169,8 @@ class WikiPage(CategoryMixin, Page):
     promote_panels = [
         MultiFieldPanel(Page.promote_panels, "Common page configuration"),
     ]
+
+    class Meta: # noqa
+        verbose_name = _("wiki page")
+        verbose_name_plural = _("wiki pages")
 

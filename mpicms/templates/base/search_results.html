@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailsearchpromotions_tags %}
+{% load wagtailcore_tags wagtailsearchpromotions_tags i18n %}
 
 {% block title %}Search{% endblock %}
 
 {% block content %}
 <div class="section">
 
-    <h2 class="title is-2">Search: {{ search_query }}</h2>
+    <h2 class="title is-2">{% trans 'Search' %}: {{ search_query }}</h2>
 
     {% get_search_promotions search_query as search_promotions %}
     {% firstof search_results.number '1' as current %}

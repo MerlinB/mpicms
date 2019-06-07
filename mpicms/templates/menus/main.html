@@ -1,6 +1,4 @@
-{% load static %}
-{% load i18n %}
-{% load wagtailcore_tags %}
+{% load static i18n wagtailcore_tags %}
 
 
 <nav class="navbar is-light is-transparent" role="navigation" aria-label="main navigation">
@@ -17,14 +15,14 @@
           <div class="navbar-item has-dropdown is-hoverable">
             <a href="#" class="navbar-link navbar-title">{{ request.user }}</a>
             <div class="navbar-dropdown is-boxed">
-                <a href="{% url 'wagtailadmin_home' %}" class="navbar-item">Dashboard</a>
-                <a href="{% url 'wagtailadmin_account' %}" class="navbar-item">Settings</a>
+                <a href="{% url 'wagtailadmin_home' %}" class="navbar-item">{% trans 'Dashboard' %}</a>
+                <a href="{% url 'wagtailadmin_account' %}" class="navbar-item">{% trans 'Settings' %}</a>
                 <hr class="navbar-divider"></hr>
-                <a href="{% url 'wagtailadmin_logout' %}" class="navbar-item">Logout</a>
+                <a href="{% url 'wagtailadmin_logout' %}" class="navbar-item">{% trans 'Logout' %}</a>
             </div>
           </div>
           {% else %}
-            <a href="{% url 'wagtailadmin_home' %}" class="navbar-item navbar-title">Login</a>
+            <a href="{% url 'wagtailadmin_home' %}" class="navbar-item navbar-title">{% trans 'Login' %}</a>
           {% endif %}
           <div class="navbar-item">
             <div class="field"><div class="control">

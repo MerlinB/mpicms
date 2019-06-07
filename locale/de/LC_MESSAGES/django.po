@@ -1,0 +1,246 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-07 13:35+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: config/settings/base.py:205
+msgid "English"
+msgstr "Englisch"
+
+#: config/settings/base.py:206
+msgid "German"
+msgstr "Deutsch"
+
+#: mpicms/base/models.py:27
+msgid "title"
+msgstr "Titel"
+
+#: mpicms/base/models.py:28
+msgid "text"
+msgstr "Text"
+
+#: mpicms/base/models.py:39 mpicms/base/models.py:85
+msgid "banner"
+msgstr "Banner"
+
+#: mpicms/base/models.py:40
+msgid "banners"
+msgstr "Banner"
+
+#: mpicms/base/models.py:49 mpicms/base/models.py:66
+msgid "contacts"
+msgstr "Kontakte"
+
+#: mpicms/base/models.py:55
+msgid "person"
+msgstr "Person"
+
+#: mpicms/base/models.py:65
+msgid "contact"
+msgstr "Kontakt"
+
+#: mpicms/base/models.py:111
+msgid "homepage"
+msgstr "Startseite"
+
+#: mpicms/base/models.py:112
+msgid "homepages"
+msgstr "Startseiten"
+
+#: mpicms/base/models.py:117 mpicms/news/models.py:57
+msgid "preview"
+msgstr "Vorschau"
+
+#: mpicms/base/models.py:118
+msgid "Short description of this category"
+msgstr "Kurze Beschreibung der Kategorie"
+
+#: mpicms/base/models.py:120 mpicms/events/models.py:19
+#: mpicms/news/models.py:58
+msgid "content"
+msgstr "Inhalt"
+
+#: mpicms/base/models.py:122
+msgid "sidebar content"
+msgstr "Inhalt der Seitenleiste"
+
+#: mpicms/base/models.py:124
+msgid "Text displayed in the sidebar of all child pages"
+msgstr "Dieser Text wird in der Seitenleiste aller Unterseiten angezeigt"
+
+#: mpicms/base/models.py:149
+msgid "category"
+msgstr "Kategorie"
+
+#: mpicms/base/models.py:150
+msgid "categories"
+msgstr "Kategorien"
+
+#: mpicms/base/models.py:174
+msgid "wiki page"
+msgstr "Wiki Seite"
+
+#: mpicms/base/models.py:175
+msgid "wiki pages"
+msgstr "Wiki Seiten"
+
+#: mpicms/events/models.py:14
+msgid "start date"
+msgstr "Anfangsdatum"
+
+#: mpicms/events/models.py:15
+msgid "end date"
+msgstr "Enddatum"
+
+#: mpicms/events/models.py:16
+msgid "start time"
+msgstr "Anfangszeit"
+
+#: mpicms/events/models.py:17
+msgid "end time"
+msgstr "Endzeit"
+
+#: mpicms/events/models.py:18
+msgid "description"
+msgstr "Beschreibung"
+
+#: mpicms/events/models.py:33
+msgid "event dates"
+msgstr "Veranstaltungsdaten"
+
+#: mpicms/events/models.py:79
+msgid "event"
+msgstr "Veranstaltung"
+
+#: mpicms/events/models.py:80
+msgid "events"
+msgstr "Veranstaltungen"
+
+#: mpicms/events/models.py:101
+msgid "event index"
+msgstr "Veranstaltungs-Index"
+
+#: mpicms/events/models.py:102
+msgid "event indexes"
+msgstr "Veranstaltungs-Indexes"
+
+#: mpicms/news/models.py:18
+#, fuzzy
+#| msgid "All news"
+msgid "show all news"
+msgstr "Alle Neuigkeiten"
+
+#: mpicms/news/models.py:19
+msgid "Include all news from subpages"
+msgstr "Neuigkeiten aller Unterseiten inkludieren"
+
+#: mpicms/news/models.py:52
+msgid "news blog"
+msgstr "News Blog"
+
+#: mpicms/news/models.py:53
+msgid "news blogs"
+msgstr "News Blogs"
+
+#: mpicms/news/models.py:59
+msgid "post date"
+msgstr "Veröffentlichungsdatum"
+
+#: mpicms/news/models.py:76
+msgid "news entry"
+msgstr "News Artikel"
+
+#: mpicms/news/models.py:77
+msgid "news entries"
+msgstr "News Artikel"
+
+#: mpicms/personal/models.py:23
+msgid "first name"
+msgstr "Vorname"
+
+#: mpicms/personal/models.py:24
+msgid "last name"
+msgstr "Nachname"
+
+#: mpicms/personal/models.py:25
+msgid "email"
+msgstr "Email"
+
+#: mpicms/personal/models.py:26
+msgid "phone number"
+msgstr "Telefonnummer"
+
+#: mpicms/personal/models.py:27
+msgid "room"
+msgstr "Raum"
+
+#: mpicms/templates/base/components/search.html:3
+#: mpicms/templates/base/search_results.html:9
+#: mpicms/templates/menus/main.html:81
+msgid "Search"
+msgstr "Suche"
+
+#: mpicms/templates/base/home_page.html:27
+msgid "Upcoming events"
+msgstr "Kommende Veranstaltungen"
+
+#: mpicms/templates/base/home_page.html:30
+msgid "All events"
+msgstr "Alle Veranstaltungen"
+
+#: mpicms/templates/base/home_page.html:36
+#, fuzzy
+#| msgid "content"
+msgid "Content"
+msgstr "Inhalt"
+
+#: mpicms/templates/events/event_page.html:23
+msgid "No events found"
+msgstr "Keine Veranstaltungen gefunden"
+
+#: mpicms/templates/menus/main.html:18
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: mpicms/templates/menus/main.html:19
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: mpicms/templates/menus/main.html:21
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: mpicms/templates/menus/main.html:25
+msgid "Login"
+msgstr "Einloggen"
+
+#: mpicms/templates/menus/side.html:38
+msgid "Contact"
+msgstr "Kontakt"
+
+#: mpicms/templates/news/components/news_list.html:17
+msgid "See all"
+msgstr "Alle Neuigkeiten"
+
+#: mpicms/templates/news/components/news_preview.html:10
+msgid "All news"
+msgstr "Alle Neuigkeiten"
+
+#: mpicms/users/forms.py:8 mpicms/users/forms.py:13
+msgid "Phone"
+msgstr "Telefon"
