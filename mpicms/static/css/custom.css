@@ -344,16 +344,16 @@ select, input {
   border-radius: 0 !important;
 }
 
-.fc-scroller {
+.calendar-list .fc-scroller {
   max-height: 30rem;
   height: fit-content !important;
 }
 
-.fc-toolbar.fc-header-toolbar {
+.calendar-list .fc-toolbar.fc-header-toolbar {
   margin-bottom: 0 !important;
 }
 
-.fc {
+.calendar-list .fc {
   padding: 1rem;
 }
 

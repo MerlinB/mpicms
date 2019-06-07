@@ -23,11 +23,11 @@
         <div class="column">
             {% include 'news/components/news_preview.html' with news=page.news %}
         </div>
-        <div class="column">
+        <div class="column calendar-list">
             <h3 class="title is-3">{% trans 'Upcoming events' %}</h3>
             {% include 'events/components/event_list.html' %}
             <div class="section-button" >
-                <a href=""><button class="button">{% trans 'All events' %}&nbsp&nbsp<i class="fas fa-chevron-right"></i></button></a>
+                <a href="{% pageurl event_index %}"><button class="button">{% trans 'All events' %}&nbsp&nbsp<i class="fas fa-chevron-right"></i></button></a>
             </div>
         </div>
     </div>

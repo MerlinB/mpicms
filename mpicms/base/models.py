@@ -12,11 +12,10 @@ from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.search import index
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
+from wagtail.snippets.models import register_snippet
 
 from mpicms.news.mixins import NewsMixin
-from mpicms.events.models import Event
-
-from wagtail.snippets.models import register_snippet
+from mpicms.events.models import Event, EventIndex
 
 
 Page.show_in_menus_default = True
@@ -104,6 +103,7 @@ class HomePage(NewsMixin, Page):
             events.append(event.get_dict(request))
 
         context["events"] = json.dumps(events)
+        context['event_index'] = EventIndex.objects.get()
 
         return context
 

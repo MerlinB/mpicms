@@ -97,6 +97,11 @@ class EventIndex(Page):
 
         return context
 
+    def clean(self):  # Prevent more than one event index
+        model = self.__class__
+        if (model.objects.count() > 0 and self.pk != model.objects.get().id):
+            raise ValidationError("Can only create 1 %s instance" % model.__name__)
+
     class Meta:  # noqa
         verbose_name = _('event index')
         verbose_name_plural = _('event indexes')
