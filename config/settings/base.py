@@ -12,6 +12,9 @@ APPS_DIR = ROOT_DIR.path('mpicms')
 
 env = environ.Env()
 
+# Read .env file
+environ.Env.read_env()
+
 # GENERAL
 # ------------------------------------------------------------------------------
 DEBUG = env.bool('DJANGO_DEBUG', False)
