@@ -57,9 +57,9 @@ select, input {
   height: 5rem !important;
 }
 
-.contains-breadcrumb {
+/* .contains-breadcrumb {
   padding-top: 1rem;
-}
+} */
 
 .title {
   color: #006c66;
@@ -182,6 +182,7 @@ select, input {
 }
 
 .breadcrumb {
+  padding-top: 1rem;
   margin: 0.5rem;
   font-size: 80%;
   font-family: "Merriweather Sans", sans-serif;

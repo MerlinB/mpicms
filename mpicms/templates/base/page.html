@@ -3,12 +3,12 @@
 {% block content %}
 <div class="columns" style="flex-direction: row-reverse;">
     <div class="column">
-        <div class="contains-breadcrumb">
         <div class="container is-fluid">
+            <section class="section" style="padding-top: 0;">
             {% include 'base/components/breadcrumb.html' %}
-            {% block page_content %}
-            {% endblock %}
-        </div>
+                {% block page_content %}
+                {% endblock %}
+            </section>
         </div>
     </div>
     <div class="column is-narrow sidebar is-flex-tablet">

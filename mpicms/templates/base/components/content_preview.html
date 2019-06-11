@@ -1,0 +1,23 @@
+{% load wagtailcore_tags %}
+
+<div class="flex-base">
+    {% for item in pages %}
+        <div class="card is-preview-wide">
+            <div class="card-content">
+                <a href="{% pageurl item %}" class="title is-4">{{ item.title }}</a>
+                <div class="content">
+                    {{ item.specific.preview|richtext }}
+                    <div class="menu">
+                        <ul class="menu-list card-list">
+                        {% for child in item.get_children.live %}
+                            <li>
+                                <a class="menu-item" href="{% pageurl child %}"><div>{{ child }}</div></a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -12,17 +12,6 @@
 
     {% include 'news/components/news_preview.html' with news=page.news %}
 
-
     <h3 class="title is-3">Content</h3>
-    {% for child in page.get_children.live %}
-        <a href="{% pageurl child %}">
-            <div class="card">
-            <div class="card-content">
-                <p class="subtitle">
-                {{ child.title }}
-                </p>
-            </div>
-        </div>
-        </a>
-    {% endfor %}
+    {% include 'base/components/content_preview.html' with pages=page.get_children.in_menu.live %}
 {% endblock %}
