@@ -12,9 +12,8 @@
 ## Set up Python environment
 `pip install -r requirements/production.txt`
 
-## Set environmental variables
-**When deploying with Apache, environmental variables do not work!**
-Variables can be set in a `.env` file in `config/settings`.
+## Set local settings
+Put custom settings in `config/settings/local_settings.py`
 
 For Django related variables see [Django's documentation](https://docs.djangoproject.com/en/dev/ref/settings/).
 - `DJANGO_SECRET_KEY`
