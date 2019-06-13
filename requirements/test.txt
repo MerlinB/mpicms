@@ -15,9 +15,9 @@ django-modelcluster==4.4
 django-modeltranslation==0.13.1
 django-taggit==0.24.0
 django-treebeard==4.3
-django==2.2.1
-djangorestframework==3.9.3
-draftjs-exporter==2.1.5
+django==2.2.2
+djangorestframework==3.9.4
+draftjs-exporter==2.1.6
 entrypoints==0.3          # via flake8
 flake8==3.7.7
 html5lib==1.0.1
@@ -33,12 +33,12 @@ pyflakes==2.1.1           # via flake8
 pytest-django==3.4.8
 pytest==4.4.1
 pytz==2019.1
-requests==2.21.0
+requests==2.22.0
 six==1.12.0
 sqlparse==0.3.0
 unidecode==1.0.23
-urllib3==1.24.3
-wagtail-modeltranslation==0.10.1
+urllib3==1.25.3
+wagtail-modeltranslation==0.10.2
 wagtail==2.5.1
 webencodings==0.5.1
 willow==1.1
