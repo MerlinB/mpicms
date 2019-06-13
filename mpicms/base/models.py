@@ -41,7 +41,7 @@ class Banner(models.Model):
 
 class ContactRelation(Orderable, models.Model):
     """
-    This defines the relationship between the `People` within the `personal`
+    This defines the relationship between the `Contact` within the `personal`
     app and the CategoryPage below. This allows People to be added to the contact field.
     """
     page = ParentalKey(
