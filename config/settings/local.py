@@ -1,15 +1,16 @@
 from .base import *  # noqa
-from .base import env
+
 
 # GENERAL
 # ------------------------------------------------------------------------------
 DEBUG = True
-SECRET_KEY = env('DJANGO_SECRET_KEY', default='XBlibrFtVb24Dig6CCMAw7Kv3FpXpJYmEZMdpRlnRdTzQpNdTPZ1TtvqKiQu9caf')
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[
+SECRET_KEY = 'XBlibrFtVb24Dig6CCMAw7Kv3FpXpJYmEZMdpRlnRdTzQpNdTPZ1TtvqKiQu9caf'
+
+ALLOWED_HOSTS = [
     "localhost",
     "0.0.0.0",
     "127.0.0.1",
-])
+]
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -26,7 +27,7 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG  # noqa F405
 
 # EMAIL
 # ------------------------------------------------------------------------------
-EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.console.EmailBackend')
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 
@@ -36,13 +37,16 @@ INSTALLED_APPS += [  # noqa F405
     'debug_toolbar',
     'wagtail.contrib.styleguide',
 ]
+
 MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']  # noqa F405
+
 DEBUG_TOOLBAR_CONFIG = {
     'DISABLE_PANELS': [
         'debug_toolbar.panels.redirects.RedirectsPanel',
     ],
     'SHOW_TEMPLATE_CONTEXT': True,
 }
+
 INTERNAL_IPS = ['127.0.0.1', '10.0.2.2']
 
 # Logging
@@ -75,3 +79,8 @@ LOGGING = {
         },
     }
 }
+
+try:
+    from local_settings import *  # noqa
+except ImportError:
+    pass

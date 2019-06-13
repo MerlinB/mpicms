@@ -11,7 +11,6 @@ certifi==2019.3.9
 chardet==3.0.4
 coverage==4.5.3
 django-coverage-plugin==1.6.0
-django-environ==0.4.5
 django-modelcluster==4.4
 django-modeltranslation==0.13.1
 django-taggit==0.24.0
@@ -27,7 +26,7 @@ mccabe==0.6.1             # via flake8
 more-itertools==7.0.0     # via pytest
 pillow==5.4.1
 pluggy==0.9.0             # via pytest
-psycopg2==2.8.2
+psycopg2-binary==2.8.2
 py==1.8.0                 # via pytest
 pycodestyle==2.5.0        # via flake8
 pyflakes==2.1.1           # via flake8

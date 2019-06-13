@@ -8,7 +8,6 @@ beautifulsoup4==4.6.0
 certifi==2019.3.9
 chardet==3.0.4
 django-auth-ldap==1.7.0
-django-environ==0.4.5
 django-modelcluster==4.4
 django-modeltranslation==0.13.1
 django-taggit==0.24.0
@@ -19,7 +18,7 @@ draftjs-exporter==2.1.5
 html5lib==1.0.1
 idna==2.8
 pillow==5.4.1
-psycopg2==2.8.2
+psycopg2-binary==2.8.2
 pyasn1-modules==0.2.5     # via python-ldap
 pyasn1==0.4.5             # via pyasn1-modules, python-ldap
 python-ldap==3.2.0

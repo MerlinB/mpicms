@@ -1,23 +1,16 @@
 """
 Base settings for mpicms project.
 """
-
-import environ
+import os
 
 from django.utils.translation import gettext_lazy as _
 
 
-ROOT_DIR = environ.Path(__file__) - 3  # (mpicms/config/settings/base.py - 3 = mpicms/)
-APPS_DIR = ROOT_DIR.path('mpicms')
-
-env = environ.Env()
-
-# Read .env file
-environ.Env.read_env()
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # (mpicms/config/settings/base.py - 3 = mpicms/)
+APPS_DIR = os.path.join(ROOT_DIR, 'mpicms')
 
 # GENERAL
 # ------------------------------------------------------------------------------
-DEBUG = env.bool('DJANGO_DEBUG', False)
 TIME_ZONE = 'Europe/Berlin'
 LANGUAGE_CODE = 'en-us'
 SITE_ID = 1
@@ -28,9 +21,12 @@ USE_TZ = True
 # DATABASES
 # ------------------------------------------------------------------------------
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///mpicms'),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mpicms',
+        'ATOMIC_REQUESTS': True,
+    }
 }
-DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 # URLS
 # ------------------------------------------------------------------------------
@@ -135,10 +131,10 @@ MIDDLEWARE = [
 
 # STATIC
 # ------------------------------------------------------------------------------
-STATIC_ROOT = str(ROOT_DIR('staticfiles'))
+STATIC_ROOT = os.path.join(ROOT_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    str(APPS_DIR.path('static')),
+    os.path.join(APPS_DIR, 'static'),
 ]
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -147,7 +143,7 @@ STATICFILES_FINDERS = [
 
 # MEDIA
 # ------------------------------------------------------------------------------
-MEDIA_ROOT = str(APPS_DIR('media'))
+MEDIA_ROOT = os.path.join(APPS_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # TEMPLATES
@@ -156,7 +152,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            str(APPS_DIR.path('templates')),
+            os.path.join(APPS_DIR, 'templates'),
         ],
         'OPTIONS': {
             'debug': DEBUG,
@@ -181,7 +177,7 @@ TEMPLATES = [
 # FIXTURES
 # ------------------------------------------------------------------------------
 FIXTURE_DIRS = (
-    str(APPS_DIR.path('fixtures')),
+    os.path.join(APPS_DIR, 'fixtures'),
 )
 
 # SECURITY
@@ -193,7 +189,7 @@ X_FRAME_OPTIONS = 'DENY'
 
 # EMAIL
 # ------------------------------------------------------------------------------
-EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # ADMIN
 # ------------------------------------------------------------------------------
@@ -210,7 +206,7 @@ LANGUAGES = (
 )
 
 LOCALE_PATHS = [
-    ROOT_DIR.path('locale'),
+    os.path.join(ROOT_DIR, 'locale'),
 ]
 
 WAGTAILMODELTRANSLATION_TRANSLATE_SLUGS = False

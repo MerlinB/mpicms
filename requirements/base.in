@@ -1,9 +1,8 @@
 # Django
 Django
-django-environ
 
 # Postgres
-psycopg2
+psycopg2-binary
 
 # Wagtail
 wagtail
