@@ -39,7 +39,7 @@ class Banner(models.Model):
         verbose_name_plural = _('banners')
 
 
-class Contacts(Orderable, models.Model):
+class ContactRelation(Orderable, models.Model):
     """
     This defines the relationship between the `People` within the `personal`
     app and the CategoryPage below. This allows People to be added to the contact field.
@@ -47,22 +47,22 @@ class Contacts(Orderable, models.Model):
     page = ParentalKey(
         'CategoryPage', related_name=_('contacts'), on_delete=models.CASCADE
     )
-    person = models.ForeignKey(
-        'personal.Person',
+    contact = models.ForeignKey(
+        'personal.Contact',
         related_name='contact_references',
         on_delete=models.CASCADE,
-        verbose_name=_('person')
+        verbose_name=_('contact')
     )
     position = models.CharField(max_length=50, blank=True)
 
     panels = [
-        SnippetChooserPanel('person'),
+        SnippetChooserPanel('contact'),
         FieldPanel('position')
     ]
 
     class Meta:  # noqa
-        verbose_name = _('contact')
-        verbose_name_plural = _('contacts')
+        verbose_name = _('contact information')
+        verbose_name_plural = _('contact information')
 
 
 class CategoryMixin(models.Model):

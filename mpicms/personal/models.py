@@ -1,14 +1,37 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, FieldRowPanel
+from wagtail.core.models import Orderable
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, FieldRowPanel, InlinePanel
 from wagtail.snippets.models import register_snippet
 from wagtail.search import index
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
+
 from modelcluster.models import ClusterableModel
+from modelcluster.fields import ParentalKey
+
+
+class ContactGroups(Orderable, models.Model):
+    """
+    This defines the relationship between the `Group` within the `Contact` model below.
+    """
+    contact = ParentalKey(
+        'Contact', related_name=_('groups'), on_delete=models.CASCADE
+    )
+    group = models.ForeignKey(
+        'personal.Group',
+        related_name='contacts',
+        on_delete=models.CASCADE,
+        verbose_name=_('groups')
+    )
+
+    panels = [
+        SnippetChooserPanel('group'),
+    ]
 
 
 @register_snippet
-class Person(index.Indexed, ClusterableModel):
+class Contact(index.Indexed, ClusterableModel):
     """
     A Django model to store People objects.
     It uses the `@register_snippet` decorator to allow it to be accessible
@@ -20,32 +43,52 @@ class Person(index.Indexed, ClusterableModel):
     to the database.
     https://github.com/wagtail/django-modelcluster
     """
-    first_name = models.CharField(_("first name"), max_length=254)
-    last_name = models.CharField(_("last name"), max_length=254)
+    name = models.CharField(_("name"), max_length=254)
     email = models.EmailField(_("email"), blank=True)
     phone = models.IntegerField(_("phone number"), blank=True, null=True)
     room = models.CharField(_("room"), max_length=25, blank=True)
 
     panels = [
-        MultiFieldPanel([
-            FieldRowPanel([
-                FieldPanel('first_name', classname="col6"),
-                FieldPanel('last_name', classname="col6"),
-            ])
-        ], "Name"),
+        FieldPanel('name'),
         FieldPanel('email'),
         FieldPanel('phone'),
         FieldPanel('room'),
+        InlinePanel(
+            'groups', label="Groups",
+            panels=None),
     ]
 
     search_fields = [
-        index.SearchField('first_name'),
-        index.SearchField('last_name'),
+        index.SearchField('name'),
+        index.SearchField('email'),
+        index.SearchField('phone'),
+        index.SearchField('room'),
+        # index.SearchField('groups'),
     ]
 
     def __str__(self):
-        return '{} {}'.format(self.first_name, self.last_name)
+        return self.name
 
     class Meta:  # noqa
-        verbose_name = 'Person'
-        verbose_name_plural = 'People'
+        verbose_name = 'Contact'
+        verbose_name_plural = 'Contacts'
+
+
+@register_snippet
+class Group(index.Indexed, ClusterableModel):
+    name = models.CharField(_("name"), max_length=254)
+
+    panels = [
+        FieldPanel('name'),
+    ]
+
+    search_fields = [
+        index.SearchField('name'),
+    ]
+
+    def __str__(self):
+        return self.name
+
+    class Meta:  # noqa
+        verbose_name = 'Group'
+        verbose_name_plural = 'Groups'
