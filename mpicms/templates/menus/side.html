@@ -40,10 +40,10 @@
                 {% for contact in contacts %}
                     <li>
                         <ul class="contact">
-                            <li style="font-weight: 400;">{{ contact.person.first_name }} {{ contact.person.last_name }}</li>
+                            <li style="font-weight: 400;">{{ contact.contact.name }}</li>
                             <li>{{ contact.position }}</li>
-                            <li><i class="fas fa-at"></i> <a href="mailto:{{ contact.person.email }}">{{ contact.person.email }}</a></li>
-                            <li><i class="fas fa-phone"></i> {{ contact.person.phone }}</li>
+                            <li><i class="fas fa-at"></i> <a href="mailto:{{ contact.contact.email }}">{{ contact.contact.email }}</a></li>
+                            <li><i class="fas fa-phone"></i> {{ contact.contact.phone }}</li>
                         </ul>
                     </li>
                 {% endfor %}
