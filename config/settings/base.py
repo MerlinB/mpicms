@@ -6,7 +6,7 @@ import os
 from django.utils.translation import gettext_lazy as _
 
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # (mpicms/config/settings/base.py - 3 = mpicms/)
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 APPS_DIR = os.path.join(ROOT_DIR, 'mpicms')
 
 # GENERAL
@@ -155,7 +155,7 @@ TEMPLATES = [
             os.path.join(APPS_DIR, 'templates'),
         ],
         'OPTIONS': {
-            'debug': DEBUG,
+            'debug': False,
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
                 'django.template.loaders.app_directories.Loader',
