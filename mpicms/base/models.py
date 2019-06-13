@@ -15,7 +15,8 @@ from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 
 from mpicms.news.mixins import NewsMixin
-from mpicms.events.models import Event, EventIndex
+# from mpicms.events.models import Event, EventIndex
+from mpicms.events.mixins import EventMixin
 
 
 Page.show_in_menus_default = True
@@ -74,7 +75,7 @@ class CategoryMixin(models.Model):
         abstract = True
 
 
-class HomePage(NewsMixin, Page):
+class HomePage(EventMixin, NewsMixin, Page):
     banner = models.ForeignKey(
         'Banner',
         null=True,
@@ -93,19 +94,6 @@ class HomePage(NewsMixin, Page):
     @property
     def categories(self):
         return self.get_children().type(CategoryPage).live()
-
-    def get_context(self, request, *args, **kwargs):
-        context = super().get_context(request, *args, **kwargs)
-
-        # Events
-        events = []
-        for event in Event.objects.live():
-            events.append(event.get_dict(request))
-
-        context["events"] = json.dumps(events)
-        context['event_index'] = EventIndex.objects.get()
-
-        return context
 
     class Meta: # noqa
         verbose_name = _("homepage")

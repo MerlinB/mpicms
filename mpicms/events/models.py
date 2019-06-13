@@ -47,7 +47,7 @@ class Event(Page):
             return datetime.combine(self.end_date, self.end_time)
         return self.end_date
 
-    def get_dict(self, request):
+    def get_dict(self, request=None):
         return {
             'title': self.title,
             'start': self.start.isoformat(),
@@ -86,16 +86,15 @@ class EventIndex(Page):
 
     content_panels = Page.content_panels
 
-    def get_context(self, request, *args, **kwargs):
-        context = super().get_context(request, *args, **kwargs)
+    @property
+    def events(self):
+        if self.depth <= 3:
+            return Event.objects.live().specific()
+        return self.get_children().stype(Event).live().specific()
 
-        events = []
-        for child in self.get_children().type(Event).live().specific():
-            events.append(child.get_dict(request))
-
-        context["events"] = json.dumps(events)
-
-        return context
+    def get_json_events(self, request=None):
+        event_dicts = [event.get_dict(request) for event in self.events]
+        return json.dumps(event_dicts)
 
     def clean(self):  # Prevent more than one event index
         model = self.__class__

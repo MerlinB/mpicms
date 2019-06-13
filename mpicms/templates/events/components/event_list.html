@@ -1,5 +1,9 @@
+{% load event_tags %}
+
 <div id="event_list"></div>
 
+
+{% get_json_events event_index.specific as events %}
 <script>
 
     document.addEventListener('DOMContentLoaded', function() {
