@@ -277,4 +277,5 @@ mpicms/media/
 
 .pytest_cache/
 
-
+### Django settings
+local_settings.py
