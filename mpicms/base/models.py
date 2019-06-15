@@ -139,26 +139,16 @@ class CategoryPage(NewsMixin, Page):
 
 
 class WikiPage(CategoryMixin, Page):
-    body = StreamField([
-        ('heading', blocks.CharBlock(classname="full title")),
-        ('text', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-        ('url', blocks.URLBlock())
-    ], blank=True)
+    body = RichTextField(_("content"), blank=True)
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel('body', classname="full"),
-    ]
-
-    promote_panels = [
-        MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+        FieldPanel('body', classname="full"),
     ]
 
     class Meta: # noqa
         verbose_name = _("wiki page")
         verbose_name_plural = _("wiki pages")
-
