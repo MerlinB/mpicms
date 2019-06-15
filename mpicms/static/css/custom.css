@@ -40,12 +40,13 @@ select, input {
 }
 
 .title.is-1 {
-  font-family: "Merriweather Sans", sans-serif;
+  /* font-family: "Merriweather Sans", sans-serif; */
   color: #006c66;
   padding-left: 2rem;
   text-transform: uppercase;
   font-size: 3.5rem;
   letter-spacing: 0.2em;
+  font-weight: 300;
 }
 
 .title.is-2, .title.is-3 {
