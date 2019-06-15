@@ -56,15 +56,16 @@ AUTHENTICATION_BACKENDS = [
     # 'django.contrib.auth.backends.ModelBackend',
 ]
 
-AUTH_LDAP_SERVER_URI = 'ldaps://ldap.molgen.mpg.de/1'
+AUTH_LDAP_SERVER_URI = 'ldaps://ldap.molgen.mpg.de/'
 
 LDAP_USER_NAMES = "dc=user,dc=apps,dc=molgen,dc=mpg,dc=DE"
+LDAP_USER_DN = "cn=mpicms,dc=ldap,dc=apps,dc=molgen,dc=mpg,dc=DE"
 
 AUTH_LDAP_CONNECTION_OPTIONS = {
     ldap.OPT_X_TLS_REQUIRE_CERT: ldap.OPT_X_TLS_NEVER
 }
 
-AUTH_LDAP_BIND_DN = "cn=mpicms,dc=ldap,dc=apps,dc=molgen,dc=mpg,dc=DE"
+AUTH_LDAP_BIND_DN = LDAP_USER_DN
 AUTH_LDAP_USER_SEARCH = LDAPSearch(
         LDAP_USER_NAMES,
         ldap.SCOPE_SUBTREE,
