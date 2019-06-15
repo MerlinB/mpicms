@@ -11,14 +11,7 @@ from mpicms.base.models import CategoryMixin
 
 
 class NewsPage(CategoryMixin, Page):
-    content_panels = Page.content_panels + [
-        FieldPanel('show_all')
-    ]
-    show_all = models.BooleanField(
-        _('show all news'), default=False,
-        help_text=_('Include all news from subpages')
-    )
-
+    content_panels = Page.content_panels
     parent_page_types = ['base.CategoryPage', 'base.HomePage']
     subpage_types = ['NewsEntry']
     paginated_by = 8
@@ -42,8 +35,8 @@ class NewsPage(CategoryMixin, Page):
 
     @property
     def news_items(self):
-        if self.show_all:
-            return NewsEntry.objects.descendant_of(self.get_parent()).live().order_by('-date')
+        if self.depth <= 3:
+            return NewsEntry.objects.live().order_by('-date')
         return NewsEntry.objects.child_of(self).live().order_by('-date')
 
 
@@ -54,7 +47,7 @@ class NewsPage(CategoryMixin, Page):
 
 class NewsEntry(CategoryMixin, Page):
     preview = models.TextField(_("preview"), blank=True)
-    body = RichTextField(_("content"))
+    body = RichTextField(_("content"), blank=True)
     date = models.DateField(_("post date"), auto_now_add=True)
 
     show_in_menus_default = False
