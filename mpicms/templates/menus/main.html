@@ -57,23 +57,33 @@
     </div>
     <div class="navbar-menu" id="navMenu">
       <div class="navbar-start">
-        {% for child in request.site.root_page.get_children.live.in_menu %}
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a href="{% pageurl child %}" class="navbar-link navbar-title is-hidden-touch">
-            {{ child }}
-          </a>
-          <a href="#" class="navbar-link navbar-title is-hidden-desktop">
-            {{ child }}
-          </a>
+        {% for item in request.site.root_page.get_children.live.in_menu %}
+          {% with item.get_children.live.in_menu as children %}
+            {% if children %}
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a href="{% pageurl item %}" class="navbar-link navbar-title is-hidden-touch">
+                  {{ item }}
+                </a>
+                <a href="#" class="navbar-link navbar-title is-hidden-desktop">
+                  {{ item }}
+                </a>
 
-          <div class="navbar-dropdown is-hidden-touch is-boxed">
-            {% for item in child.get_children.live.in_menu %}
-            <a href="{% pageurl item %}" class="navbar-item">
-              {{ item }}
-            </a>
-            {% endfor %}
-          </div>
-        </div>
+                <div class="navbar-dropdown is-hidden-touch is-boxed">
+                  {% for child in children %}
+                  <a href="{% pageurl child %}" class="navbar-item">
+                    {{ child }}
+                  </a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% else %}
+              <div class="navbar-item">
+                <a href="{% pageurl item %}" class="navbar-title">
+                  {{ item }}
+                </a>
+              </div>
+            {% endif %}
+          {% endwith %}
         {% endfor %}
       </div>
 

@@ -18,6 +18,7 @@ class Event(Page):
     description = models.TextField(_('description'), max_length=400, null=False, blank=True)
     body = RichTextField(_("content"), blank=True)
 
+    show_in_menus_default = False
     parent_page_types = ['events.EventIndex']
     subpage_types = []
 

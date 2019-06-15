@@ -21,7 +21,6 @@ class NewsPage(CategoryMixin, Page):
 
     parent_page_types = ['base.CategoryPage', 'base.HomePage']
     subpage_types = ['NewsEntry']
-    show_in_menus_default = False
     paginated_by = 8
 
     def get_context(self, request, *args, **kwargs):
@@ -57,6 +56,8 @@ class NewsEntry(CategoryMixin, Page):
     preview = models.TextField(_("preview"), blank=True)
     body = RichTextField(_("content"))
     date = models.DateField(_("post date"), auto_now_add=True)
+
+    show_in_menus_default = False
 
     content_panels = Page.content_panels + [
         FieldPanel('preview'),
