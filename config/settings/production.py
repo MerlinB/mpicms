@@ -51,6 +51,8 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [  # noqa F405
 ]
 
 # AUTHENTICATION
+WAGTAIL_PASSWORD_MANAGEMENT_ENABLED = False
+
 AUTHENTICATION_BACKENDS = [
     'django_auth_ldap.backend.LDAPBackend',
     # 'django.contrib.auth.backends.ModelBackend',
