@@ -149,6 +149,8 @@ class WikiPage(CategoryMixin, Page):
         FieldPanel('body', classname="full"),
     ]
 
+    parent_page_types = ['WikiPage', 'CategoryPage']
+
     class Meta: # noqa
         verbose_name = _("wiki page")
         verbose_name_plural = _("wiki pages")
