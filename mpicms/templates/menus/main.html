@@ -55,8 +55,8 @@
             <span aria-hidden="true"></span>
           </a>
     </div>
-    <div class="navbar-menu" id="navMenu">
-      <div class="navbar-start">
+    <div class="navbar-menu" id="navMenu" style="flex-shrink: 1">
+      <div class="navbar-start" style="flex-wrap: wrap;">
         {% for item in request.site.root_page.get_children.live.in_menu %}
           {% with item.get_children.live.in_menu as children %}
             {% if children %}
@@ -87,7 +87,7 @@
         {% endfor %}
       </div>
 
-      <div class="navbar-end">
+      <div class="navbar-end" style="flex-shrink: 0">
         <div class="navbar-item">
           <form action="{% url 'search' %}" method="get" class="field has-addons">
               <div class="control is-expanded">
