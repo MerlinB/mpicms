@@ -1,10 +1,19 @@
 {% extends 'base/page.html' %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags static %}
+
+{% block head %}
+    {{ block.super }}
+    <script src="{% static 'js/toc.js' %}" defer></script>
+{% endblock %}
 
 {% block page_content %}
     <h2 class="title is-2">{{ page.title }}</h2>
-    <div class="content">
+    <!-- {% include 'base/components/content_preview_small.html' with pages=page.get_children.in_menu.live %} -->
+
+    <div id="toc" class="content"></div>
+
+    <div id="content" class="content">
         <p>
             {{ page.body|richtext }}
         </p>
