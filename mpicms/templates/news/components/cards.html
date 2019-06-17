@@ -1,9 +1,9 @@
 {% load wagtailcore_tags %}
 
-<div class="flex-base">
-    {% for item in items|slice:3 %}
+<div class="flex-base news">
+    {% for item in items|slice:2 %}
         <div class="card is-preview">
-            <div class="card-content">
+            <div class="card-content" style="padding-bottom: 0;">
                 <a href="{% pageurl item %}" class="title is-4">{{ item.title }}</a>
                 <time datetime="{{ item.specific.date }}">{{ item.specific.date }}</time>
                 <div class="content">

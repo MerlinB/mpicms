@@ -58,10 +58,6 @@ select, input {
   height: 5rem !important;
 }
 
-/* .contains-breadcrumb {
-  padding-top: 1rem;
-} */
-
 .title {
   color: #006c66;
 }
@@ -133,10 +129,6 @@ select, input {
   letter-spacing: .1em;
   font-size: 1.2rem;
   text-transform: uppercase;
-}
-
-.sidebar > div {
-  /* flex: 0 0 100%; */
 }
 
 .sidebar time {
@@ -239,19 +231,18 @@ select, input {
 }
 
 .card {
-  /* margin: 1rem 2rem 1rem 0; */
   margin: 1rem;
-  flex-grow: 1;
   width: inherit;
   flex-shrink: 0;
 }
 
 .is-preview {
-  flex-basis: 18rem;
+  max-width: 40rem;
+  flex-basis: 20rem;
 }
 
 .is-preview-wide {
-  flex-basis: 30rem;
+  flex-basis: 43rem;
 }
 
 .category-label {
@@ -274,6 +265,12 @@ select, input {
   flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
+  justify-content: space-around;
+}
+
+.news .card {
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 .card-content > time {
@@ -291,7 +288,7 @@ select, input {
 }
 
 .card-link {
-  padding: 1.2rem;
+  padding: 0.3rem 1.2rem 1.2rem 1.2rem;
   text-transform: uppercase;
   font-weight: 400;
   color: #006c66;
