@@ -345,7 +345,8 @@ select, input {
 
 .calendar-list .fc-scroller {
   max-height: 30rem;
-  height: fit-content !important;
+  height: auto !important;
+  min-height: 6rem;
 }
 
 .calendar-list .fc-toolbar.fc-header-toolbar {

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-15 11:35+0200\n"
+"POT-Creation-Date: 2019-06-17 16:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,11 +91,11 @@ msgstr "Kategorie"
 msgid "categories"
 msgstr "Kategorien"
 
-#: mpicms/base/models.py:153
+#: mpicms/base/models.py:155
 msgid "wiki page"
 msgstr "Wiki Seite"
 
-#: mpicms/base/models.py:154
+#: mpicms/base/models.py:156
 msgid "wiki pages"
 msgstr "Wiki Seiten"
 
@@ -188,8 +188,8 @@ msgid "Search"
 msgstr "Suche"
 
 #: mpicms/templates/base/home_page.html:27
-msgid "Upcoming events"
-msgstr "Kommende Veranstaltungen"
+msgid "Events this week"
+msgstr "Veranstaltungen der Woche"
 
 #: mpicms/templates/base/home_page.html:30
 msgid "All events"
@@ -244,6 +244,9 @@ msgstr "Ins Intranet einloggen"
 #: mpicms/users/forms.py:8 mpicms/users/forms.py:13
 msgid "Phone"
 msgstr "Telefon"
+
+#~ msgid "Upcoming events"
+#~ msgstr "Kommende Veranstaltungen"
 
 #~ msgid "person"
 #~ msgstr "Person"

@@ -24,7 +24,7 @@
         </div>
         {% if page.event_index %}
         <div class="column calendar-list">
-            <h3 class="title is-3">{% trans 'Upcoming events' %}</h3>
+            <h3 class="title is-3">{% trans 'Events this week' %}</h3>
             {% include 'events/components/event_list.html' with event_index=page.event_index %}
             <div class="section-button" >
                 <a href="{% pageurl page.event_index %}"><button class="button">{% trans 'All events' %}&nbsp&nbsp<i class="fas fa-chevron-right"></i></button></a>
