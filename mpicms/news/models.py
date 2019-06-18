@@ -12,7 +12,7 @@ from mpicms.base.models import CategoryMixin
 
 class NewsPage(CategoryMixin, Page):
     content_panels = Page.content_panels
-    parent_page_types = ['base.CategoryPage', 'base.HomePage']
+    parent_page_types = ['base.HomePage', 'base.RootPage']
     subpage_types = ['NewsEntry']
     paginated_by = 8
 

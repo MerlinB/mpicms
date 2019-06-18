@@ -43,10 +43,10 @@ class Banner(models.Model):
 class ContactRelation(Orderable, models.Model):
     """
     This defines the relationship between the `Contact` within the `personal`
-    app and the CategoryPage below. This allows People to be added to the contact field.
+    app and the HomePage below. This allows People to be added to the contact field.
     """
     page = ParentalKey(
-        'CategoryPage', related_name=_('contacts'), on_delete=models.CASCADE
+        'HomePage', related_name=_('contacts'), on_delete=models.CASCADE
     )
     contact = models.ForeignKey(
         'personal.Contact',
@@ -69,13 +69,13 @@ class ContactRelation(Orderable, models.Model):
 class CategoryMixin(models.Model):
     @property
     def category(self):
-        return Page.objects.ancestor_of(self, inclusive=True).type(CategoryPage).order_by('-depth').first()
+        return Page.objects.ancestor_of(self, inclusive=True).type(HomePage).order_by('-depth').first()
 
     class Meta:  # noqa
         abstract = True
 
 
-class HomePage(EventMixin, NewsMixin, Page):
+class RootPage(EventMixin, NewsMixin, Page):
     banner = models.ForeignKey(
         'Banner',
         null=True,
@@ -86,6 +86,7 @@ class HomePage(EventMixin, NewsMixin, Page):
     )
 
     parent_page_types = ['wagtailcore.Page']  # Restrict parent to be root
+    max_count = 1
 
     content_panels = Page.content_panels + [
         SnippetChooserPanel('banner'),
@@ -93,14 +94,14 @@ class HomePage(EventMixin, NewsMixin, Page):
 
     @property
     def categories(self):
-        return self.get_children().type(CategoryPage).live()
+        return self.get_children().type(HomePage).live()
 
     class Meta: # noqa
-        verbose_name = _("homepage")
-        verbose_name_plural = _("homepages")
+        verbose_name = _("root page")
+        verbose_name_plural = _("root pages")
 
 
-class CategoryPage(NewsMixin, Page):
+class HomePage(NewsMixin, Page):
     preview = models.TextField(
         _("preview"), blank=True,
         help_text=_("Short description of this category")
@@ -127,15 +128,15 @@ class CategoryPage(NewsMixin, Page):
         index.SearchField('side_content'),
     ]
 
-    parent_page_types = ['HomePage', 'CategoryPage']
+    parent_page_types = ['RootPage', 'HomePage']
 
     @property
     def category(self):
         return self
 
     class Meta: # noqa
-        verbose_name = _("category")
-        verbose_name_plural = _("categories")
+        verbose_name = _("homepage")
+        verbose_name_plural = _("homepages")
 
 
 class WikiPage(CategoryMixin, Page):
@@ -149,7 +150,7 @@ class WikiPage(CategoryMixin, Page):
         FieldPanel('body', classname="full"),
     ]
 
-    parent_page_types = ['WikiPage', 'CategoryPage']
+    parent_page_types = ['WikiPage', 'HomePage']
 
     class Meta: # noqa
         verbose_name = _("wiki page")
