@@ -99,6 +99,10 @@ select, input {
   border-radius: 0 !important;
 }
 
+.narrow li {
+  width: 20rem;
+}
+
 .sidebar {
   flex: 0 0 22rem !important;
   flex-wrap: wrap;
@@ -109,17 +113,17 @@ select, input {
   align-content: flex-start;
 }
 
-.sidebar ul {
+.sidebar ul, .menu ul {
   list-style: none;
   margin: 0;
 }
 
-.sidebar a {
+.sidebar a, .menu a {
   color: #006c66;
   font-weight: 400;
 }
 
-.sidebar li {
+.sidebar li, .menu li {
   list-style: none;
 }
 
@@ -242,7 +246,10 @@ select, input {
 }
 
 .is-preview-wide {
-  flex-basis: 43rem;
+  max-width: 45rem;
+  flex-basis: 35rem;
+  flex-shrink: 1;
+  flex-grow: 1;
 }
 
 .category-label {

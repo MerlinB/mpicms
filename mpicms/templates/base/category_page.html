@@ -12,8 +12,7 @@
 
     {% include 'news/components/news_preview.html' with news=page.news %}
 
-    <!-- <h3 class="title is-3">Content</h3> -->
-    <div class="section">
-        {% include 'base/components/content_preview.html' with pages=page.get_children.in_menu.live %}
-    </div>
+    <h3 class="title is-3">Content</h3>
+    {% include 'base/components/list_menu.html' with items=page.get_children.in_menu.live %}
+
     {% endblock %}

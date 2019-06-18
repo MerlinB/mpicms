@@ -1,0 +1,22 @@
+{% load wagtailcore_tags %}
+
+<div class="menu narrow">
+    <ul class="menu-list">
+        {% for item in items %}
+            <li>
+                <a class="menu-item" href="{% pageurl item %}">{{ item.title }}</a>
+                {% with item.get_children.in_menu.live as children %}
+                    {% if children %}
+                        <ul>
+                            {% for child in children %}
+                                <li >
+                                    <a class="menu-item" href="{% pageurl child %}">{{ child }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
