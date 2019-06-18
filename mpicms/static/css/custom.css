@@ -120,7 +120,7 @@ select, input {
 
 .sidebar a, .menu a {
   color: #006c66;
-  font-weight: 400;
+  /* font-weight: 400; */
 }
 
 .sidebar li, .menu li {
