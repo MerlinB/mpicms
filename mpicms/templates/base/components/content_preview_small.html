@@ -7,7 +7,7 @@
             <a href="{% pageurl item %}">{{ item.title }}</a>
             {% if item.get_children.live %}
                 <ul>
-                    {% for child in item.get_children.live %}
+                    {% for child in item.get_children.in_menu.live %}
                         <li>
                             <a class="" href="{% pageurl child %}"><div>{{ child }}</div></a>
                         </li>

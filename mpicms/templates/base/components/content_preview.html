@@ -9,7 +9,7 @@
                     {{ item.specific.preview|richtext }}
                     <div class="menu">
                         <ul class="menu-list card-list">
-                        {% for child in item.get_children.live %}
+                        {% for child in item.get_children.in_menu.live %}
                             <li>
                                 <a class="menu-item" href="{% pageurl child %}"><div>{{ child }}</div></a>
                             </li>
