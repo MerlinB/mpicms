@@ -111,6 +111,7 @@ select, input {
   padding-bottom: 2rem;
   margin-top: 3rem;
   align-content: flex-start;
+  line-height: normal;
 }
 
 .sidebar ul, .menu ul {
@@ -241,8 +242,8 @@ select, input {
 }
 
 .is-preview {
-  max-width: 40rem;
-  flex-basis: 20rem;
+  max-width: 50rem;
+  flex-basis: 25rem;
 }
 
 .is-preview-wide {
