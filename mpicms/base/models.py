@@ -92,10 +92,6 @@ class RootPage(EventMixin, NewsMixin, Page):
         SnippetChooserPanel('banner'),
     ]
 
-    @property
-    def categories(self):
-        return self.get_children().type(HomePage).live()
-
     class Meta: # noqa
         verbose_name = _("root page")
         verbose_name_plural = _("root pages")
@@ -122,7 +118,7 @@ class HomePage(NewsMixin, Page):
         index.SearchField('side_content'),
     ]
 
-    parent_page_types = ['RootPage', 'HomePage']
+    # parent_page_types = ['RootPage', 'HomePage']
 
     @property
     def category(self):
@@ -144,7 +140,7 @@ class WikiPage(CategoryMixin, Page):
         FieldPanel('body', classname="full"),
     ]
 
-    parent_page_types = ['WikiPage', 'HomePage']
+    # parent_page_types = ['WikiPage', 'HomePage']
 
     class Meta: # noqa
         verbose_name = _("wiki page")
