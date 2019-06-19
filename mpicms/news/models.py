@@ -46,20 +46,17 @@ class NewsPage(CategoryMixin, Page):
 
 
 class NewsEntry(CategoryMixin, Page):
-    preview = models.TextField(_("preview"), blank=True)
     body = RichTextField(_("content"), blank=True)
     date = models.DateField(_("post date"), auto_now_add=True)
 
     show_in_menus_default = False
 
     content_panels = Page.content_panels + [
-        FieldPanel('preview'),
         FieldPanel('body', classname="full"),
     ]
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
-        index.SearchField('preview'),
         index.FilterField('date')
     ]
 

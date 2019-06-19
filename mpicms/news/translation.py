@@ -13,5 +13,4 @@ class NewsPageTR(TranslationOptions):
 class NewsEntryTR(TranslationOptions):
     fields = (
         'body',
-        'preview'
     )

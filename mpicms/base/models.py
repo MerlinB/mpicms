@@ -102,10 +102,6 @@ class RootPage(EventMixin, NewsMixin, Page):
 
 
 class HomePage(NewsMixin, Page):
-    preview = models.TextField(
-        _("preview"), blank=True,
-        help_text=_("Short description of this category")
-    )
     body = RichTextField(_("content"), blank=True)
     side_content = RichTextField(
         _("sidebar content"), blank=True,
@@ -115,7 +111,6 @@ class HomePage(NewsMixin, Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('body', classname="full"),
-        FieldPanel('preview'),
         FieldPanel('side_content'),
         InlinePanel(
             'contacts', label="Contacts",
@@ -124,7 +119,6 @@ class HomePage(NewsMixin, Page):
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
-        index.SearchField('preview'),
         index.SearchField('side_content'),
     ]
 
