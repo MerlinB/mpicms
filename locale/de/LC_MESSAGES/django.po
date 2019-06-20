@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 16:09+0200\n"
+"POT-Creation-Date: 2019-06-20 17:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,48 +54,42 @@ msgstr "Kontakt"
 msgid "contact information"
 msgstr "Kontaktinformationen"
 
-#: mpicms/base/models.py:99
-msgid "homepage"
-msgstr "Startseite"
+#: mpicms/base/models.py:96
+msgid "root page"
+msgstr "Grundseite"
 
-#: mpicms/base/models.py:100
-msgid "homepages"
-msgstr "Startseiten"
+#: mpicms/base/models.py:97
+#, fuzzy
+#| msgid "homepages"
+msgid "root pages"
+msgstr "Grundseiten"
 
-#: mpicms/base/models.py:105 mpicms/news/models.py:49
-msgid "preview"
-msgstr "Vorschau"
-
-#: mpicms/base/models.py:106
-msgid "Short description of this category"
-msgstr "Kurze Beschreibung der Kategorie"
-
-#: mpicms/base/models.py:108 mpicms/base/models.py:142
-#: mpicms/events/models.py:19 mpicms/news/models.py:50
+#: mpicms/base/models.py:101 mpicms/base/models.py:133
+#: mpicms/events/models.py:19 mpicms/news/models.py:49
 msgid "content"
 msgstr "Inhalt"
 
-#: mpicms/base/models.py:110
+#: mpicms/base/models.py:103
 msgid "sidebar content"
 msgstr "Inhalt der Seitenleiste"
 
-#: mpicms/base/models.py:112
+#: mpicms/base/models.py:105
 msgid "Text displayed in the sidebar of all child pages"
 msgstr "Dieser Text wird in der Seitenleiste aller Unterseiten angezeigt"
 
-#: mpicms/base/models.py:137
-msgid "category"
-msgstr "Kategorie"
+#: mpicms/base/models.py:128
+msgid "homepage"
+msgstr "Startseite"
 
-#: mpicms/base/models.py:138
-msgid "categories"
-msgstr "Kategorien"
+#: mpicms/base/models.py:129
+msgid "homepages"
+msgstr "Startseiten"
 
-#: mpicms/base/models.py:155
+#: mpicms/base/models.py:146
 msgid "wiki page"
 msgstr "Wiki Seite"
 
-#: mpicms/base/models.py:156
+#: mpicms/base/models.py:147
 msgid "wiki pages"
 msgstr "Wiki Seiten"
 
@@ -147,15 +141,15 @@ msgstr "News Blog"
 msgid "news blogs"
 msgstr "News Blogs"
 
-#: mpicms/news/models.py:51
+#: mpicms/news/models.py:50
 msgid "post date"
 msgstr "Veröffentlichungsdatum"
 
-#: mpicms/news/models.py:70
+#: mpicms/news/models.py:67
 msgid "news entry"
 msgstr "News Artikel"
 
-#: mpicms/news/models.py:71
+#: mpicms/news/models.py:68
 msgid "news entries"
 msgstr "News Artikel"
 
@@ -182,24 +176,31 @@ msgid "room"
 msgstr "Raum"
 
 #: mpicms/templates/base/components/search.html:3
+#: mpicms/templates/base/components/search_big.html:17
 #: mpicms/templates/base/search_results.html:9
 #: mpicms/templates/menus/main.html:94
 msgid "Search"
 msgstr "Suche"
 
-#: mpicms/templates/base/home_page.html:27
+#: mpicms/templates/base/components/search_big.html:6
+msgid "Welcome"
+msgstr "Willkommen"
+
+#: mpicms/templates/base/components/search_big.html:7
+msgid "Intranet of the Max-Planck-Institute for Molecular Genetics"
+msgstr "Intranet des Max-Planck-Instituts für molekulare Genetik"
+
+#: mpicms/templates/base/components/search_big.html:11
+msgid "Search the Intranet"
+msgstr "Das Intranet durchsuchen"
+
+#: mpicms/templates/base/root_page.html:27
 msgid "Events this week"
 msgstr "Veranstaltungen der Woche"
 
-#: mpicms/templates/base/home_page.html:30
+#: mpicms/templates/base/root_page.html:30
 msgid "All events"
 msgstr "Alle Veranstaltungen"
-
-#: mpicms/templates/base/home_page.html:37
-#, fuzzy
-#| msgid "content"
-msgid "Content"
-msgstr "Inhalt"
 
 #: mpicms/templates/events/event_page.html:23
 msgid "No events found"
@@ -227,7 +228,7 @@ msgstr "Kontakt"
 
 #: mpicms/templates/news/components/news_list.html:17
 msgid "See all"
-msgstr "Alle Neuigkeiten"
+msgstr "Alle anzeigen"
 
 #: mpicms/templates/news/components/news_preview.html:10
 msgid "All news"
@@ -244,6 +245,23 @@ msgstr "Ins Intranet einloggen"
 #: mpicms/users/forms.py:8 mpicms/users/forms.py:13
 msgid "Phone"
 msgstr "Telefon"
+
+#, fuzzy
+#~| msgid "content"
+#~ msgid "Content"
+#~ msgstr "Inhalt"
+
+#~ msgid "preview"
+#~ msgstr "Vorschau"
+
+#~ msgid "Short description of this category"
+#~ msgstr "Kurze Beschreibung der Kategorie"
+
+#~ msgid "category"
+#~ msgstr "Kategorie"
+
+#~ msgid "categories"
+#~ msgstr "Kategorien"
 
 #~ msgid "Upcoming events"
 #~ msgstr "Kommende Veranstaltungen"

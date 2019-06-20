@@ -18,6 +18,8 @@
         </article>
     {% endif %}
 
+    {% include 'base/components/search_big.html' %}
+
     {% include 'news/components/news_preview.html' with news=page.news %}
 
     {% if page.event_index %}

@@ -13,6 +13,27 @@ select, input {
   border-radius: 0 !important;
 }
 
+#primary-search {
+  margin: 5em 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#primary-search .field {
+  display: flex;
+  justify-content: center
+}
+
+#primary-search .control {
+  flex-basis: 40rem;
+  flex-shrink: 1;
+}
+
+.button {
+  font-family: "Merriweather Sans", sans-serif !important;
+}
+
 .message {
   margin-bottom: 4rem !important;
 }
@@ -40,13 +61,18 @@ select, input {
 }
 
 .title.is-1 {
-  /* font-family: "Merriweather Sans", sans-serif; */
   color: #006c66;
-  padding-left: 2rem;
   text-transform: uppercase;
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+.navbar .title.is-1 {
+  /* font-family: "Merriweather Sans", sans-serif; */
+  padding-left: 2rem;
   font-size: 3.5rem;
   letter-spacing: 0.2em;
-  font-weight: 300;
 }
 
 .title.is-2, .title.is-3 {

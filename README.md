@@ -70,3 +70,9 @@ WSGIScriptAlias / /path/to/mpicms/config/wsgi.py
     </Files>
 </Directory>
 ```
+
+# LDAP population
+To populate the database with an existing LDAP user, run `django_auth_ldap.backend.LDAPBackend.populate_user()`. See [django-auth-ldap docs](https://django-auth-ldap.readthedocs.io/en/latest/users.html#updating-users) for details.
+
+# Python shell
+Access with `python manage.py shell --settings=config.settings.production`.
