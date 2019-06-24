@@ -17,6 +17,7 @@ from wagtail.snippets.models import register_snippet
 from mpicms.news.mixins import NewsMixin
 # from mpicms.events.models import Event, EventIndex
 from mpicms.events.mixins import EventMixin
+from .blocks import ContentBlock
 
 
 Page.show_in_menus_default = True
@@ -145,3 +146,19 @@ class WikiPage(CategoryMixin, Page):
     class Meta: # noqa
         verbose_name = _("wiki page")
         verbose_name_plural = _("wiki pages")
+
+
+class ChooserPage(CategoryMixin, Page):
+    body = StreamField(ContentBlock)
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
+    ]
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel('body'),
+    ]
+
+    class Meta: # noqa
+        verbose_name = _("chooser page")
+        verbose_name_plural = _("chooser pages")

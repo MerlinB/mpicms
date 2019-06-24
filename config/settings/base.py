@@ -59,6 +59,7 @@ THIRD_PARTY_APPS = [
     'wagtail.core',
     'wagtail.contrib.postgres_search',
     'wagtail.contrib.search_promotions',
+    'wagtail.contrib.table_block',
 
     'wagtail_modeltranslation',
     'wagtail_modeltranslation.makemigrations',

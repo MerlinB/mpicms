@@ -85,8 +85,6 @@ class EventIndex(Page):
     parent_page_types = ['base.RootPage']
     subpage_types = ['events.Event']
 
-    content_panels = Page.content_panels
-
     @property
     def events(self):
         if self.depth <= 3:

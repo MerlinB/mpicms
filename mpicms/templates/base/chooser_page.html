@@ -1,0 +1,25 @@
+{% extends 'base/page.html' %}
+
+{% load wagtailcore_tags static %}
+
+{% block head %}
+    {{ block.super }}
+    <script src="{% static 'js/toc.js' %}" defer></script>
+{% endblock %}
+
+{% block page_content %}
+    <h2 class="title is-2">{{ page.title }}</h2>
+    {% if not page.body %}
+        {% include 'base/components/list_menu.html' with items=page.get_children.in_menu.live %}
+    {% endif %}
+
+    <div id="toc" class="content"></div>
+
+    <div id="content" class="content">
+        <p>
+            {% for block in page.body %}
+                {% include_block block %}
+            {% endfor %}
+        </p>
+    </div>
+{% endblock %}
