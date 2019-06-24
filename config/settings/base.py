@@ -223,3 +223,6 @@ WAGTAILSEARCH_BACKENDS = {
         'BACKEND': 'wagtail.contrib.postgres_search.backend',
     }
 }
+
+# Documentation
+DOCS_ROOT = os.path.join(ROOT_DIR, 'docs/_build/html')
