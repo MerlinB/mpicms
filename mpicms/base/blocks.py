@@ -13,3 +13,6 @@ class ContentBlock(blocks.StreamBlock):
     richtext = blocks.RichTextBlock(label=_('Editor'))
     markdown = MarkdownBlock(label=_('Raw Markdown'))
     table = TableBlock(label=_('Table'))
+
+    class Meta:  # noqa
+        label = _('content')

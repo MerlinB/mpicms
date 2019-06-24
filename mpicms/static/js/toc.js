@@ -1,5 +1,5 @@
 var toc = document.getElementById('toc');
-var headings = [].slice.call(document.getElementById('content').querySelectorAll('h2, h3, h4, h5, h6'));
+var headings = [].slice.call(document.getElementById('content').querySelectorAll('h1, h2, h3, h4, h5, h6'));
 headings.forEach(function (heading, index) {
     var anchor = document.createElement('a');
     anchor.setAttribute('name', 'toc' + index);

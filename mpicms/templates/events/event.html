@@ -25,6 +25,10 @@
     {% endif %}
 
     <div class="content">
-        <p>{{ page.body|richtext }}</p>
+        <p>
+            {% for block in page.body %}
+                {% include_block block %}
+            {% endfor %}
+        </p>
     </div>
 {% endblock %}

@@ -3,11 +3,13 @@ from django.utils.translation import gettext_lazy as _
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.search import index
 
 from mpicms.base.models import CategoryMixin
+
+from base.blocks import ContentBlock
 
 
 class NewsPage(CategoryMixin, Page):
@@ -46,13 +48,13 @@ class NewsPage(CategoryMixin, Page):
 
 
 class NewsEntry(CategoryMixin, Page):
-    body = RichTextField(_("content"), blank=True)
+    body = StreamField(ContentBlock, blank=True, verbose_name=_('content'))
     date = models.DateField(_("post date"), auto_now_add=True)
 
     show_in_menus_default = False
 
     content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full"),
+        StreamFieldPanel('body'),
     ]
 
     search_fields = Page.search_fields + [

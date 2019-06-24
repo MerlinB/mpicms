@@ -5,9 +5,11 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField
+from wagtail.core.fields import RichTextField, StreamField
+
+from base.blocks import ContentBlock
 
 
 class Event(Page):
@@ -16,7 +18,7 @@ class Event(Page):
     start_time = models.TimeField(_('start time'), blank=True, null=True)
     end_time = models.TimeField(_('end time'), blank=True, null=True)
     description = models.TextField(_('description'), max_length=400, null=False, blank=True)
-    body = RichTextField(_("content"), blank=True)
+    body = StreamField(ContentBlock, blank=True, verbose_name=_('content'))
 
     show_in_menus_default = False
     parent_page_types = ['events.EventIndex']
@@ -33,7 +35,7 @@ class Event(Page):
             ],
             heading=_('event dates')
         ),
-        FieldPanel('body', classname="full"),
+        StreamFieldPanel('body'),
     ]
 
     @property

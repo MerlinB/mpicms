@@ -99,7 +99,7 @@ class RootPage(EventMixin, NewsMixin, Page):
 
 
 class HomePage(NewsMixin, Page):
-    body = RichTextField(_("content"), blank=True)
+    body = StreamField(ContentBlock, blank=True, verbose_name=_('content'))
     side_content = RichTextField(
         _("sidebar content"), blank=True,
         features=['h4', 'h5', 'h6', 'bold', 'italic', 'link', 'document-link'],
@@ -107,7 +107,7 @@ class HomePage(NewsMixin, Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full"),
+        StreamFieldPanel('body'),
         FieldPanel('side_content'),
         InlinePanel(
             'contacts', label="Contacts",
@@ -119,8 +119,6 @@ class HomePage(NewsMixin, Page):
         index.SearchField('side_content'),
     ]
 
-    # parent_page_types = ['RootPage', 'HomePage']
-
     @property
     def category(self):
         return self
@@ -131,25 +129,7 @@ class HomePage(NewsMixin, Page):
 
 
 class WikiPage(CategoryMixin, Page):
-    body = RichTextField(_("content"), blank=True)
-
-    search_fields = Page.search_fields + [
-        index.SearchField('body'),
-    ]
-
-    content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full"),
-    ]
-
-    # parent_page_types = ['WikiPage', 'HomePage']
-
-    class Meta: # noqa
-        verbose_name = _("wiki page")
-        verbose_name_plural = _("wiki pages")
-
-
-class ChooserPage(CategoryMixin, Page):
-    body = StreamField(ContentBlock)
+    body = StreamField(ContentBlock, blank=True, verbose_name=_('content'))
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
@@ -160,5 +140,5 @@ class ChooserPage(CategoryMixin, Page):
     ]
 
     class Meta: # noqa
-        verbose_name = _("chooser page")
-        verbose_name_plural = _("chooser pages")
+        verbose_name = _("wiki page")
+        verbose_name_plural = _("wiki pages")

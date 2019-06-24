@@ -8,7 +8,9 @@
             {{ page.date }}
             <div class="content">
                 <p>
-                    {{ page.body|richtext }}
+                    {% for block in page.body %}
+                        {% include_block block %}
+                    {% endfor %}
                 </p>
             </div>
     </section>

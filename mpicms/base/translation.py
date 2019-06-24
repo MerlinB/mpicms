@@ -7,7 +7,7 @@ See https://github.com/infoportugal/wagtail-modeltranslation/pull/150.
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
-from .models import WikiPage, RootPage, HomePage, Banner, ChooserPage
+from .models import WikiPage, RootPage, HomePage, Banner
 
 
 @register(Banner)
@@ -32,13 +32,6 @@ class HomePageTR(TranslationOptions):
 
 @register(WikiPage)
 class WikiPageTR(TranslationOptions):
-    fields = (
-        'body',
-    )
-
-
-@register(ChooserPage)
-class ChooserPageTR(TranslationOptions):
     fields = (
         'body',
     )

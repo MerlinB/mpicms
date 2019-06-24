@@ -17,7 +17,9 @@
 
     <div id="content" class="content">
         <p>
-            {{ page.body|richtext }}
+            {% for block in page.body %}
+                {% include_block block %}
+            {% endfor %}
         </p>
     </div>
 {% endblock %}
