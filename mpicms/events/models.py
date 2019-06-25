@@ -8,8 +8,10 @@ from django.utils.translation import gettext_lazy as _
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
+from wagtail.api import APIField
 
 from base.blocks import ContentBlock
+from base.serializers import OptionalStreamField
 
 
 class Event(Page):
@@ -36,6 +38,15 @@ class Event(Page):
             heading=_('event dates')
         ),
         StreamFieldPanel('body'),
+    ]
+
+    api_fields = [
+        APIField('start_date'),
+        APIField('end_date'),
+        APIField('start_time'),
+        APIField('end_time'),
+        APIField('description'),
+        APIField('body', serializer=OptionalStreamField()),
     ]
 
     @property

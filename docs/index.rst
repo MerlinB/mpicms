@@ -11,6 +11,7 @@ Welcome to the Intranet documentation!
    :caption: Contents:
 
    editor_manual/index
+   REST_API/usage
    requirements
    dev_notes
 

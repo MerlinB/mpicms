@@ -11,6 +11,7 @@ from django.conf.urls.static import static
 from django.views import defaults as default_views, static as static_views
 
 from base.views import search
+from base.api import api_router
 
 
 urlpatterns = [
@@ -22,6 +23,7 @@ urlpatterns = [
     re_path(r'^admin/', include(wagtailadmin_urls)),
     re_path(r'^documents/', include(wagtaildocs_urls)),
     re_path(r'^sitemap\.xml$', sitemap),
+    path('api/v2/', api_router.urls),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )

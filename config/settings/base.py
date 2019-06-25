@@ -61,6 +61,7 @@ THIRD_PARTY_APPS = [
     'wagtail.contrib.postgres_search',
     'wagtail.contrib.search_promotions',
     'wagtail.contrib.table_block',
+    'wagtail.api.v2',
 
     'wagtail_modeltranslation',
     'wagtail_modeltranslation.makemigrations',
@@ -68,6 +69,7 @@ THIRD_PARTY_APPS = [
 
     'modelcluster',
     'taggit',
+    'rest_framework',
 ]
 LOCAL_APPS = [
     'mpicms.base.apps.BaseAppConfig',
@@ -228,3 +230,6 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Documentation
 DOCS_ROOT = os.path.join(ROOT_DIR, 'docs/_build/html')
+
+# API
+WAGTAILAPI_LIMIT_MAX = 50

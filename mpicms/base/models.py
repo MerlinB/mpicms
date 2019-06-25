@@ -13,11 +13,13 @@ from wagtail.search import index
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
+from wagtail.api import APIField
 
 from mpicms.news.mixins import NewsMixin
 # from mpicms.events.models import Event, EventIndex
 from mpicms.events.mixins import EventMixin
 from .blocks import ContentBlock
+from .serializers import OptionalStreamField
 
 
 Page.show_in_menus_default = True
@@ -62,6 +64,11 @@ class ContactRelation(Orderable, models.Model):
         FieldPanel('position')
     ]
 
+    api_fields = [
+        APIField('contact'),
+        APIField('position')
+    ]
+
     class Meta:  # noqa
         verbose_name = _('contact information')
         verbose_name_plural = _('contact information')
@@ -93,13 +100,17 @@ class RootPage(EventMixin, NewsMixin, Page):
         SnippetChooserPanel('banner'),
     ]
 
+    api_fields = [
+        APIField('banner')
+    ]
+
     class Meta: # noqa
         verbose_name = _("root page")
         verbose_name_plural = _("root pages")
 
 
 class HomePage(NewsMixin, Page):
-    body = StreamField(ContentBlock, blank=True, verbose_name=_('content'))
+    body = StreamField(ContentBlock(), blank=True, verbose_name=_('content'))
     side_content = RichTextField(
         _("sidebar content"), blank=True,
         features=['h4', 'h5', 'h6', 'bold', 'italic', 'link', 'document-link'],
@@ -119,6 +130,12 @@ class HomePage(NewsMixin, Page):
         index.SearchField('side_content'),
     ]
 
+    api_fields = [
+        APIField('body', serializer=OptionalStreamField()),
+        APIField('side_content'),
+        APIField('contacts')
+    ]
+
     @property
     def category(self):
         return self
@@ -129,7 +146,7 @@ class HomePage(NewsMixin, Page):
 
 
 class WikiPage(CategoryMixin, Page):
-    body = StreamField(ContentBlock, blank=True, verbose_name=_('content'))
+    body = StreamField(ContentBlock(), blank=True, verbose_name=_('content'))
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
@@ -137,6 +154,10 @@ class WikiPage(CategoryMixin, Page):
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('body'),
+    ]
+
+    api_fields = [
+        APIField('body', serializer=OptionalStreamField())
     ]
 
     class Meta: # noqa

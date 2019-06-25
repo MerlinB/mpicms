@@ -6,10 +6,12 @@ from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.search import index
+from wagtail.api import APIField
 
 from mpicms.base.models import CategoryMixin
 
 from base.blocks import ContentBlock
+from base.serializers import OptionalStreamField
 
 
 class NewsPage(CategoryMixin, Page):
@@ -60,6 +62,11 @@ class NewsEntry(CategoryMixin, Page):
     search_fields = Page.search_fields + [
         index.SearchField('body'),
         index.FilterField('date')
+    ]
+
+    api_fields = [
+        APIField('body', serializer=OptionalStreamField()),
+        APIField('date')
     ]
 
     parent_page_types = ['NewsPage']
