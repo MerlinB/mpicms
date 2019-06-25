@@ -1,6 +1,7 @@
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.core import urls as wagtail_urls
+from wagtail.contrib.sitemaps.views import sitemap
 
 from django.conf import settings
 from django.contrib import admin
@@ -20,6 +21,7 @@ urlpatterns = [
     re_path('^docs/(?P<path>.*)$', static_views.serve, {'document_root': settings.DOCS_ROOT}),
     re_path(r'^admin/', include(wagtailadmin_urls)),
     re_path(r'^documents/', include(wagtaildocs_urls)),
+    re_path(r'^sitemap\.xml$', sitemap),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )
