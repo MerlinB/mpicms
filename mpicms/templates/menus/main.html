@@ -22,7 +22,7 @@
             </div>
           </div>
           {% else %}
-            <a href="{% url 'wagtailadmin_home' %}" class="navbar-item navbar-title">{% trans 'Login' %}</a>
+            <a href="{% url 'wagtailadmin_login' %}?next=/" class="navbar-item navbar-title">{% trans 'Login' %}</a>
           {% endif %}
           <div class="navbar-item">
             <div class="field"><div class="control">
@@ -90,20 +90,19 @@
       <div class="navbar-end" style="flex-shrink: 0">
         <div class="navbar-item">
           <form action="{% url 'search' %}" method="get" class="field has-addons">
-              <div class="control is-expanded">
-                  <input type="text" name="query" value="{{ search_query }}" class="input" placeholder="{% trans 'Search' %}" style="height: 100%">
-              </div>
-              <div class="control">
-                  <button type="submit" class="button">
-                      <span class="icon has-text-grey">
-                          <i class="fas fa-search"></i>
-                      </span>
-                    </button>
-              </div>
-            </form>
+            <div class="control is-expanded">
+              <input type="text" name="query" value="{{ search_query }}" class="input" placeholder="{% trans 'Search' %}" style="height: 100%">
+            </div>
+            <div class="control">
+              <button type="submit" class="button">
+                <span class="icon has-text-grey">
+                  <i class="fas fa-search"></i>
+                </span>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-
     </div>
   </div>
 </nav>
