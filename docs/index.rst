@@ -13,6 +13,7 @@ Welcome to the Intranet documentation!
    editor_manual/index
    REST_API/usage
    requirements
+   sitemap
    dev_notes
 
 
