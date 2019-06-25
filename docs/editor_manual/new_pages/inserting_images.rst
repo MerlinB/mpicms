@@ -3,17 +3,6 @@
 Inserting images and videos in a page
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There will obviously be many instances in which you will want to add images to a page. There are two main ways to add images to pages, either via a specific image chooser field, or via the rich text field image button. Which of these you use will be dependent on the individual setup of your site.
-
-Inserting images using the image chooser field
-______________________________________________
-
-Often a specific image field will be used for a main image on a page, or for an image to be used when sharing the page on social media. For the standard page on Torchbox.com, the former is used.
-
-.. image:: ../../_static/images/screen14_add_main_image.png
-
-* You insert an image by clicking the *Choose an image* button.
-
 Choosing an image to insert
 ___________________________
 
@@ -59,6 +48,3 @@ The format options available are described below:
 
 * **Full width:** Image will be inserted using the full width of the text area.
 * **Half-width left/right aligned:** Inserts the image at half the width of the text area. If inserted in a block of text, the text will wrap around the image. If two half-width images are inserted together, they will display next to each other.
-
-.. Note::
-    The display of images formatted in this way is dependent on your implementation of Wagtail, so you may get slightly different results.

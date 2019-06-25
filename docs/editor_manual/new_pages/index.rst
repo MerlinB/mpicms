@@ -16,7 +16,6 @@ Create new pages by clicking the **Add child page** button. This creates a child
    inserting_links
    inserting_videos
    inserting_documents
-   adding_multiple_items
    required_fields
    Edit Page tabs <the_promote_tab>
    previewing_and_submitting_for_moderation

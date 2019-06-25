@@ -3,7 +3,7 @@
 Introduction for editors
 ========================
 
-This section of the documentation is written for the users of a Wagtail-powered site. That is, the content editors, moderators and administrators who will be running things on a day-to-day basis.
+This section of the documentation is written for the users of the site. That is, the content editors, moderators and administrators.
 
 .. toctree::
    :maxdepth: 3
@@ -16,4 +16,3 @@ This section of the documentation is written for the users of a Wagtail-powered 
    documents_images_snippets/index
    managing_redirects
    administrator_tasks/index
-   browser_issues
