@@ -9,9 +9,8 @@ from wagtail.search import index
 from wagtail.api import APIField
 
 from mpicms.base.models import CategoryMixin
-
-from base.blocks import ContentBlock
-from base.serializers import OptionalStreamField
+from mpicms.base.blocks import ContentBlock
+from mpicms.base.serializers import OptionalStreamField
 
 
 class NewsPage(CategoryMixin, Page):

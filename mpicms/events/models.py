@@ -10,8 +10,8 @@ from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.api import APIField
 
-from base.blocks import ContentBlock
-from base.serializers import OptionalStreamField
+from mpicms.base.blocks import ContentBlock
+from mpicms.base.serializers import OptionalStreamField
 
 
 class Event(Page):
