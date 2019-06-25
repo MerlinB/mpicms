@@ -45,7 +45,7 @@ class Contact(index.Indexed, ClusterableModel):
     """
     name = models.CharField(_("name"), max_length=254)
     email = models.EmailField(_("email"), blank=True)
-    phone = models.IntegerField(_("phone number"), blank=True, null=True)
+    phone = models.CharField(_("phone number"), blank=True, max_length=50)
     room = models.CharField(_("room"), max_length=25, blank=True)
 
     panels = [
