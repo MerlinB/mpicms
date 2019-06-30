@@ -1,8 +1,9 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 
 from wagtail.core.models import Page
-from django.core.paginator import Paginator
 from wagtail.search.models import Query
+from wagtail.admin.views.account import LogoutView as LView
 
 
 def search(request):
@@ -25,3 +26,7 @@ def search(request):
         'search_query': search_query,
         'search_results': search_results,
     })
+
+
+class LogoutView(LView):
+    next_page = '/'

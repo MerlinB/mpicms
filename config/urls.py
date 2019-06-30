@@ -10,7 +10,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.views import defaults as default_views, static as static_views
 
-from mpicms.base.views import search
+from mpicms.base.views import search, LogoutView
 from mpicms.base.api import api_router
 
 
@@ -24,6 +24,7 @@ urlpatterns = [
     re_path(r'^documents/', include(wagtaildocs_urls)),
     re_path(r'^sitemap\.xml$', sitemap),
     path('api/v2/', api_router.urls),
+    path('logout', LogoutView.as_view(), name='logout')
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )
