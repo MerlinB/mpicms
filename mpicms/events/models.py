@@ -12,9 +12,10 @@ from wagtail.api import APIField
 
 from mpicms.base.blocks import ContentBlock
 from mpicms.base.serializers import OptionalStreamField
+from mpicms.base.mixins import BasePage
 
 
-class Event(Page):
+class Event(BasePage):
     start_date = models.DateField(_('start date'))
     end_date = models.DateField(_('end date'), blank=True, null=True)
     start_time = models.TimeField(_('start time'), blank=True, null=True)
@@ -94,7 +95,7 @@ class Event(Page):
         verbose_name_plural = _('events')
 
 
-class EventIndex(Page):
+class EventIndex(BasePage):
     parent_page_types = ['base.RootPage']
     subpage_types = ['events.Event']
 

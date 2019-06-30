@@ -20,6 +20,7 @@ from mpicms.news.mixins import NewsMixin
 from mpicms.events.mixins import EventMixin
 from .blocks import ContentBlock
 from .serializers import OptionalStreamField
+from .mixins import BasePage
 
 
 Page.show_in_menus_default = True
@@ -83,7 +84,7 @@ class CategoryMixin(models.Model):
         abstract = True
 
 
-class RootPage(EventMixin, NewsMixin, Page):
+class RootPage(EventMixin, NewsMixin, BasePage):
     banner = models.ForeignKey(
         'Banner',
         null=True,
@@ -109,7 +110,7 @@ class RootPage(EventMixin, NewsMixin, Page):
         verbose_name_plural = _("root pages")
 
 
-class HomePage(NewsMixin, Page):
+class HomePage(NewsMixin, BasePage):
     body = StreamField(ContentBlock(), blank=True, verbose_name=_('content'))
     side_content = RichTextField(
         _("sidebar content"), blank=True,
@@ -145,7 +146,7 @@ class HomePage(NewsMixin, Page):
         verbose_name_plural = _("homepages")
 
 
-class WikiPage(CategoryMixin, Page):
+class WikiPage(CategoryMixin, BasePage):
     body = StreamField(ContentBlock(), blank=True, verbose_name=_('content'))
 
     search_fields = Page.search_fields + [

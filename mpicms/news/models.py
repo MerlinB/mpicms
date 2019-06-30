@@ -11,9 +11,10 @@ from wagtail.api import APIField
 from mpicms.base.models import CategoryMixin
 from mpicms.base.blocks import ContentBlock
 from mpicms.base.serializers import OptionalStreamField
+from mpicms.base.mixins import BasePage
 
 
-class NewsPage(CategoryMixin, Page):
+class NewsPage(CategoryMixin, BasePage):
     content_panels = Page.content_panels
     parent_page_types = ['base.HomePage', 'base.RootPage']
     subpage_types = ['NewsEntry']
@@ -48,7 +49,7 @@ class NewsPage(CategoryMixin, Page):
         verbose_name_plural = _("news blogs")
 
 
-class NewsEntry(CategoryMixin, Page):
+class NewsEntry(CategoryMixin, BasePage):
     body = StreamField(ContentBlock, blank=True, verbose_name=_('content'))
     date = models.DateField(_("post date"), auto_now_add=True)
 

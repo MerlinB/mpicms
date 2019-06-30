@@ -27,18 +27,24 @@
           <div class="navbar-item">
             <div class="field"><div class="control">
             <div class="select">
-              <form action="{% url 'set_language' %}" method="post" id=language_form>{% csrf_token %}
+              {% if request.is_preview %}
+                <form action="" method="get" id=language_form>
+                  <select name="mode" onchange="language_form.submit()">
+              {% else %}
+                <form action="{% url 'set_language' %}" method="post" id=language_form>
+                  {% csrf_token %}
                   <select name="language" onchange="language_form.submit()">
-                      {% get_current_language as LANGUAGE_CODE %}
-                      {% get_available_languages as LANGUAGES %}
-                      {% get_language_info_list for LANGUAGES as languages %}
-                      {% for language in languages %}
-                          <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                              {{ language.name_local }}
-                          </option>
-                      {% endfor %}
+              {% endif %}
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                      <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                          {{ language.name_local }}
+                      </option>
+                    {% endfor %}
                   </select>
-              </form>
+                </form>
             </div></div></div>
           </div>
       </div>
