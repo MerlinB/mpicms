@@ -34,18 +34,6 @@ select, input {
   font-family: "Merriweather Sans", sans-serif !important;
 }
 
-.message {
-  margin-bottom: 4rem !important;
-}
-
-.message, .message * {
-  border-radius: 0;
-}
-
-.message-header {
-  background-color: #006c66;
-}
-
 .column {
   display: flex;
   flex-direction: column;
@@ -430,4 +418,25 @@ select, input {
 }
 #toc .h6 {
   text-indent: 1.25in;
+}
+
+/* Messages */
+.banner{
+  margin-bottom: 4rem !important;
+}
+
+.message, .message * {
+  border-radius: 0;
+}
+
+.message-header {
+  background-color: #006c66;
+}
+
+.messages {
+  margin: 2rem 0;
+}
+
+.messages .message {
+  margin-top: 1rem;
 }
