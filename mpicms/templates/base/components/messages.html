@@ -1,5 +1,15 @@
-{% if messages %}
+{% load wagtailcore_tags i18n %}
+
+{% if messages or request.is_preview %}
     <div class="messages">
+        {% if request.is_preview %}
+            <article class="message is-info">
+                <div class="message-body">
+                    {% trans 'This is a preview' %}
+                    <a href="{% pageurl page %}" class="is-pulled-right">{% trans 'Return to the live version' %}</a>
+                </div>
+            </article>
+        {% endif %}
         {% for message in messages %}
             <article class="message is-{{ message.tags }}">
                 <div class="message-body">
