@@ -3,15 +3,11 @@ from django.utils.translation import gettext_lazy as _
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.search import index
 from wagtail.api import APIField
 
 from mpicms.base.models import CategoryMixin
-from mpicms.base.blocks import ContentBlock
-from mpicms.base.serializers import OptionalStreamField
-from mpicms.base.mixins import BasePage
+from mpicms.base.mixins import BasePage, BodyMixin
 
 
 class NewsPage(CategoryMixin, BasePage):
@@ -49,23 +45,18 @@ class NewsPage(CategoryMixin, BasePage):
         verbose_name_plural = _("news blogs")
 
 
-class NewsEntry(CategoryMixin, BasePage):
-    body = StreamField(ContentBlock, blank=True, verbose_name=_('content'))
+class NewsEntry(CategoryMixin, BodyMixin, BasePage):
     date = models.DateField(_("post date"), auto_now_add=True)
 
     show_in_menus_default = False
 
-    content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
-    ]
+    content_panels = Page.content_panels + BodyMixin.content_panels
 
-    search_fields = Page.search_fields + [
-        index.SearchField('body'),
+    search_fields = Page.search_fields + BodyMixin.search_fields + [
         index.FilterField('date')
     ]
 
-    api_fields = [
-        APIField('body', serializer=OptionalStreamField()),
+    api_fields = BodyMixin.api_fields + [
         APIField('date')
     ]
 

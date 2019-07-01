@@ -1,26 +1,19 @@
-import json
-from django.apps import apps
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from modelcluster.fields import ParentalKey
 
 from wagtail.core.models import Page, Orderable
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core import blocks
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.search import index
-from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 from wagtail.api import APIField
 
 from mpicms.news.mixins import NewsMixin
-# from mpicms.events.models import Event, EventIndex
 from mpicms.events.mixins import EventMixin
-from .blocks import ContentBlock
-from .serializers import OptionalStreamField
-from .mixins import BasePage
+from .mixins import BasePage, BodyMixin
 
 
 Page.show_in_menus_default = True
@@ -110,29 +103,25 @@ class RootPage(EventMixin, NewsMixin, BasePage):
         verbose_name_plural = _("root pages")
 
 
-class HomePage(NewsMixin, BasePage):
-    body = StreamField(ContentBlock(), blank=True, verbose_name=_('content'))
+class HomePage(NewsMixin, BodyMixin, BasePage):
     side_content = RichTextField(
         _("sidebar content"), blank=True,
         features=['h4', 'h5', 'h6', 'bold', 'italic', 'link', 'document-link'],
         help_text=_("Text displayed in the sidebar of all child pages")
     )
 
-    content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
+    content_panels = Page.content_panels + BodyMixin.content_panels + [
         FieldPanel('side_content'),
         InlinePanel(
             'contacts', label="Contacts",
             panels=None),
     ]
 
-    search_fields = Page.search_fields + [
-        index.SearchField('body'),
+    search_fields = Page.search_fields + BodyMixin.search_fields + [
         index.SearchField('side_content'),
     ]
 
-    api_fields = [
-        APIField('body', serializer=OptionalStreamField()),
+    api_fields = BodyMixin.api_fields + [
         APIField('side_content'),
         APIField('contacts')
     ]
@@ -146,20 +135,10 @@ class HomePage(NewsMixin, BasePage):
         verbose_name_plural = _("homepages")
 
 
-class WikiPage(CategoryMixin, BasePage):
-    body = StreamField(ContentBlock(), blank=True, verbose_name=_('content'))
-
-    search_fields = Page.search_fields + [
-        index.SearchField('body'),
-    ]
-
-    content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
-    ]
-
-    api_fields = [
-        APIField('body', serializer=OptionalStreamField())
-    ]
+class WikiPage(CategoryMixin, BodyMixin, BasePage):
+    search_fields = Page.search_fields + BodyMixin.content_panels
+    content_panels = Page.content_panels + BodyMixin.content_panels
+    api_fields = BodyMixin.api_fields
 
     class Meta: # noqa
         verbose_name = _("wiki page")

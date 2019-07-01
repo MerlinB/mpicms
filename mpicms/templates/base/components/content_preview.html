@@ -6,7 +6,9 @@
             <div class="card-content">
                 <a href="{% pageurl item %}" class="title is-4">{{ item.title }}</a>
                 <div class="content">
-                    {{ item.specific.search_description|richtext }}
+                    {% if item.specific.preview_text %}
+                        {{ item.specific.preview_text|truncatewords_html:20 }}
+                    {% endif %}
                     <div class="menu">
                         <ul class="menu-list card-list">
                         {% for child in item.get_children.in_menu.live %}

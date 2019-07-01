@@ -5,28 +5,24 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField, StreamField
 from wagtail.api import APIField
 
-from mpicms.base.blocks import ContentBlock
-from mpicms.base.serializers import OptionalStreamField
-from mpicms.base.mixins import BasePage
+from mpicms.base.mixins import BasePage, BodyMixin
 
 
-class Event(BasePage):
+class Event(BodyMixin, BasePage):
     start_date = models.DateField(_('start date'))
     end_date = models.DateField(_('end date'), blank=True, null=True)
     start_time = models.TimeField(_('start time'), blank=True, null=True)
     end_time = models.TimeField(_('end time'), blank=True, null=True)
-    body = StreamField(ContentBlock, blank=True, verbose_name=_('content'))
 
     show_in_menus_default = False
     parent_page_types = ['events.EventIndex']
     subpage_types = []
 
-    content_panels = Page.content_panels + [
+    content_panels = Page.content_panels + BodyMixin.content_panels + [
         MultiFieldPanel(
             [
                 FieldPanel('start_date'),
@@ -35,16 +31,14 @@ class Event(BasePage):
                 FieldPanel('end_time'),
             ],
             heading=_('event dates')
-        ),
-        StreamFieldPanel('body'),
+        )
     ]
 
-    api_fields = [
+    api_fields = BodyMixin.api_fields + [
         APIField('start_date'),
         APIField('end_date'),
         APIField('start_time'),
         APIField('end_time'),
-        APIField('body', serializer=OptionalStreamField()),
     ]
 
     @property

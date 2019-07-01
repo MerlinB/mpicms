@@ -7,7 +7,9 @@
                 <a href="{% pageurl item %}" class="title is-4">{{ item.title }}</a>
                 <time datetime="{{ item.specific.date }}">{{ item.specific.date }}</time>
                 <div class="content">
-                    {{ item.specific.search_description }}
+                    {% if item.specific.preview_text %}
+                        {{ item.specific.preview_text|truncatewords_html:20 }}
+                    {% endif %}
                 </div>
             </div>
             <a href="{% pageurl item %}" class="card-footer-item card-link"><i class="fas fa-chevron-right"></i></a>

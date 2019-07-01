@@ -16,7 +16,9 @@
             {% endif %}
             <a href="{% pageurl child %}" class="title is-4">{{ child.title }}</a>
             <div class="content">
-                {{ child.specific.search_description }}
+                {% if child.preview_text %}
+                    {{ child.preview_text|truncatewords_html:20 }}
+                {% endif %}
                 <a href="{% pageurl child %}" class="card-footer-item card-link"><i class="fas fa-chevron-right"></i></a>
             </div>
         </div>
