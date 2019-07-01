@@ -6,10 +6,9 @@ from .models import Event, EventIndex
 
 @register(Event)
 class EventPageTR(TranslationOptions):
-    fields = (
-        'description',
+    fields = [
         'body'
-    )
+    ]
 
 
 @register(EventIndex)

@@ -20,7 +20,6 @@ class Event(BasePage):
     end_date = models.DateField(_('end date'), blank=True, null=True)
     start_time = models.TimeField(_('start time'), blank=True, null=True)
     end_time = models.TimeField(_('end time'), blank=True, null=True)
-    description = models.TextField(_('description'), max_length=400, null=False, blank=True)
     body = StreamField(ContentBlock, blank=True, verbose_name=_('content'))
 
     show_in_menus_default = False
@@ -28,7 +27,6 @@ class Event(BasePage):
     subpage_types = []
 
     content_panels = Page.content_panels + [
-        FieldPanel('description'),
         MultiFieldPanel(
             [
                 FieldPanel('start_date'),
@@ -46,7 +44,6 @@ class Event(BasePage):
         APIField('end_date'),
         APIField('start_time'),
         APIField('end_time'),
-        APIField('description'),
         APIField('body', serializer=OptionalStreamField()),
     ]
 
