@@ -1,4 +1,5 @@
 from django.utils.translation import gettext as _
+from django.urls import reverse
 
 from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
 from wagtail.core import hooks
@@ -29,6 +30,12 @@ def register_blockquote_feature(features):
 @hooks.register('register_admin_menu_item')
 def register_site_button():
     return MenuItem(_('View website'), '/', classnames='icon icon-site', order=1)
+
+
+@hooks.register('register_admin_menu_item')
+def register_docs_link():
+    return MenuItem(_('Documentation'), reverse('docs'), classnames='icon icon-help', order=10000)
+
 
 
 class BannerAdmin(ModelAdmin):
