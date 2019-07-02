@@ -10,7 +10,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.views import defaults as default_views, static as static_views
 
-from mpicms.base.views import search, LogoutView
+from mpicms.base.views import search, LogoutView, account
 from mpicms.base.api import api_router
 
 
@@ -19,12 +19,25 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('search', search, name='search'),
     path('docs/', static_views.serve, {'document_root': settings.DOCS_ROOT, 'path': 'index.html'}, name='docs'),
+
+    # Disable email/password views
+    path('admin/account/', account, name='wagtailadmin_account'),
+    # path('admin/account/change_password/', default_views.page_not_found,
+    #      kwargs={"exception": Exception("Page not Found")}, name='wagtailadmin_account_change_password'),
+    path('admin/account/change_email/', default_views.page_not_found,
+         kwargs={"exception": Exception("Page not Found")}, name='wagtailadmin_account_change_email'),
+    # path('admin/password_reset/', default_views.page_not_found,
+    #      kwargs={"exception": Exception("Page not Found")}),
+
+    # Override user views
+    path('admin/users/', include('mpicms.users.urls')),
+
     re_path('^docs/(?P<path>.*)$', static_views.serve, {'document_root': settings.DOCS_ROOT}),
     re_path(r'^admin/', include(wagtailadmin_urls)),
     re_path(r'^documents/', include(wagtaildocs_urls)),
     re_path(r'^sitemap\.xml$', sitemap),
     path('api/v2/', api_router.urls),
-    path('logout', LogoutView.as_view(), name='logout')
+    path('logout', LogoutView.as_view(), name='logout'),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )

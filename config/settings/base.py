@@ -76,7 +76,7 @@ LOCAL_APPS = [
     'mpicms.base.apps.BaseAppConfig',
     'mpicms.news.apps.NewsAppConfig',
     'mpicms.personal.apps.PersonalAppConfig',
-    # 'mpicms.users.apps.UserAppConfig'
+    'mpicms.users.apps.UserAppConfig',
     'mpicms.events.apps.EventAppConfig',
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -221,6 +221,8 @@ WAGTAIL_SITE_NAME = 'MPI CMS'
 # WAGTAIL_USER_EDIT_FORM = 'mpicms.users.forms.CustomUserEditForm'
 # WAGTAIL_USER_CREATION_FORM = 'mpicms.users.forms.CustomUserCreationForm'
 # WAGTAIL_USER_CUSTOM_FIELDS = ['phone', 'office']
+
+WAGTAIL_USER_EDIT_FORM = 'users.forms.UserEditForm'
 
 # SEARCH
 WAGTAILSEARCH_BACKENDS = {
