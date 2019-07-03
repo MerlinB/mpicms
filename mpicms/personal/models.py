@@ -36,6 +36,14 @@ class ContactGroups(Orderable, models.Model):
     ]
 
 
+class ContactQuerySet(models.QuerySet):
+    def is_active(self):
+        return self.filter(is_active=True)
+
+    def is_inactive(self):
+        return self.filter(is_active=False)
+
+
 @register_snippet
 class Contact(index.Indexed, ClusterableModel):
     """
@@ -53,7 +61,10 @@ class Contact(index.Indexed, ClusterableModel):
     email = models.EmailField(_("email"), blank=True)
     phone = models.CharField(_("phone number"), blank=True, max_length=50)
     room = models.CharField(_("room"), max_length=25, blank=True)
+    is_active = models.BooleanField(_("is active"), default=True)
     # groups = models.ManyToManyField('Group', related_name='members')
+
+    objects = ContactQuerySet.as_manager()
 
     panels = [
         FieldPanel('name'),
@@ -63,6 +74,7 @@ class Contact(index.Indexed, ClusterableModel):
         InlinePanel(
             'groups', label="Groups",
             panels=None),
+        FieldPanel('is_active'),
     ]
 
     search_fields = [

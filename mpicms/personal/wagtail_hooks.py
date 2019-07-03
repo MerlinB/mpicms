@@ -11,7 +11,7 @@ class ContactAdmin(ModelAdmin):
     menu_label = 'Contacts'
     menu_icon = 'user'
     list_display = ['name', 'email', 'phone', 'room', 'get_groups']
-    list_filter = ['groups__group']
+    list_filter = ['groups__group', 'is_active']
     search_fields = ['name', 'email', 'phone', 'room']
 
     def get_groups(self, obj):
