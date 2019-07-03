@@ -126,6 +126,8 @@ class HomePage(NewsMixin, BodyMixin, BasePage):
         APIField('contacts')
     ]
 
+    creation_limited = True  # limits creation to staff/superusers
+
     @property
     def category(self):
         return self

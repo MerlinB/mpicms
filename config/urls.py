@@ -10,7 +10,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.views import defaults as default_views, static as static_views
 
-from mpicms.base.views import search, LogoutView, account
+from mpicms.base.views import search, LogoutView, account, add_subpage
 from mpicms.base.api import api_router
 
 
@@ -29,8 +29,11 @@ urlpatterns = [
     # path('admin/password_reset/', default_views.page_not_found,
     #      kwargs={"exception": Exception("Page not Found")}),
 
-    # Override user views
+    # Override wagtail user views
     path('admin/users/', include('mpicms.users.urls')),
+
+    # Override wagtail add_subpage view
+    re_path(r'^admin/pages/(\d+)/add_subpage/$', add_subpage, name='wagtailadmin_pages:add_subpage'),
 
     re_path('^docs/(?P<path>.*)$', static_views.serve, {'document_root': settings.DOCS_ROOT}),
     re_path(r'^admin/', include(wagtailadmin_urls)),
