@@ -1,0 +1,17 @@
+/* form fields visibility */
+input:disabled, input[disabled], input:disabled:hover, input[disabled]:hover {
+    color: #1a1a1a;
+}
+
+/* wagtail_modeltranslation copy button */
+.translation-field-copy-wrapper > button {
+    height: auto !important;
+    line-height: 1em !important;
+    padding: 4px 0 !important;
+    font-size: 100% !important;
+    color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    font-family: Open Sans,Arial,sans-serif;
+    text-transform: uppercase;
+    background: #fff;
+}

@@ -1,5 +1,7 @@
 from django.utils.translation import gettext as _
 from django.urls import reverse
+from django.utils.html import format_html
+from django.templatetags.static import static
 from django.contrib.auth import get_user_model
 
 from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
@@ -10,6 +12,11 @@ from wagtail.contrib.modeladmin.helpers import PermissionHelper
 # from django.contrib.auth.models import Permission
 
 from .models import Banner
+
+
+@hooks.register('insert_global_admin_css')
+def global_admin_css():
+    return format_html('<link rel="stylesheet" href="{}">', static('css/admin.css'))
 
 
 @hooks.register('construct_main_menu')
