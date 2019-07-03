@@ -6,44 +6,19 @@ from wagtail.contrib.modeladmin.helpers import PermissionHelper
 from .models import Contact, Group
 
 
-class ReadOnlyPermissionHelper(PermissionHelper):
-
-    def user_can_create(self, user):
-        """
-        Return a boolean to indicate whether `user` is permitted to create new
-        instances of `self.model`
-        """
-        return False
-
-    def user_can_edit_obj(self, user, obj):
-        """
-        Return a boolean to indicate whether `user` is permitted to 'change'
-        a specific `self.model` instance.
-        """
-        return False
-
-    def user_can_delete_obj(self, user, obj):
-        """
-        Return a boolean to indicate whether `user` is permitted to 'delete'
-        a specific `self.model` instance.
-        """
-        return False
-
-
 class ContactAdmin(ModelAdmin):
     model = Contact
     menu_label = 'Contacts'
     menu_icon = 'user'
     list_display = ['name', 'email', 'phone', 'room', 'get_groups']
-    list_filter = ['groups']
+    list_filter = ['groups__group']
     search_fields = ['name', 'email', 'phone', 'room']
 
     def get_groups(self, obj):
-        return ", ".join([group.__str__() for group in obj.groups.all()])
+        return ", ".join([group.__str__() for group in Group.objects.filter(contacts__in=obj.groups.all()).distinct()])
     get_groups.short_description = _('Groups')
 
     readonly_fields = ['name']
-    permission_helper_class = ReadOnlyPermissionHelper
 
 
 class GroupAdmin(ModelAdmin):

@@ -12,11 +12,6 @@ from wagtail.contrib.modeladmin.helpers import PermissionHelper
 from .models import Banner
 
 
-# @hooks.register('register_permissions')
-# def get_page_permissions():
-#     return Permission.objects.filter(codename__contains="homepage")
-
-
 @hooks.register('construct_main_menu')
 def hide_snippets_menu_item(request, menu_items):
     """Snippets are hidden so we can utilize ModelAdmin instead."""

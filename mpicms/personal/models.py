@@ -1,11 +1,39 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from wagtail.core.models import Orderable
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, FieldRowPanel, InlinePanel
 
 from wagtail.admin.edit_handlers import FieldPanel, FieldRowPanel, InlinePanel
 from wagtail.snippets.models import register_snippet
 from wagtail.search import index
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from modelcluster.models import ClusterableModel
+from modelcluster.fields import ParentalKey
+
+
+class FilterableParentalKey(ParentalKey):
+    def get_related_field(self):
+        return self.remote_field
+
+
+class ContactGroups(Orderable, models.Model):
+    """
+    This defines the relationship between the `Group` within the `Contact` model below.
+    """
+    contact = FilterableParentalKey(
+        'Contact', related_name=_('groups'), on_delete=models.CASCADE
+    )
+    group = models.ForeignKey(
+        'personal.Group',
+        related_name='contacts',
+        on_delete=models.CASCADE,
+        verbose_name=_('groups')
+    )
+
+    panels = [
+        SnippetChooserPanel('group'),
+    ]
 
 
 @register_snippet
@@ -25,7 +53,17 @@ class Contact(index.Indexed, ClusterableModel):
     email = models.EmailField(_("email"), blank=True)
     phone = models.CharField(_("phone number"), blank=True, max_length=50)
     room = models.CharField(_("room"), max_length=25, blank=True)
-    groups = models.ManyToManyField('Group', related_name='members')
+    # groups = models.ManyToManyField('Group', related_name='members')
+
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('email'),
+        FieldPanel('phone'),
+        FieldPanel('room'),
+        InlinePanel(
+            'groups', label="Groups",
+            panels=None),
+    ]
 
     search_fields = [
         index.SearchField('name', partial_match=True),
@@ -43,6 +81,7 @@ class Contact(index.Indexed, ClusterableModel):
         verbose_name_plural = 'Contacts'
 
 
+@register_snippet
 class Group(index.Indexed, ClusterableModel):
     name = models.CharField(_("name"), max_length=254)
 
