@@ -1,15 +1,17 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from modelcluster.fields import ParentalKey
-
-from wagtail.core.models import Page, Orderable
+from wagtail.core import blocks
+from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.search import index
+from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 from wagtail.api import APIField
+from wagtail.admin.edit_handlers import StreamFieldPanel
+from wagtail.core.fields import StreamField
 
 from mpicms.news.mixins import NewsMixin
 from mpicms.events.mixins import EventMixin
@@ -35,37 +37,6 @@ class Banner(models.Model):
     class Meta:  # noqa
         verbose_name = _('banner')
         verbose_name_plural = _('banners')
-
-
-class ContactRelation(Orderable, models.Model):
-    """
-    This defines the relationship between the `Contact` within the `personal`
-    app and the HomePage below. This allows People to be added to the contact field.
-    """
-    page = ParentalKey(
-        'HomePage', related_name=_('contacts'), on_delete=models.CASCADE
-    )
-    contact = models.ForeignKey(
-        'personal.Contact',
-        related_name='contact_references',
-        on_delete=models.CASCADE,
-        verbose_name=_('contact')
-    )
-    position = models.CharField(max_length=50, blank=True)
-
-    panels = [
-        SnippetChooserPanel('contact'),
-        FieldPanel('position')
-    ]
-
-    api_fields = [
-        APIField('contact'),
-        APIField('position')
-    ]
-
-    class Meta:  # noqa
-        verbose_name = _('contact information')
-        verbose_name_plural = _('contact information')
 
 
 class CategoryMixin(models.Model):
@@ -104,27 +75,26 @@ class RootPage(EventMixin, NewsMixin, BasePage):
 
 
 class HomePage(NewsMixin, BodyMixin, BasePage):
-    side_content = RichTextField(
-        _("sidebar content"), blank=True,
-        features=['h4', 'h5', 'h6', 'bold', 'italic', 'link', 'document-link'],
-        help_text=_("Text displayed in the sidebar of all child pages")
-    )
+    sidebar = StreamField([
+        (_('Editor'), blocks.RichTextBlock(
+            features=['h4', 'h5', 'h6', 'bold', 'italic', 'link', 'document-link'])),
+        (_('Contacts'), blocks.ListBlock(
+            blocks.StructBlock([
+                ('contact', SnippetChooserBlock('personal.Contact', label="Contact")),
+                ('information', blocks.TextBlock(required=False)),
+            ]), icon="user")
+        )
+    ], blank=True, verbose_name=_("sidebar content"))
 
     content_panels = Page.content_panels + BodyMixin.content_panels + [
-        FieldPanel('side_content'),
-        InlinePanel(
-            'contacts', label="Contacts",
-            panels=None),
+        StreamFieldPanel('sidebar'),
     ]
 
     search_fields = Page.search_fields + BodyMixin.search_fields + [
         index.SearchField('side_content'),
     ]
 
-    api_fields = BodyMixin.api_fields + [
-        APIField('side_content'),
-        APIField('contacts')
-    ]
+    api_fields = BodyMixin.api_fields
 
     creation_limited = True  # limits creation to staff/superusers
 

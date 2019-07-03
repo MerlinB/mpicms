@@ -27,6 +27,7 @@ class RootPageTR(TranslationOptions):
 class HomePageTR(TranslationOptions):
     fields = (
         'body',
+        'sidebar'
     )
 
 

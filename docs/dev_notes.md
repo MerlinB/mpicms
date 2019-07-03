@@ -3,6 +3,8 @@
 ## Translation
 In `urls.py`, `i18n_patterns()` can be passed `prefix_default_language=False`. This disables the language url prefix for the default language, but results in breaking Django's `set_language` view (used by language selection dropdown), as it is not able to get the current url without language prefix. This could be solved by passing the redirect location as POST parameter `next`, and would require to write a hacky solution to remove the language prefix, if it exists.
 
+Individual blocks are not translateable yet, see (this issue)[https://github.com/infoportugal/wagtail-modeltranslation/issues/82].
+
 ## Imports
 Django lets you import `<app_label>`, which will result in errors later. Only import `mpicms.<app_label>`, as specified in the app configs.
 
