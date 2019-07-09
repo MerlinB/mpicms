@@ -57,17 +57,23 @@ class Contact(index.Indexed, ClusterableModel):
     to the database.
     https://github.com/wagtail/django-modelcluster
     """
-    name = models.CharField(_("name"), max_length=254)
+    title = models.CharField(_("title"), max_length=5, blank=True)
+    first_name = models.CharField(_("first name"), max_length=50, blank=True)
+    last_name = models.CharField(_("last name"), max_length=50, blank=True)
     email = models.EmailField(_("email"), blank=True)
     phone = models.CharField(_("phone number"), blank=True, max_length=50)
     room = models.CharField(_("room"), max_length=25, blank=True)
+    position = models.CharField(_("position"), max_length=255, blank=True)
     is_active = models.BooleanField(_("is active"), default=True)
     # groups = models.ManyToManyField('Group', related_name='members')
 
     objects = ContactQuerySet.as_manager()
 
     panels = [
-        FieldPanel('name'),
+        FieldPanel('title'),
+        FieldPanel('first_name'),
+        FieldPanel('last_name'),
+        FieldPanel('position'),
         FieldPanel('email'),
         FieldPanel('phone'),
         FieldPanel('room'),
@@ -78,7 +84,9 @@ class Contact(index.Indexed, ClusterableModel):
     ]
 
     search_fields = [
-        index.SearchField('name', partial_match=True),
+        index.SearchField('first_name', partial_match=True),
+        index.SearchField('last_name', partial_match=True),
+        index.SearchField('position', partial_match=True),
         index.SearchField('email', partial_match=True),
         index.SearchField('phone'),
         index.SearchField('room'),
@@ -86,7 +94,17 @@ class Contact(index.Indexed, ClusterableModel):
     ]
 
     def __str__(self):
-        return self.name
+        if self.first_name and self.last_name:
+            if self.title:
+                return f'{self.title} {self.first_name} {self.last_name}'
+            return f'{self.first_name} {self.last_name}'
+        elif self.first_name:
+            return self.first_name
+        elif self.last_name:
+            return self.last_name
+        else:
+            return self.email
+
 
     class Meta:  # noqa
         verbose_name = 'Contact'

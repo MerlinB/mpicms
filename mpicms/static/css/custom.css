@@ -183,13 +183,14 @@ select, input {
   padding: 1em;
 }
 
-.contact p {
-  line-height: 100%;
+.contact .card-content p {
+  line-height: 120%;
+  /* padding: 0.5em; */
 }
 
-.contact table {
+/* .contact table {
   margin-bottom: 0.5em !important;
-}
+} */
 
 .contact td {
   padding: 0.3em !important;

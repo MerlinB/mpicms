@@ -7,10 +7,14 @@
         <div class="card contact">
             <header class="card-header">
                 <p class="card-header-title" style="font-weight: 400;">
-                    {{ contact.contact.name }}
+                    {{ contact.contact }}
                 </p>
             </header>
             <div class="card-content">
+                {% if contact.contact.position %}
+                    <p><b>{{ contact.contact.position }}</b></p>
+                    <br>
+                {% endif %}
                 <table>
                     <tr>
                         <td><i class="fas fa-at"></i></td>
@@ -30,7 +34,7 @@
                     {% endif %}
                 </table>
                 {% if contact.information %}
-                <p>{{ contact.information|linebreaks }}</p>
+                    <p>{{ contact.information|linebreaks }}</p>
                 {% endif %}
             </div>
         </div>

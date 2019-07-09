@@ -10,16 +10,14 @@ class ContactAdmin(ModelAdmin):
     model = Contact
     menu_label = 'Contacts'
     menu_icon = 'user'
-    list_display = ['name', 'email', 'phone', 'room', 'get_groups']
+    list_display = ['title', 'first_name', 'last_name', 'position', 'email', 'phone', 'room', 'get_groups']
     list_filter = ['groups__group', 'is_active']
-    search_fields = ['name', 'email', 'phone', 'room']
+    search_fields = ['title', 'first_name', 'last_name', 'position', 'email', 'phone', 'room']
 
     def get_groups(self, obj):
         return ", ".join([group.__str__() for group in Group.objects.filter(contacts__in=obj.groups.all()).distinct()])
     get_groups.short_description = _('Groups')
-
-    readonly_fields = ['name']
-
+    
 
 class GroupAdmin(ModelAdmin):
     model = Group

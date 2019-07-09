@@ -91,7 +91,7 @@ class HomePage(NewsMixin, BodyMixin, BasePage):
     ]
 
     search_fields = Page.search_fields + BodyMixin.search_fields + [
-        index.SearchField('side_content'),
+        index.SearchField('sidebar'),
     ]
 
     api_fields = BodyMixin.api_fields
