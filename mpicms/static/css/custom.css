@@ -128,6 +128,18 @@ select, input {
   line-height: normal;
 }
 
+.sidebar p {
+  margin-bottom: 0 !important;
+}
+
+.sidebar h4 {
+  margin-top: 1.3em;
+}
+
+.sidebar h5, .sidebar h6 {
+  margin-top: 1em !important;
+}
+
 .sidebar ul, .menu ul {
   list-style: none;
   margin: 0;
@@ -163,8 +175,25 @@ select, input {
 }
 
 .contact {
-  padding-bottom: 1em;
   line-height: 90%;
+  margin: 1rem 0 !important;
+}
+
+.contact .card-content {
+  padding: 1em;
+}
+
+.contact p {
+  line-height: 100%;
+}
+
+.contact table {
+  margin-bottom: 0.5em !important;
+}
+
+.contact td {
+  padding: 0.3em !important;
+  border: 0 !important;
 }
 
 .fas {

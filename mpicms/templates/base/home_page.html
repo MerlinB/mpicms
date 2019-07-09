@@ -1,6 +1,6 @@
 {% extends 'base/page.html' %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags i18n %}
 
 {% block page_content %}
     <h2 class="title is-2">{{ page.title }}</h2>
@@ -14,7 +14,11 @@
 
     {% include 'news/components/news_preview.html' with news=page.news %}
 
-    <h3 class="title is-3">Content</h3>
-    {% include 'base/components/list_menu.html' with items=page.get_children.in_menu.live %}
+    {% with page.get_children.in_menu.live as items %}
+        {% if items %}
+            <h3 class="title is-3">{% trans 'Content' %}</h3>
+            {% include 'base/components/list_menu.html' %}
+        {% endif %}
+    {% endwith %}
 
     {% endblock %}

@@ -1,0 +1,37 @@
+{% load i18n %}
+
+<h4 class="">{% trans 'Contact' %}</h4>
+
+{% for contact in value %}
+
+        <div class="card contact">
+            <header class="card-header">
+                <p class="card-header-title" style="font-weight: 400;">
+                    {{ contact.contact.name }}
+                </p>
+            </header>
+            <div class="card-content">
+                <table>
+                    <tr>
+                        <td><i class="fas fa-at"></i></td>
+                        <td><a href="mailto:{{ contact.contact.email }}">{{ contact.contact.email }}</a></td>
+                    </tr>
+                    {% if contact.contact.phone %}
+                        <tr>
+                            <td><i class="fas fa-phone"></i></td>
+                            <td>{{ contact.contact.phone }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if contact.contact.room %}
+                        <tr>
+                            <td><i class="fas fa-building"></i></td>
+                            <td>{{ contact.contact.room }}</td>
+                        </tr>
+                    {% endif %}
+                </table>
+                {% if contact.information %}
+                <p>{{ contact.information|linebreaks }}</p>
+                {% endif %}
+            </div>
+        </div>
+{% endfor %}

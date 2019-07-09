@@ -23,38 +23,16 @@
     {% endif %}
     {% endwith %}
 
-    <div class="content" style="padding-top: 2rem;">
-        {% include 'news/components/news_list.html' with news=category.specific.news %}
-    </div>
-
-    <div class="content" style="padding-top: 2rem;">
-        {{ category.specific.side_content|richtext }}
-    </div>
-
-
-    {% with category.specific.contacts.all as contacts %}
-        {% if contacts %}
+    {% if category.specific.news %}
         <div class="content">
-            <h4 class="">{% trans 'Contact' %}</h4>
-            <ul>
-                {% for contact in contacts %}
-                    <li>
-                        <ul class="contact">
-                            <li style="font-weight: 400;">{{ contact.contact.name }}</li>
-                            <li>{{ contact.position }}</li>
-                            <li><i class="fas fa-at"></i> <a href="mailto:{{ contact.contact.email }}">{{ contact.contact.email }}</a></li>
-                            {% if contact.contact.phone %}
-                                <li><i class="fas fa-phone"></i> {{ contact.contact.phone }}</li>
-                            {% endif %}
-                            {% if contact.contact.room %}
-                                <li><i class="fas fa-building"></i> {{ contact.contact.room }}</li>
-                            {% endif %}
-                        </ul>
-                    </li>
-                {% endfor %}
-            </ul>
+            {% include 'news/components/news_list.html' with news=category.specific.news %}
         </div>
-        {% endif %}
-    {% endwith %}
+    {% endif %}
+
+    <div class="content">
+        {% for block in category.specific.sidebar %}
+            {% include_block block %}
+        {% endfor %}
+    </div>
 
 {% endwith %}
