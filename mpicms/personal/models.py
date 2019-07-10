@@ -45,6 +45,22 @@ class ContactQuerySet(models.QuerySet):
 
 
 @register_snippet
+class Position(models.Model):
+    title = models.CharField(_("title"), max_length=50)
+
+    panels = [
+        FieldPanel('title')
+    ]
+
+    search_fields = [
+        index.SearchField('title')
+    ]
+
+    def __str__(self):
+        return self.title
+
+
+@register_snippet
 class Contact(index.Indexed, ClusterableModel):
     """
     A Django model to store People objects.
@@ -63,17 +79,19 @@ class Contact(index.Indexed, ClusterableModel):
     email = models.EmailField(_("email"), blank=True)
     phone = models.CharField(_("phone number"), blank=True, max_length=50)
     room = models.CharField(_("room"), max_length=25, blank=True)
-    position = models.CharField(_("position"), max_length=255, blank=True)
+    position = models.ForeignKey('personal.Position', verbose_name=_("position"), blank=True, null=True, on_delete=models.SET_NULL)
     is_active = models.BooleanField(_("is active"), default=True)
     # groups = models.ManyToManyField('Group', related_name='members')
 
     objects = ContactQuerySet.as_manager()
 
     panels = [
-        FieldPanel('title'),
-        FieldPanel('first_name'),
-        FieldPanel('last_name'),
-        FieldPanel('position'),
+        MultiFieldPanel([  
+            FieldPanel('title', classname=''),
+            FieldPanel('first_name'),
+            FieldPanel('last_name'),
+        ], heading='Name'),
+        SnippetChooserPanel('position'),
         FieldPanel('email'),
         FieldPanel('phone'),
         FieldPanel('room'),
@@ -86,7 +104,6 @@ class Contact(index.Indexed, ClusterableModel):
     search_fields = [
         index.SearchField('first_name', partial_match=True),
         index.SearchField('last_name', partial_match=True),
-        index.SearchField('position', partial_match=True),
         index.SearchField('email', partial_match=True),
         index.SearchField('phone'),
         index.SearchField('room'),
