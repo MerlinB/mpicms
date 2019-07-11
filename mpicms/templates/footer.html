@@ -1,44 +1,60 @@
 {% load i18n %}
 
-<footer class="footer is-hidden-desktop">
-    <div class="field">
-        <div class="control">
-            <div class="select">
-                <form action="{% url 'set_language' %}" method="post" id=language_form_bottom>{% csrf_token %}
-                    <select name="language" onchange="language_form_bottom.submit()">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% get_available_languages as LANGUAGES %}
-                        {% get_language_info_list for LANGUAGES as languages %}
-                        {% for language in languages %}
-                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                                {{ language.name_local }}
-                            </option>
-                        {% endfor %}
-                    </select>
-                </form>
-            </div>
+
+<div class="footer-top"></div>
+
+<footer class="footer">
+    <div class="container">
+    <div class="columns">
+
+        <div class="column is-3">
+
+
+            {% if request.user.is_authenticated %}
+                <div class="menu">
+                    <p class="menu-label">
+                        {{ request.user }}
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a href="{% url 'wagtailadmin_home' %}">{% trans 'Dashboard' %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'wagtailadmin_account' %}">{% trans 'Settings' %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'wagtailadmin_logout' %}">{% trans 'Logout' %}</a>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <a href="{% url 'wagtailadmin_home' %}" class="navbar-item navbar-title">{% trans 'Login' %}</a>
+            {% endif %}
+
+
+        </div>
+        <div class="column has-text-centered">
+
+            <div class="field">
+                    <div class="control">
+                        <div class="select">
+                            <form action="{% url 'set_language' %}" method="post" id=language_form_bottom>{% csrf_token %}
+                                <select name="language" onchange="language_form_bottom.submit()">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% for language in languages %}
+                                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                            {{ language.name_local }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
-
-    {% if request.user.is_authenticated %}
-        <div class="menu">
-            <p class="menu-label">
-                {{ request.user }}
-            </p>
-            <ul class="menu-list">
-                <li>
-                    <a href="{% url 'wagtailadmin_home' %}" class="navbar-item">Dashboard</a>
-                </li>
-                <li>
-                    <a href="{% url 'wagtailadmin_account' %}" class="navbar-item">Settings</a>
-                </li>
-                <li>
-                    <a href="{% url 'wagtailadmin_logout' %}" class="navbar-item">Logout</a>
-                </li>
-            </ul>
-        </div>
-    {% else %}
-        <a href="{% url 'wagtailadmin_home' %}" class="navbar-item navbar-title">Login</a>
-    {% endif %}
+</div>
 
 </footer>

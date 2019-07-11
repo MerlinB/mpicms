@@ -13,6 +13,42 @@ select, input {
   border-radius: 0 !important;
 }
 
+/* Footer */
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+}
+
+.footer-top {
+  height:0;
+  border-width:0 0 150px 100vw;
+  border-style:solid;
+  border-color:transparent #006c66 #006c66 transparent;
+  height: 0;
+  width: 100%;
+}
+
+.footer {
+ 
+  padding: 1.5rem;
+  background-color: #006c66;
+}
+
+.footer div, .footer a, .footer p {
+  color: white !important;
+}
+
+.footer .menu-label:not(:last-child) {
+  margin-bottom: 0.3em;
+}
+
+
 #primary-search {
   margin: 5em 0;
   display: flex;
@@ -121,11 +157,24 @@ select, input {
   flex: 0 0 22rem !important;
   flex-wrap: wrap;
   padding: 1rem;
-  padding-left: 2rem;
+  /* padding-left: 2rem; */
+  /* padding-right: 2rem; */
   padding-bottom: 2rem;
   margin-top: 3rem;
   align-content: flex-start;
   line-height: normal;
+}
+
+@media only screen and (max-width: 1215px) {
+  .sidebar {
+    padding-left: 2rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    padding-right: 2rem;
+  }
 }
 
 .sidebar p {
