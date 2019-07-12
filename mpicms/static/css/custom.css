@@ -60,6 +60,8 @@ body {
   font-family: "Merriweather", serif;
 }
 
+/* Search */
+
 #primary-search {
   margin: 5em 0;
   display: flex;
@@ -346,8 +348,32 @@ body {
 }
 
 .is-preview {
-  max-width: 50rem;
+  max-width: 50%;
   flex-basis: 25rem;
+  overflow: hidden;
+}
+
+.is-preview .card-content {
+  padding: 1rem;
+}
+
+.is-preview .content {
+  max-height: 7rem;
+}
+
+.is-preview .card-bottom {
+  position: absolute;
+  z-index: 2;
+  height: 4em;
+  bottom: 0;
+  width: 100%;
+  border-bottom: 1.5em solid white;
+  position: absolute;
+  background-image: linear-gradient(to top, white, white, transparent);
+}
+
+.is-preview h1, .is-preview h2, .is-preview h3, .is-preview h4, .is-preview h5, .is-preview h6 {
+  font-size: 110%;
 }
 
 .is-preview-wide {
@@ -404,7 +430,9 @@ body {
   text-transform: uppercase;
   font-weight: 400;
   color: #006c66;
+  position: relative;
   float: right;
+  z-index: 10;
 }
 
 .card-head {
