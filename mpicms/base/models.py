@@ -57,12 +57,24 @@ class RootPage(EventMixin, NewsMixin, BasePage):
         related_name='+',
         verbose_name=_('banner')
     )
+    footer_items = StreamField([
+        ('menu', blocks.StructBlock([
+            ('title', blocks.CharBlock()),
+            ('items', blocks.ListBlock(
+                blocks.StructBlock([
+                    ('title', blocks.CharBlock()),
+                    ('url', blocks.URLBlock())
+                ])
+            ))
+        ], icon='list-ul'))], blank=True
+    )
 
     parent_page_types = ['wagtailcore.Page']  # Restrict parent to be root
     max_count = 1
 
     content_panels = Page.content_panels + [
         SnippetChooserPanel('banner'),
+        StreamFieldPanel('footer_items')
     ]
 
     api_fields = [

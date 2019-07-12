@@ -20,8 +20,9 @@ class BannerTR(TranslationOptions):
 
 @register(RootPage)
 class RootPageTR(TranslationOptions):
-    pass
-
+    fields = {
+        'footer_items'
+    }
 
 @register(HomePage)
 class HomePageTR(TranslationOptions):

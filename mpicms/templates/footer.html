@@ -5,37 +5,54 @@
 
 <footer class="footer">
     <div class="container">
-    <div class="columns">
+        <div class="columns">
 
-        <div class="column is-3">
+            {% with request.site.root_page.specific.footer_items as footer_items %}
+                {% for menu in footer_items %}
+                    <div class="column is-3">
+                        <div class="menu">
+                            <p class="menu-label">
+                                {{ menu.value.title }}
+                            </p>
+                            <ul class="menu-list">
+                                {% for menu_item in menu.value.items %}
+                                <li>
+                                    <a href="{{ menu_item.url }}">{{ menu_item.title }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endwith %}
 
+            <div class="column is-3 is-hidden-desktop">
+                {% if request.user.is_authenticated %}
+                    <div class="menu">
+                        <p class="menu-label">
+                            Admin-Panel
+                        </p>
+                        <ul class="menu-list">
+                            <li>
+                                <a href="{% url 'wagtailadmin_home' %}">{% trans 'Dashboard' %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'wagtailadmin_account' %}">{% trans 'Settings' %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'wagtailadmin_logout' %}">{% trans 'Logout' %}</a>
+                            </li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <a href="{% url 'wagtailadmin_home' %}" class="navbar-item navbar-title">{% trans 'Login' %}</a>
+                {% endif %}
+            </div>
 
-            {% if request.user.is_authenticated %}
-                <div class="menu">
-                    <p class="menu-label">
-                        {{ request.user }}
-                    </p>
-                    <ul class="menu-list">
-                        <li>
-                            <a href="{% url 'wagtailadmin_home' %}">{% trans 'Dashboard' %}</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'wagtailadmin_account' %}">{% trans 'Settings' %}</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'wagtailadmin_logout' %}">{% trans 'Logout' %}</a>
-                        </li>
-                    </ul>
-                </div>
-            {% else %}
-                <a href="{% url 'wagtailadmin_home' %}" class="navbar-item navbar-title">{% trans 'Login' %}</a>
-            {% endif %}
+            <div class="column"></div>
 
-
-        </div>
-        <div class="column has-text-centered">
-
-            <div class="field">
+            <div class="column is-narrow is-hidden-desktop">
+                <div class="field">
                     <div class="control">
                         <div class="select">
                             <form action="{% url 'set_language' %}" method="post" id=language_form_bottom>{% csrf_token %}
@@ -53,8 +70,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
         </div>
     </div>
-</div>
-
 </footer>
