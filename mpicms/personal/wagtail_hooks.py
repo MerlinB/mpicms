@@ -32,6 +32,7 @@ class PositionAdmin(ModelAdmin):
     menu_icon = 'tag'
     search_fields = ['title']
 
+
 class ContactGroup(ModelAdminGroup):
     menu_label = _('Contacts')
     menu_icon = 'user'
