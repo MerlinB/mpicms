@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from wagtail.core import blocks
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.search import index
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
@@ -21,24 +21,6 @@ from .mixins import BasePage, BodyMixin
 Page.show_in_menus_default = True
 
 
-@register_snippet
-class Banner(models.Model):
-    title = models.CharField(_('title'), max_length=200, blank=True)
-    text = RichTextField(_('text'), features=['bold', 'italic', 'link', 'document-link'])
-
-    panels = [
-        FieldPanel('title'),
-        FieldPanel('text'),
-    ]
-
-    def __str__(self):
-        return self.title
-
-    class Meta:  # noqa
-        verbose_name = _('banner')
-        verbose_name_plural = _('banners')
-
-
 class CategoryMixin(models.Model):
     @property
     def category(self):
@@ -49,36 +31,34 @@ class CategoryMixin(models.Model):
 
 
 class RootPage(EventMixin, NewsMixin, BasePage):
-    banner = models.ForeignKey(
-        'Banner',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        verbose_name=_('banner')
-    )
+    banner = StreamField([
+        ('banner', blocks.StructBlock([
+            ('title', blocks.CharBlock(max_length=200, required=False, label=_('Title'))),
+            ('text', blocks.RichTextBlock(features=['bold', 'italic', 'link', 'document-link'], label=_('Text')))
+        ], icon='warning', label=_('Banner')))
+    ], blank=True, verbose_name=_('Banner'))
     footer_items = StreamField([
         ('menu', blocks.StructBlock([
-            ('title', blocks.CharBlock()),
+            ('title', blocks.CharBlock(label=_('Title'))),
             ('items', blocks.ListBlock(
                 blocks.StructBlock([
-                    ('title', blocks.CharBlock()),
-                    ('url', blocks.URLBlock())
-                ])
+                    ('title', blocks.CharBlock(label=_('Title'))),
+                    ('url', blocks.URLBlock(label=_('URL')))
+                ], label=_('Items'))
             ))
-        ], icon='list-ul'))], blank=True
-    )
+        ], icon='list-ul', label=_('Menu')))
+    ], blank=True, verbose_name=_('Footer Items'))
 
     parent_page_types = ['wagtailcore.Page']  # Restrict parent to be root
     max_count = 1
 
     content_panels = Page.content_panels + [
-        SnippetChooserPanel('banner'),
+        StreamFieldPanel('banner'),
         StreamFieldPanel('footer_items')
     ]
 
     api_fields = [
-        APIField('banner')
+        # APIField('banner')
     ]
 
     class Meta: # noqa
@@ -88,15 +68,15 @@ class RootPage(EventMixin, NewsMixin, BasePage):
 
 class HomePage(NewsMixin, BodyMixin, BasePage):
     sidebar = StreamField([
-        (_('Editor'), blocks.RichTextBlock(
-            features=['h4', 'h5', 'h6', 'bold', 'italic', 'link', 'document-link'])),
-        (_('Contacts'), blocks.ListBlock(
+        ('editor', blocks.RichTextBlock(
+            features=['h4', 'h5', 'h6', 'bold', 'italic', 'link', 'document-link'], label=_('Editor'))),
+        ('contacts', blocks.ListBlock(
             blocks.StructBlock([
-                ('contact', SnippetChooserBlock('personal.Contact', label="Contact")),
-                ('information', blocks.TextBlock(required=False)),
-            ]), icon="user", template='base/blocks/contact_block.html')
+                ('contact', SnippetChooserBlock('personal.Contact', label=_("Contact"))),
+                ('information', blocks.TextBlock(required=False, label=_('Information'))),
+            ]), icon="user", template='base/blocks/contact_block.html', label=_('Contacts'))
         )
-    ], blank=True, verbose_name=_("sidebar content"))
+    ], blank=True, verbose_name=_("Sidebar Content"))
 
     content_panels = Page.content_panels + BodyMixin.content_panels + [
         StreamFieldPanel('sidebar'),

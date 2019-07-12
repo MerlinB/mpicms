@@ -9,10 +9,6 @@ from wagtail.core import hooks
 from wagtail.admin.menu import MenuItem
 from wagtail.contrib.modeladmin.helpers import PermissionHelper
 
-# from django.contrib.auth.models import Permission
-
-from .models import Banner
-
 
 @hooks.register('insert_global_admin_css')
 def global_admin_css():
@@ -39,13 +35,3 @@ def register_site_button():
 @hooks.register('register_admin_menu_item')
 def register_docs_link():
     return MenuItem(_('Documentation'), reverse('docs'), classnames='icon icon-help', order=10000)
-
-
-
-class BannerAdmin(ModelAdmin):
-    model = Banner
-    menu_label = _('Banner')
-    menu_icon = 'bold'
-
-
-modeladmin_register(BannerAdmin)

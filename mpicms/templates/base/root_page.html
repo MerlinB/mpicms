@@ -5,18 +5,18 @@
 
 {% block page_content %}
 
-    {% if page.banner %}
+    {% for banner in page.banner %}
         <article class="message banner">
-            {% if page.banner.title %}
+            {% if banner.value.title %}
             <div class="message-header">
-                <p>{{ page.banner.title }}</p>
+                <p>{{ banner.value.title }}</p>
             </div>
             {% endif %}
             <div class="message-body">
-                {{ page.banner.text|richtext }}
+                {{ banner.value.text|richtext }}
             </div>
         </article>
-    {% endif %}
+    {% endfor %}
 
     {% include 'base/components/search_big.html' %}
 
