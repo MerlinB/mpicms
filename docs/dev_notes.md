@@ -5,6 +5,8 @@ In `urls.py`, `i18n_patterns()` can be passed `prefix_default_language=False`. T
 
 Individual blocks are not translateable yet, see (this issue)[https://github.com/infoportugal/wagtail-modeltranslation/issues/82].
 
+Empty fields get automatically populated with the the default langugage content due to (this issue)[https://github.com/infoportugal/wagtail-modeltranslation/issues/247].
+
 ## Imports
 Django lets you import `<app_label>`, which will result in errors later. Only import `mpicms.<app_label>`, as specified in the app configs.
 

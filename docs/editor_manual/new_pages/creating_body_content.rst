@@ -7,29 +7,23 @@ Wagtail supports a number of basic fields for creating content, as well as our u
 StreamField
 ===========
 
-StreamField allows you to create complex layouts of content on a page by combining a number of different arrangements of content, 'blocks', in any order.
+These fields allow you to create complex layouts of content on a page by combining a number of different arrangements of content, 'blocks', in any order.
 
 .. image:: ../../_static/images/screen11_empty_streamfield.png
 
-When you first edit a page, you will be presented with the empty StreamField area, with the option to choose one of several block types. The block types on your website may be different from the screenshot here, but the principles are the same.
+When you first edit a page, you will be presented with the empty StreamField area, with the option to choose one of several block types.
 
 Click the block type, and the options will disappear, revealing the entry field for that block.
-
-Depending on the block you chose, the field will display differently, and there might even be more than one field! There are a few common field types though that we will talk about here.
-
-* Basic text field
-* Rich text field
-* Image field
 
 Basic text field
 ================
 
-Basic text fields have no formatting options. How these display will be determined by the style of the page in which they are being inserted. Just click into the field and type!
+Basic text fields have no formatting options. How these display will be determined by the style of the page in which they are being inserted.
 
 Rich text fields
 ================
 
-Most of the time though, you need formatting options to create beautiful looking pages. Wagtail provides "rich text" fields, which have formatting options similar to those of word processors.
+Wagtail provides "rich text" fields, which have formatting options similar to those of word processors.
 
 .. image:: ../../_static/images/screen11.1_streamfield_richtext.png
 
