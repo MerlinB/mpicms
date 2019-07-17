@@ -1,9 +1,6 @@
 Promoted search results
 =======================
 
-.. Note::
-    Promoted search results are an optional Wagtail feature. For details of how to enable them on a Wagtail installation, see :mod:`~wagtail.contrib.search_promotions`
-
 
 Wagtail allows you to promote certain search results dependant on the keyword or phrase entered by the user when searching. This can be particularly useful when users commonly refer to parts of your organisation via an acronym that isn't in official use, or if you want to direct users to a page when they enter a certain term related to the page but not included in the text of the page itself.
 
@@ -14,16 +11,16 @@ As a concrete example, one of our clients wanted to direct people who searched f
 
 To set up the promoted search results, click on the 'Promoted search results' menu item in the 'Settings' menu.
 
-.. image:: ../../_static/images/screen37_promoted_menu_item.png
+.. image:: ../_static/images/screen37_promoted_menu_item.png
 
 Add a new promoted result from the button in the top right of the resulting screen, or edit an existing promoted result by clicking on it.
 
-.. image:: ../../_static/images/screen38_promoted_results_listing.png
+.. image:: ../_static/images/screen38_promoted_results_listing.png
 
 When adding a new promoted result, Wagtail provides you with a 'Choose from popular search terms' option. This will show you the most popular terms entered by users into your internal search. You can match this list against your existing promoted results to ensure that users are able to find what they are looking for.
 
-.. image:: ../../_static/images/screen38.5_popular_search_results.png
+.. image:: ../_static/images/screen38.5_popular_search_results.png
 
 You then add a the result itself by clicking 'Add recommended page'. You can add multiple results, but be careful about adding too many, as you may end up hiding all of your organic results with promoted results, which may not be helpful for users who aren't really sure what they are looking for.
 
-.. image:: ../../_static/images/screen39_add_promoted_result.png
+.. image:: ../_static/images/screen39_add_promoted_result.png

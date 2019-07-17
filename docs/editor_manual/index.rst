@@ -15,4 +15,4 @@ This section of the documentation is written for the users of the site. That is,
    editing_existing_pages
    documents_images_snippets/index
    managing_redirects
-   administrator_tasks/index
+   multilingual_support

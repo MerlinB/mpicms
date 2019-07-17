@@ -11,11 +11,8 @@ Welcome to the Intranet documentation!
    :caption: Contents:
 
    editor_manual/index
-   REST_API/usage
-   requirements
-   sitemap
-   dev_notes
-
+   administrator_tasks/index
+   developer_information/index
 
 Indices and tables
 ==================
