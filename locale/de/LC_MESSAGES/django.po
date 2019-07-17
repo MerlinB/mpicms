@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-25 11:13+0200\n"
+"POT-Creation-Date: 2019-07-17 11:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:208
+#: config/settings/base.py:209
 msgid "English"
 msgstr "Englisch"
 
-#: config/settings/base.py:209
+#: config/settings/base.py:210
 msgid "German"
 msgstr "Deutsch"
 
-#: mpicms/base/blocks.py:13
+#: mpicms/base/blocks.py:13 mpicms/base/models.py:72
 msgid "Editor"
 msgstr "Editor"
 
@@ -38,72 +38,85 @@ msgstr "Markdown-Text"
 msgid "Table"
 msgstr "Tabelle"
 
-#: mpicms/base/blocks.py:18 mpicms/base/models.py:103 mpicms/base/models.py:138
-#: mpicms/events/models.py:21 mpicms/news/models.py:51
+#: mpicms/base/blocks.py:18 mpicms/base/mixins.py:31
 msgid "content"
 msgstr "Inhalt"
 
-#: mpicms/base/models.py:29
-msgid "title"
+#: mpicms/base/models.py:36 mpicms/base/models.py:42 mpicms/base/models.py:45
+msgid "Title"
 msgstr "Titel"
 
-#: mpicms/base/models.py:30
-msgid "text"
+#: mpicms/base/models.py:37
+msgid "Text"
 msgstr "Text"
 
-#: mpicms/base/models.py:41 mpicms/base/models.py:87
-msgid "banner"
+#: mpicms/base/models.py:38 mpicms/base/models.py:39
+msgid "Banner"
 msgstr "Banner"
 
-#: mpicms/base/models.py:42
-msgid "banners"
-msgstr "Banner"
+#: mpicms/base/models.py:46
+msgid "URL"
+msgstr "URL"
 
-#: mpicms/base/models.py:51
-msgid "contacts"
-msgstr "Kontakte"
+#: mpicms/base/models.py:47
+msgid "Items"
+msgstr "Items"
 
-#: mpicms/base/models.py:57
-msgid "contact"
-msgstr "Kontakt"
+#: mpicms/base/models.py:49
+msgid "Menu"
+msgstr "Menü"
 
-#: mpicms/base/models.py:67 mpicms/base/models.py:68
-msgid "contact information"
-msgstr "Kontaktinformationen"
+#: mpicms/base/models.py:50
+msgid "Footer Items"
+msgstr "Footer Menüs"
 
-#: mpicms/base/models.py:98
+#: mpicms/base/models.py:65
 msgid "root page"
 msgstr "Grundseite"
 
-#: mpicms/base/models.py:99
-#, fuzzy
-#| msgid "homepages"
+#: mpicms/base/models.py:66
 msgid "root pages"
 msgstr "Grundseiten"
 
-#: mpicms/base/models.py:105
-msgid "sidebar content"
+#: mpicms/base/models.py:75 mpicms/templates/base/blocks/contact_block.html:3
+msgid "Contact"
+msgstr "Kontakt"
+
+#: mpicms/base/models.py:76
+msgid "Information"
+msgstr "Information"
+
+#: mpicms/base/models.py:77 mpicms/personal/wagtail_hooks.py:37
+msgid "Contacts"
+msgstr "Kontakte"
+
+#: mpicms/base/models.py:79
+msgid "Sidebar Content"
 msgstr "Inhalt der Seitenleiste"
 
-#: mpicms/base/models.py:107
-msgid "Text displayed in the sidebar of all child pages"
-msgstr "Dieser Text wird in der Seitenleiste aller Unterseiten angezeigt"
-
-#: mpicms/base/models.py:133
+#: mpicms/base/models.py:98
 msgid "homepage"
 msgstr "Startseite"
 
-#: mpicms/base/models.py:134
+#: mpicms/base/models.py:99
 msgid "homepages"
 msgstr "Startseiten"
 
-#: mpicms/base/models.py:153
+#: mpicms/base/models.py:108
 msgid "wiki page"
-msgstr "Wiki Seite"
+msgstr "Wikiseite"
 
-#: mpicms/base/models.py:154
+#: mpicms/base/models.py:109
 msgid "wiki pages"
-msgstr "Wiki Seiten"
+msgstr "Wikiseiten"
+
+#: mpicms/base/wagtail_hooks.py:32
+msgid "View website"
+msgstr "Zur Webseite"
+
+#: mpicms/base/wagtail_hooks.py:37
+msgid "Documentation"
+msgstr "Dokumentation"
 
 #: mpicms/events/models.py:16
 msgid "start date"
@@ -121,76 +134,110 @@ msgstr "Anfangszeit"
 msgid "end time"
 msgstr "Endzeit"
 
-#: mpicms/events/models.py:20
-msgid "description"
-msgstr "Beschreibung"
-
-#: mpicms/events/models.py:36
+#: mpicms/events/models.py:33
 msgid "event dates"
 msgstr "Veranstaltungsdaten"
 
-#: mpicms/events/models.py:82
+#: mpicms/events/models.py:85
 msgid "event"
 msgstr "Veranstaltung"
 
-#: mpicms/events/models.py:83
+#: mpicms/events/models.py:86
 msgid "events"
 msgstr "Veranstaltungen"
 
-#: mpicms/events/models.py:106
+#: mpicms/events/models.py:109
 msgid "event index"
 msgstr "Veranstaltungs-Index"
 
-#: mpicms/events/models.py:107
+#: mpicms/events/models.py:110
 msgid "event indexes"
 msgstr "Veranstaltungs-Indexes"
 
-#: mpicms/news/models.py:46
+#: mpicms/news/models.py:44
 msgid "news blog"
 msgstr "News Blog"
 
-#: mpicms/news/models.py:47
+#: mpicms/news/models.py:45
 msgid "news blogs"
 msgstr "News Blogs"
 
-#: mpicms/news/models.py:52
+#: mpicms/news/models.py:49
 msgid "post date"
 msgstr "Veröffentlichungsdatum"
 
-#: mpicms/news/models.py:69
+#: mpicms/news/models.py:67
 msgid "news entry"
-msgstr "News Artikel"
+msgstr "Neuigkeit"
 
-#: mpicms/news/models.py:70
+#: mpicms/news/models.py:68
 msgid "news entries"
-msgstr "News Artikel"
+msgstr "Neuigkeiten"
 
-#: mpicms/personal/models.py:19 mpicms/personal/models.py:25
+#: mpicms/personal/models.py:25 mpicms/personal/models.py:31
 msgid "groups"
 msgstr "Gruppen"
 
-#: mpicms/personal/models.py:46 mpicms/personal/models.py:79
-#, fuzzy
-#| msgid "last name"
-msgid "name"
-msgstr "Name"
+#: mpicms/personal/models.py:49 mpicms/personal/models.py:76
+msgid "title"
+msgstr "Titel"
 
-#: mpicms/personal/models.py:47
+#: mpicms/personal/models.py:77
+msgid "first name"
+msgstr "Vorname"
+
+#: mpicms/personal/models.py:78
+msgid "last name"
+msgstr "Nachname"
+
+#: mpicms/personal/models.py:79
 msgid "email"
-msgstr "Email"
+msgstr "Email-Adresse"
 
-#: mpicms/personal/models.py:48
+#: mpicms/personal/models.py:80
 msgid "phone number"
 msgstr "Telefonnummer"
 
-#: mpicms/personal/models.py:49
+#: mpicms/personal/models.py:81
 msgid "room"
 msgstr "Raum"
+
+#: mpicms/personal/models.py:82
+msgid "position"
+msgstr "Position"
+
+#: mpicms/personal/models.py:83
+msgid "is active"
+msgstr "ist aktiv"
+
+#: mpicms/personal/models.py:133
+msgid "name"
+msgstr "Name"
+
+#: mpicms/personal/wagtail_hooks.py:11
+msgid "Persons"
+msgstr "Personen"
+
+#: mpicms/personal/wagtail_hooks.py:19 mpicms/personal/wagtail_hooks.py:24
+msgid "Groups"
+msgstr "Gruppen"
+
+#: mpicms/personal/wagtail_hooks.py:31
+msgid "Positions"
+msgstr "Positionen"
+
+#: mpicms/templates/base/components/messages.html:8
+msgid "This is a preview"
+msgstr "Dies ist eine Vorschau"
+
+#: mpicms/templates/base/components/messages.html:9
+msgid "Return to the live version"
+msgstr "Zurück zur Live-Version"
 
 #: mpicms/templates/base/components/search.html:3
 #: mpicms/templates/base/components/search_big.html:17
 #: mpicms/templates/base/search_results.html:9
-#: mpicms/templates/menus/main.html:94
+#: mpicms/templates/menus/main.html:100
 msgid "Search"
 msgstr "Suche"
 
@@ -206,6 +253,10 @@ msgstr "Intranet des Max-Planck-Instituts für molekulare Genetik"
 msgid "Search the Intranet"
 msgstr "Das Intranet durchsuchen"
 
+#: mpicms/templates/base/home_page.html:19
+msgid "Content"
+msgstr "Inhalt"
+
 #: mpicms/templates/base/root_page.html:27
 msgid "Events this week"
 msgstr "Veranstaltungen der Woche"
@@ -218,25 +269,21 @@ msgstr "Alle Veranstaltungen"
 msgid "No events found"
 msgstr "Keine Veranstaltungen gefunden"
 
-#: mpicms/templates/menus/main.html:18
+#: mpicms/templates/footer.html:37 mpicms/templates/menus/main.html:18
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: mpicms/templates/menus/main.html:19
+#: mpicms/templates/footer.html:40 mpicms/templates/menus/main.html:19
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: mpicms/templates/menus/main.html:21
+#: mpicms/templates/footer.html:43 mpicms/templates/menus/main.html:21
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: mpicms/templates/menus/main.html:25
+#: mpicms/templates/footer.html:48 mpicms/templates/menus/main.html:25
 msgid "Login"
 msgstr "Einloggen"
-
-#: mpicms/templates/menus/side.html:38
-msgid "Contact"
-msgstr "Kontakt"
 
 #: mpicms/templates/news/components/news_list.html:17
 msgid "See all"
@@ -245,49 +292,3 @@ msgstr "Alle anzeigen"
 #: mpicms/templates/news/components/news_preview.html:10
 msgid "All news"
 msgstr "Alle Neuigkeiten"
-
-#: mpicms/templates/wagtailadmin/home.html:5
-msgid "Welcome to the Intranet CMS"
-msgstr "Wilkommen im Intranet CMS"
-
-#: mpicms/templates/wagtailadmin/login.html:6
-msgid "Login to the Intranet"
-msgstr "Ins Intranet einloggen"
-
-#: mpicms/users/forms.py:8 mpicms/users/forms.py:13
-msgid "Phone"
-msgstr "Telefon"
-
-#, fuzzy
-#~| msgid "content"
-#~ msgid "Content"
-#~ msgstr "Inhalt"
-
-#~ msgid "preview"
-#~ msgstr "Vorschau"
-
-#~ msgid "Short description of this category"
-#~ msgstr "Kurze Beschreibung der Kategorie"
-
-#~ msgid "category"
-#~ msgstr "Kategorie"
-
-#~ msgid "categories"
-#~ msgstr "Kategorien"
-
-#~ msgid "Upcoming events"
-#~ msgstr "Kommende Veranstaltungen"
-
-#~ msgid "person"
-#~ msgstr "Person"
-
-#, fuzzy
-#~| msgid "All news"
-#~ msgid "show all news"
-#~ msgstr "Alle Neuigkeiten"
-
-#~ msgid "Include all news from subpages"
-#~ msgstr "Neuigkeiten aller Unterseiten inkludieren"
-
-#~ msgid "first name"
-#~ msgstr "Vorname"
