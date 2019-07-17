@@ -12,7 +12,7 @@ class ContactAdmin(ModelAdmin):
     menu_icon = 'user'
     list_display = ['title', 'first_name', 'last_name', 'position', 'email', 'phone', 'room', 'get_groups']
     list_filter = ['groups__group', 'is_active', 'position']
-    search_fields = ['title', 'first_name', 'last_name', 'position', 'email', 'phone', 'room']
+    search_fields = ['title', 'first_name', 'last_name', 'position__title', 'email', 'phone', 'room']
 
     def get_groups(self, obj):
         return ", ".join([group.__str__() for group in Group.objects.filter(contacts__in=obj.groups.all()).distinct()])
