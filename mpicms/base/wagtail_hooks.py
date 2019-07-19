@@ -1,4 +1,4 @@
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.utils.html import format_html
 from django.templatetags.static import static
@@ -29,7 +29,7 @@ def register_h1_feature(features):
 
 @hooks.register('register_admin_menu_item')
 def register_site_button():
-    return MenuItem(_('View website'), '/', classnames='icon icon-site', order=1)
+    return MenuItem(_('View website'), '/?', classnames='icon icon-site', order=1)  # Without the ? Wagtail applies different CSS 
 
 
 @hooks.register('register_admin_menu_item')
