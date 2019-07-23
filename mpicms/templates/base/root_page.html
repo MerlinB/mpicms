@@ -1,6 +1,6 @@
 {% extends 'base/page_wide.html' %}
 
-{% load i18n wagtailcore_tags %}
+{% load i18n wagtailcore_tags wagtailimages_tags %}
 
 
 {% block page_content %}
@@ -18,18 +18,45 @@
         </article>
     {% endfor %}
 
-    {% include 'base/components/search_big.html' %}
+    {% comment %} {% include 'base/components/search_big.html' %} {% endcomment %}
 
-    {% include 'news/components/news_preview.html' with news=page.news %}
-
-    {% if page.event_index %}
-        <div class="calendar-list">
-            <h3 class="title is-3">{% trans 'Events this week' %}</h3>
-            {% include 'events/components/event_list.html' with event_index=page.event_index %}
-            <div class="section-button" >
-                <a href="{% pageurl page.event_index %}"><button class="button">{% trans 'All events' %}&nbsp&nbsp<i class="fas fa-chevron-right"></i></button></a>
-            </div>
+    <div class="columns is-desktop">
+        <div class="column">
+            {% include 'news/components/news_preview.html' with news=page.news %}
         </div>
-    {% endif %}
+
+        {% if page.event_index %}
+            <div class="column">
+                <div class="calendar-list">
+                    <h3 class="title is-3">{% trans 'Events this week' %}</h3>
+                    {% include 'events/components/event_list.html' with event_index=page.event_index %}
+
+                </div>
+                <div class="section-button" >
+                    <a href="{% pageurl page.event_index %}"><button class="button">{% trans 'All events' %}&nbsp&nbsp<i class="fas fa-chevron-right"></i></button></a>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if page.featured_image %}
+            <div class="column">
+                <h3 class="title is-3">{{ page.featured_image.title }}</h3>
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            {% image page.featured_image.image width-1280 %}
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="content">{{ page.featured_image.text|richtext }}</div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+
+
+
 
 {% endblock %}

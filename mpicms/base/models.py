@@ -11,6 +11,7 @@ from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 from wagtail.api import APIField
 from wagtail.admin.edit_handlers import StreamFieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.fields import StreamField
 
 from mpicms.news.mixins import NewsMixin
@@ -30,7 +31,39 @@ class CategoryMixin(models.Model):
         abstract = True
 
 
+@register_snippet
+class FeaturedImage(models.Model):
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.CASCADE,
+        related_name='+'
+    )
+    title = models.CharField(_('title'), max_length=200, blank=True)
+    text = RichTextField(_('text'), features=['bold', 'italic', 'link', 'document-link'])
+
+    panels = [
+        FieldPanel('title'),
+        ImageChooserPanel('image'),
+        FieldPanel('text'),
+    ]
+
+    def __str__(self):
+        return self.title
+
+    class Meta:  # noqa
+        verbose_name = _('featured image')
+        verbose_name_plural = _('featured images')
+
+
 class RootPage(EventMixin, NewsMixin, BasePage):
+    featured_image = models.ForeignKey(
+        'FeaturedImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('featured image')
+    )
     banner = StreamField([
         ('banner', blocks.StructBlock([
             ('title', blocks.CharBlock(max_length=200, required=False, label=_('Title'))),
@@ -54,6 +87,7 @@ class RootPage(EventMixin, NewsMixin, BasePage):
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('banner'),
+        SnippetChooserPanel('featured_image'),
         StreamFieldPanel('footer_items')
     ]
 

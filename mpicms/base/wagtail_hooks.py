@@ -9,6 +9,8 @@ from wagtail.core import hooks
 from wagtail.admin.menu import MenuItem
 from wagtail.contrib.modeladmin.helpers import PermissionHelper
 
+from .models import FeaturedImage
+
 
 @hooks.register('insert_global_admin_css')
 def global_admin_css():
@@ -35,3 +37,12 @@ def register_site_button():
 @hooks.register('register_admin_menu_item')
 def register_docs_link():
     return MenuItem(_('Documentation'), reverse('docs'), classnames='icon icon-help', order=10000)
+
+
+class FeaturedImageAdmin(ModelAdmin):
+    model = FeaturedImage
+    menu_label = _('Featured Images')
+    menu_icon = 'image'
+
+
+modeladmin_register(FeaturedImageAdmin)

@@ -7,8 +7,15 @@ See https://github.com/infoportugal/wagtail-modeltranslation/pull/150.
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
-from .models import WikiPage, RootPage, HomePage
+from .models import WikiPage, RootPage, HomePage, FeaturedImage
 
+
+@register(FeaturedImage)
+class FeaturedImageTR(TranslationOptions):
+    fields = (
+        'title',
+        'text'
+    )
 
 @register(RootPage)
 class RootPageTR(TranslationOptions):
