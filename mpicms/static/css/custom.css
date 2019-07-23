@@ -105,13 +105,6 @@ body {
   letter-spacing: 0.1em;
 }
 
-.navbar .title.is-1 {
-  /* font-family: "Merriweather Sans", sans-serif; */
-  padding-left: 2rem;
-  font-size: 3.5rem;
-  letter-spacing: 0.2em;
-}
-
 .title.is-2, .title.is-3 {
   font-family: "Merriweather Sans", sans-serif;
 }
@@ -348,7 +341,7 @@ body {
 }
 
 .is-preview {
-  max-width: 50%;
+  /* max-width: 50%; */
   flex-basis: 25rem;
   overflow: hidden;
 }

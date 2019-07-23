@@ -1,12 +1,16 @@
 {% load static i18n wagtailcore_tags %}
 
+{% get_current_language as LANGUAGE_CODE %}
 
 <nav class="navbar is-light is-transparent" role="navigation" aria-label="main navigation">
   <div class="container is-hidden-touch navbar-container-top">
     <div class="navbar-brand navbar-brand-top">
       <a href="{% pageurl request.site.root_page %}" class="navbar-item">
-        <img src="{% static 'images/molgen-logo.svg' %}" class="logo">
-        <h1 class="title is-1">Intranet</h1>
+        {% if LANGUAGE_CODE == "de" %}
+          <img src="{% static 'images/molgen-logo-intern.svg' %}" class="logo">
+        {% else %}
+          <img src="{% static 'images/molgen-logo-intern-en.svg' %}" class="logo">
+        {% endif %}
       </a>
     </div>
     <div class="navbar-menu navbar-menu-top">
@@ -35,7 +39,6 @@
                   {% csrf_token %}
                   <select name="language" onchange="language_form.submit()">
               {% endif %}
-                    {% get_current_language as LANGUAGE_CODE %}
                     {% get_available_languages as LANGUAGES %}
                     {% get_language_info_list for LANGUAGES as languages %}
                     {% for language in languages %}
