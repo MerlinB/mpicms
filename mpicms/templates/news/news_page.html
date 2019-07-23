@@ -1,6 +1,6 @@
 {% extends 'base/page.html' %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtailimages_tags %}
 
 {% block page_content %}
 
@@ -9,6 +9,13 @@
 <div class="flex-base">
 {% for child in news_items %}
     <div class="card">
+        {% if child.specific.header_image %}
+            <div class="card-image">
+                <figure class="image">
+                    {% image child.specific.header_image fill-1000x400 %}
+                </figure>
+            </div>
+        {% endif %}
         <div class="card-content">
             <time datetime="{{ child.specific.date }}">{{ child.specific.date }}</time>
             {% if page.show_all and child.category %}

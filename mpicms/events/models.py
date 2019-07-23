@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.models import Page
 from wagtail.api import APIField
 
@@ -18,11 +19,19 @@ class Event(BodyMixin, BasePage):
     start_time = models.TimeField(_('start time'), blank=True, null=True)
     end_time = models.TimeField(_('end time'), blank=True, null=True)
 
+    header_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
     show_in_menus_default = False
     parent_page_types = ['events.EventIndex']
     subpage_types = []
 
     content_panels = Page.content_panels + BodyMixin.content_panels + [
+        ImageChooserPanel('header_image'),
         MultiFieldPanel(
             [
                 FieldPanel('start_date'),

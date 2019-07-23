@@ -5,6 +5,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from wagtail.core.models import Page
 from wagtail.search import index
 from wagtail.api import APIField
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from mpicms.base.models import CategoryMixin
 from mpicms.base.mixins import BasePage, BodyMixin
@@ -47,10 +48,19 @@ class NewsPage(CategoryMixin, BasePage):
 
 class NewsEntry(CategoryMixin, BodyMixin, BasePage):
     date = models.DateField(_("post date"), auto_now_add=True)
+    header_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     show_in_menus_default = False
 
-    content_panels = Page.content_panels + BodyMixin.content_panels
+    content_panels = Page.content_panels + BodyMixin.content_panels + [
+        ImageChooserPanel('header_image'),
+    ]
 
     search_fields = Page.search_fields + BodyMixin.search_fields + [
         index.FilterField('date')
