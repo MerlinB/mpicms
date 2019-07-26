@@ -20,6 +20,9 @@ class NewsPage(CategoryMixin, BasePage):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
 
+        if self.is_root:
+            context['blogs'] = NewsPage.objects.all()
+
         paginator = Paginator(self.news_items, self.paginated_by)
 
         page = request.GET.get("page")
@@ -35,8 +38,12 @@ class NewsPage(CategoryMixin, BasePage):
         return context
 
     @property
+    def is_root(self):
+        return self.depth <= 3
+
+    @property
     def news_items(self):
-        if self.depth <= 3:
+        if self.is_root:
             return NewsEntry.objects.live().order_by('-date')
         return NewsEntry.objects.child_of(self).live().order_by('-date')
 

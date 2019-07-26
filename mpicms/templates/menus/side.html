@@ -2,25 +2,23 @@
 
 
 {% with page.category as category %}
-
     {% with category.get_children.live.in_menu as children %}
+        {% if children %}
 
-    {% if children %}
+        <div class="menu" style="padding-top: 2rem;">
+        <a href="{% pageurl category %}" class="menu-label">
+            {{ category }}
+        </a>
+        <ul class="menu-list">
+                {% for menu_page in children %}
+                <li>
+                    {% include 'menus/components/menu_item.html' with menu_page=menu_page is_root=True %}
+                </li>
+                {% endfor %}
+        </ul>
+        </div>
 
-    <div class="menu" style="padding-top: 2rem;">
-    <a href="{% pageurl category %}" class="menu-label">
-        {{ category }}
-    </a>
-    <ul class="menu-list">
-            {% for menu_page in children %}
-            <li>
-                {% include 'menus/components/menu_item.html' with menu_page=menu_page is_root=True %}
-            </li>
-            {% endfor %}
-    </ul>
-    </div>
-
-    {% endif %}
+        {% endif %}
     {% endwith %}
 
     {% if category.specific.news %}
@@ -34,5 +32,4 @@
             {% include_block block %}
         {% endfor %}
     </div>
-
 {% endwith %}

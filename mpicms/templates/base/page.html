@@ -15,7 +15,9 @@
         </div>
     </div>
     <div class="column is-narrow sidebar is-flex-tablet">
-        {% include 'menus/side.html' %}
+        {% block sidebar_content %}
+            {% include 'menus/side.html' %}
+        {% endblock %}     
     </div>
 </div>
 {% endblock %}

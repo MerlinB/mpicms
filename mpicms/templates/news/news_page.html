@@ -1,6 +1,6 @@
 {% extends 'base/page.html' %}
 
-{% load wagtailcore_tags wagtailimages_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtailimages_tags i18n %}
 
 {% block page_content %}
 
@@ -37,4 +37,21 @@
 <br>
 {% include 'base/components/pagination.html' with items=news_items %}
 
+{% endblock %}
+
+{% block sidebar_content %}
+    {{ block.super }}
+    {% if page.is_root %}
+        <div class="menu">
+            <div class="menu-label">{% trans 'Blogs' %}</div>
+            <ul class="menu-list">
+            {% for blog in blogs %}
+                {% if blog.category %}
+                <li><a href="{% pageurl blog %}" class="menu-item">{{ blog.category }}</a></li>
+                {% else %}
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 {% endblock %}
