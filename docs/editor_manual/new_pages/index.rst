@@ -5,7 +5,7 @@ Creating new pages
 
 Create new pages by clicking the **Add child page** button. This creates a child page of the section you are currently in. In this case a child page of the 'School of Fine Art' page.
 
-.. ADD IN OTHER WAYS A CHILD PAGE CAN BE ADDED?>>
+Note that **News items** and **Events** are pages as well and only allowed to be created as child pages of an **NewsIndex Page** or **EventIndex Page** respectively.
 
 .. toctree::
    :maxdepth: 3

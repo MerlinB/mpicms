@@ -16,3 +16,4 @@ This section of the documentation is written for the users of the site. That is,
    documents_images_snippets/index
    managing_redirects
    multilingual_support
+   news_events
