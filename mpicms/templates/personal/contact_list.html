@@ -1,0 +1,60 @@
+{% extends 'base/page_wide.html' %}
+
+{% load static i18n %}
+
+{% block head %}
+    {{ block.super }}
+    <script src="{% static 'js/list.min.js' %}"></script>
+{% endblock %}
+
+{% block page_content %}
+
+<h1 class="title has-text-centered">{% trans 'Contact List' %}</h1>
+
+<div id="contacts">
+
+    <div class="contact_search">
+        <input type="text" class="search input" placeholder="Search contacts"/>
+    </div>
+
+    <table class="table" style="width: 100%;"<>
+        <thead>
+            <tr>
+                <th class="sort" data-sort="degree"><a>{% trans 'Title' %}</a></th>
+                <th class="sort" data-sort="first_name"><a>{% trans 'First Name' %}</a></th>
+                <th class="sort" data-sort="last_name"><a>{% trans 'Last Name' %}</a></th>
+                <th class="sort" data-sort="email"><a>{% trans 'Email' %}</a></th>
+                <th class="sort" data-sort="phone"><a>{% trans 'Phone' %}</a></th>
+                <th class="sort" data-sort="room"><a>{% trans 'Room' %}</a></th>
+                <th class="sort" data-sort="position"><a>{% trans 'Position' %}</a></th>
+                <th class="sort" data-sort="groups"><a>{% trans 'Groups' %}</a></th>
+            </tr>
+        </thead>
+        <tbody class="jslist">
+            {% for contact in object_list %}
+            <tr>
+                <td class="degree">{{ contact.title }}</td>
+                <td class="first_name">{{ contact.first_name }}</td>
+                <td class="last_name">{{ contact.last_name }}</td>
+                <td class="email">{{ contact.email }}</td>
+                <td class="phone">{{ contact.phone }}</td>
+                <td class="room">{{ contact.room }}</td>
+                <td class="position">{% if contact.position %}{{ contact.position }}{% endif %}</td>
+                <td class="groups">{% for contactgroup in contact.groups.all %}{{ contactgroup.group }}{% endfor %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <script>
+        var options = {
+            listClass: 'jslist',
+            valueNames: [ 'degree', 'first_name', 'last_name', 'email', 'phone', 'room', 'position', 'groups' ]
+        };
+
+        var userList = new List('contacts', options);
+
+    </script>
+
+{% endblock %}

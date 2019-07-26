@@ -551,3 +551,19 @@ body {
 .messages .message {
   margin-top: 1rem;
 }
+
+/* .root_columns .column {
+  flex: 23em;
+} */
+
+/* Contact List */
+
+.contact_search {
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: space-around;
+}
+
+.contact_search input{
+  max-width: 30em;
+}
