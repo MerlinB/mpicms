@@ -38,12 +38,12 @@ class ContactGroups(Orderable, models.Model):
     ]
 
 
-class ContactQuerySet(models.QuerySet):
-    def is_active(self):
-        return self.filter(is_active=True)
+class ContactManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=True)
 
-    def is_inactive(self):
-        return self.filter(is_active=False)
+    def include_inactive(self):
+        return super().get_queryset()
 
 
 @register_snippet
@@ -87,7 +87,7 @@ class Contact(index.Indexed, ClusterableModel):
         _("priority"), blank=True, default=0, validators=[MaxValueValidator(999)],
         help_text=_("Priority from 0-999 to determine the sorting order."))
 
-    objects = ContactQuerySet.as_manager()
+    objects = ContactManager()
 
     panels = [
         MultiFieldPanel([  
@@ -131,7 +131,8 @@ class Contact(index.Indexed, ClusterableModel):
     class Meta:  # noqa
         verbose_name = 'Contact'
         verbose_name_plural = 'Contacts'
-        ordering = ['groups__group', '-priority', 'last_name']
+        # ordering = ['groups__group', '-priority', 'last_name']
+        ordering = ['last_name']
 
 
 @register_snippet

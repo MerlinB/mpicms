@@ -17,7 +17,14 @@ class ContactAdmin(ModelAdmin):
     def get_groups(self, obj):
         return ", ".join([group.__str__() for group in Group.objects.filter(contacts__in=obj.groups.all()).distinct()])
     get_groups.short_description = _('Groups')
-    
+
+    def get_queryset(self, request):
+        qs = self.model._default_manager.include_inactive()
+        ordering = self.get_ordering(request)
+        if ordering:
+            qs = qs.order_by(*ordering)
+        return qs
+
 
 class GroupAdmin(ModelAdmin):
     model = Group
