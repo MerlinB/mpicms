@@ -1,8 +1,10 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import MaxValueValidator
+
+
 from wagtail.core.models import Orderable
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, FieldRowPanel, InlinePanel
-
 from wagtail.admin.edit_handlers import FieldPanel, FieldRowPanel, InlinePanel
 from wagtail.snippets.models import register_snippet
 from wagtail.search import index
@@ -81,7 +83,9 @@ class Contact(index.Indexed, ClusterableModel):
     room = models.CharField(_("room"), max_length=25, blank=True)
     position = models.ForeignKey('personal.Position', verbose_name=_("position"), blank=True, null=True, on_delete=models.SET_NULL)
     is_active = models.BooleanField(_("is active"), default=True)
-    # groups = models.ManyToManyField('Group', related_name='members')
+    priority = models.PositiveSmallIntegerField(
+        _("priority"), blank=True, default=0, validators=[MaxValueValidator(999)],
+        help_text=_("Priority from 0-999 to determine the sorting order."))
 
     objects = ContactQuerySet.as_manager()
 
@@ -99,6 +103,7 @@ class Contact(index.Indexed, ClusterableModel):
             'groups', label="Groups",
             panels=None),
         FieldPanel('is_active'),
+        FieldPanel('priority'),
     ]
 
     search_fields = [
@@ -126,14 +131,20 @@ class Contact(index.Indexed, ClusterableModel):
     class Meta:  # noqa
         verbose_name = 'Contact'
         verbose_name_plural = 'Contacts'
+        ordering = ['groups__group', '-priority', 'last_name']
 
 
 @register_snippet
 class Group(index.Indexed, ClusterableModel):
     name = models.CharField(_("name"), max_length=254)
+    priority = models.PositiveSmallIntegerField(
+        _("priority"), blank=True, default=0, validators=[MaxValueValidator(99)],
+        help_text=_("Priority from 0-99 to determine the sorting order."))
+
 
     panels = [
         FieldPanel('name'),
+        FieldPanel('priority'),
     ]
 
     search_fields = [
@@ -146,3 +157,4 @@ class Group(index.Indexed, ClusterableModel):
     class Meta:  # noqa
         verbose_name = 'Group'
         verbose_name_plural = 'Groups'
+        ordering = ['-priority']

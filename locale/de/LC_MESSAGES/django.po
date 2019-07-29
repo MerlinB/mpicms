@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-26 11:06+0200\n"
+"POT-Creation-Date: 2019-07-29 10:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,8 +42,8 @@ msgstr "Tabelle"
 msgid "content"
 msgstr "Inhalt"
 
-#: mpicms/base/models.py:41 mpicms/personal/models.py:49
-#: mpicms/personal/models.py:76
+#: mpicms/base/models.py:41 mpicms/personal/models.py:51
+#: mpicms/personal/models.py:78
 msgid "title"
 msgstr "Titel"
 
@@ -176,61 +176,73 @@ msgstr "Veranstaltungs-Index"
 msgid "event indexes"
 msgstr "Veranstaltungs-Indexes"
 
-#: mpicms/news/models.py:45
+#: mpicms/news/models.py:52
 msgid "news blog"
 msgstr "News Blog"
 
-#: mpicms/news/models.py:46
+#: mpicms/news/models.py:53
 msgid "news blogs"
 msgstr "News Blogs"
 
-#: mpicms/news/models.py:50
+#: mpicms/news/models.py:57
 msgid "post date"
 msgstr "Veröffentlichungsdatum"
 
-#: mpicms/news/models.py:77
+#: mpicms/news/models.py:84
 msgid "news entry"
 msgstr "Neuigkeit"
 
-#: mpicms/news/models.py:78
+#: mpicms/news/models.py:85
 msgid "news entries"
 msgstr "Neuigkeiten"
 
-#: mpicms/personal/models.py:25 mpicms/personal/models.py:31
+#: mpicms/personal/models.py:27 mpicms/personal/models.py:33
 msgid "groups"
 msgstr "Gruppen"
 
-#: mpicms/personal/models.py:77
+#: mpicms/personal/models.py:79
 msgid "first name"
 msgstr "Vorname"
 
-#: mpicms/personal/models.py:78
+#: mpicms/personal/models.py:80
 msgid "last name"
 msgstr "Nachname"
 
-#: mpicms/personal/models.py:79
+#: mpicms/personal/models.py:81
 msgid "email"
 msgstr "Email-Adresse"
 
-#: mpicms/personal/models.py:80
+#: mpicms/personal/models.py:82
 msgid "phone number"
 msgstr "Telefonnummer"
 
-#: mpicms/personal/models.py:81
+#: mpicms/personal/models.py:83
 msgid "room"
 msgstr "Raum"
 
-#: mpicms/personal/models.py:82
+#: mpicms/personal/models.py:84
 msgid "position"
 msgstr "Position"
 
-#: mpicms/personal/models.py:83
+#: mpicms/personal/models.py:85
 msgid "is active"
 msgstr "ist aktiv"
 
-#: mpicms/personal/models.py:133
+#: mpicms/personal/models.py:87 mpicms/personal/models.py:141
+msgid "priority"
+msgstr "Priorität"
+
+#: mpicms/personal/models.py:88
+msgid "Priority from 0-999 to determine the sorting order."
+msgstr "Priorität von 0-999 zur Bestimmung der Reihenfolge."
+
+#: mpicms/personal/models.py:139
 msgid "name"
 msgstr "Name"
+
+#: mpicms/personal/models.py:142
+msgid "Priority from 0-99 to determine the sorting order."
+msgstr "Priorität von 0-99 zur Bestimmung der Reihenfolge."
 
 #: mpicms/personal/wagtail_hooks.py:11
 msgid "Persons"
@@ -311,6 +323,10 @@ msgstr "Alle anzeigen"
 #: mpicms/templates/news/components/news_preview.html:10
 msgid "All news"
 msgstr "Alle Neuigkeiten"
+
+#: mpicms/templates/news/news_page.html:46
+msgid "Blogs"
+msgstr "Blogs"
 
 #: mpicms/templates/personal/contact_list.html:5
 #: mpicms/templates/personal/contact_list.html:14
