@@ -1,6 +1,6 @@
 {% extends 'base/page_wide.html' %}
 
-{% load static i18n %}
+{% load static i18n wagtailcore_tags %}
 
 {% block title %}{% trans 'Contact List' %}{% endblock %}
 
@@ -13,13 +13,41 @@
 
 <h1 class="title has-text-centered">{% trans 'Contact List' %}</h1>
 
-<div id="contacts">
+<div id="contacts" class="contacts_table">
 
     <div class="contact_search">
         <input type="text" class="search input" placeholder="{% trans 'Search contacts' %}"/>
+
+        <div class="dropdown">
+            <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true">
+                <span>{% trans 'Filter by group' %}</span>
+                <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+                </button>
+            </div>
+            <div class="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+
+                {% for group in groups %}
+                    <a href="{% url 'contacts' %}?group={{ group.pk }}" class="{% if group.pk|stringformat:'d' == request.GET.group %}is-active {% endif %}dropdown-item">
+                        {{ group }}
+                    </a>
+                {% endfor %}
+                
+                <hr class="dropdown-divider">
+                <a href="{% url 'contacts' %}" class="dropdown-item">
+                    {% trans 'Reset filter' %}
+                </a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <table class="table" style="width: 100%;"<>
+    
+
+    <table class="table" style="width: 100%;">
         <thead>
             <tr>
                 <th class="sort" data-sort="degree"><a>{% trans 'Title' %}</a></th>
@@ -42,12 +70,11 @@
                 <td class="phone">{{ contact.phone }}</td>
                 <td class="room">{{ contact.room }}</td>
                 <td class="position">{% if contact.position %}{{ contact.position }}{% endif %}</td>
-                <td class="groups">{% for contactgroup in contact.groups.all %}{{ contactgroup.group }}{% endfor %}</td>
+                <td class="groups">{% for contactgroup in contact.groups.all %}{{ contactgroup.group }} {% endfor %}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
 
     <script>
         var options = {

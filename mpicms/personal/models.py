@@ -2,7 +2,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator
 
-
 from wagtail.core.models import Orderable
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, FieldRowPanel, InlinePanel
 from wagtail.admin.edit_handlers import FieldPanel, FieldRowPanel, InlinePanel
@@ -142,7 +141,6 @@ class Group(index.Indexed, ClusterableModel):
         _("priority"), blank=True, default=0, validators=[MaxValueValidator(99)],
         help_text=_("Priority from 0-99 to determine the sorting order."))
 
-
     panels = [
         FieldPanel('name'),
         FieldPanel('priority'),
@@ -151,6 +149,10 @@ class Group(index.Indexed, ClusterableModel):
     search_fields = [
         index.SearchField('name'),
     ]
+
+    @property
+    def members(self):
+        return [relation.contact for relation in self.contacts.select_related('contact')]
 
     def __str__(self):
         return self.name

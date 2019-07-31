@@ -42,11 +42,16 @@
         {% endblock %}
     </head>
     <body>
+        <div class="main">
+        <section>
         {% wagtailuserbar %}
         {% include 'menus/main.html' %}
-        <div class="container main">
-            {% block content %}
-            {% endblock %}
+
+            <div class="container ">
+                {% block content %}
+                {% endblock %}
+            </div>
+        <section>
         </div>
         {% include 'footer.html' %}
     </body>
