@@ -1,10 +1,33 @@
 from django.utils.translation import gettext_lazy as _
+from django.contrib.admin.utils import (quote, unquote)
+from django.shortcuts import get_object_or_404
 
 from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register, ModelAdminGroup
 from wagtail.contrib.modeladmin.helpers import PermissionHelper
+from wagtail.contrib.modeladmin.views import EditView, InspectView, DeleteView, InstanceSpecificView
 
 from .models import Contact, Group, Position
 
+
+class ContactInstanceView(InstanceSpecificView):
+    def __init__(self, model_admin, instance_pk):
+        super(InstanceSpecificView, self).__init__(model_admin)
+        self.instance_pk = unquote(instance_pk)
+        self.pk_quoted = quote(self.instance_pk)
+        filter_kwargs = {}
+        filter_kwargs[self.pk_attname] = self.instance_pk
+        object_qs = model_admin.model._default_manager.include_inactive().filter(
+            **filter_kwargs)
+        self.instance = get_object_or_404(object_qs)
+
+class ContactEditView(ContactInstanceView, EditView):
+    pass
+
+class ContactInspectView(ContactInstanceView, InspectView):
+    pass
+
+class ContactDeleteView(ContactInstanceView, DeleteView):
+    pass
 
 class ContactAdmin(ModelAdmin):
     model = Contact
@@ -13,6 +36,10 @@ class ContactAdmin(ModelAdmin):
     list_display = ['title', 'first_name', 'last_name', 'position', 'email', 'phone', 'room', 'get_groups']
     list_filter = ['groups__group', 'is_active', 'position']
     search_fields = ['title', 'first_name', 'last_name', 'position__title', 'email', 'phone', 'room']
+
+    edit_view_class = ContactEditView
+    inspect_view_class = ContactInspectView
+    delete_view_class = ContactDeleteView
 
     def get_groups(self, obj):
         return ", ".join([group.__str__() for group in Group.objects.filter(contacts__in=obj.groups.all()).distinct()])
