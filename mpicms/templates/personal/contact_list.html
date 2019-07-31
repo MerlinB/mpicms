@@ -13,10 +13,8 @@
 
 <h1 class="title has-text-centered">{% trans 'Contact List' %}</h1>
 
-<div id="contacts" class="contacts_table">
-
     <div class="contact_search">
-        <input type="text" class="search input" placeholder="{% trans 'Search contacts' %}"/>
+        <input id="search_field" type="text" class="search input" placeholder="{% trans 'Search contacts' %}"/>
 
         <div class="dropdown">
             <div class="dropdown-trigger">
@@ -45,7 +43,7 @@
         </div>
     </div>
 
-    
+<div id="contacts" class="contacts_table">
 
     <table class="table" style="width: 100%;">
         <thead>
@@ -83,6 +81,12 @@
         };
 
         var userList = new List('contacts', options);
+
+        var search_field = document.getElementById('search_field');
+        search_field.addEventListener('keyup', function() {
+            var searchString = search_field.value;
+            userList.search(searchString);
+        });
 
     </script>
 
