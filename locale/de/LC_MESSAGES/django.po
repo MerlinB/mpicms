@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-29 10:29+0200\n"
+"POT-Creation-Date: 2019-07-31 17:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,8 +42,8 @@ msgstr "Tabelle"
 msgid "content"
 msgstr "Inhalt"
 
-#: mpicms/base/models.py:41 mpicms/personal/models.py:51
-#: mpicms/personal/models.py:78
+#: mpicms/base/models.py:41 mpicms/personal/models.py:50
+#: mpicms/personal/models.py:77
 msgid "title"
 msgstr "Titel"
 
@@ -60,7 +60,7 @@ msgid "featured images"
 msgstr "Titelbilder"
 
 #: mpicms/base/models.py:69 mpicms/base/models.py:75 mpicms/base/models.py:78
-#: mpicms/templates/personal/contact_list.html:25
+#: mpicms/templates/personal/contact_list.html:53
 msgid "Title"
 msgstr "Titel"
 
@@ -104,7 +104,7 @@ msgstr "Kontakt"
 msgid "Information"
 msgstr "Information"
 
-#: mpicms/base/models.py:111 mpicms/personal/wagtail_hooks.py:37
+#: mpicms/base/models.py:111 mpicms/personal/wagtail_hooks.py:71
 msgid "Contacts"
 msgstr "Kontakte"
 
@@ -196,43 +196,43 @@ msgstr "Neuigkeit"
 msgid "news entries"
 msgstr "Neuigkeiten"
 
-#: mpicms/personal/models.py:27 mpicms/personal/models.py:33
+#: mpicms/personal/models.py:26 mpicms/personal/models.py:32
 msgid "groups"
 msgstr "Gruppen"
 
-#: mpicms/personal/models.py:79
+#: mpicms/personal/models.py:78
 msgid "first name"
 msgstr "Vorname"
 
-#: mpicms/personal/models.py:80
+#: mpicms/personal/models.py:79
 msgid "last name"
 msgstr "Nachname"
 
-#: mpicms/personal/models.py:81
+#: mpicms/personal/models.py:80
 msgid "email"
 msgstr "Email-Adresse"
 
-#: mpicms/personal/models.py:82
+#: mpicms/personal/models.py:81
 msgid "phone number"
 msgstr "Telefonnummer"
 
-#: mpicms/personal/models.py:83
+#: mpicms/personal/models.py:82
 msgid "room"
 msgstr "Raum"
 
-#: mpicms/personal/models.py:84
+#: mpicms/personal/models.py:83
 msgid "position"
 msgstr "Position"
 
-#: mpicms/personal/models.py:85
+#: mpicms/personal/models.py:84
 msgid "is active"
 msgstr "ist aktiv"
 
-#: mpicms/personal/models.py:87 mpicms/personal/models.py:141
+#: mpicms/personal/models.py:86 mpicms/personal/models.py:141
 msgid "priority"
 msgstr "Priorität"
 
-#: mpicms/personal/models.py:88
+#: mpicms/personal/models.py:87
 msgid "Priority from 0-999 to determine the sorting order."
 msgstr "Priorität von 0-999 zur Bestimmung der Reihenfolge."
 
@@ -244,16 +244,16 @@ msgstr "Name"
 msgid "Priority from 0-99 to determine the sorting order."
 msgstr "Priorität von 0-99 zur Bestimmung der Reihenfolge."
 
-#: mpicms/personal/wagtail_hooks.py:11
+#: mpicms/personal/wagtail_hooks.py:34
 msgid "Persons"
 msgstr "Personen"
 
-#: mpicms/personal/wagtail_hooks.py:19 mpicms/personal/wagtail_hooks.py:24
-#: mpicms/templates/personal/contact_list.html:32
+#: mpicms/personal/wagtail_hooks.py:46 mpicms/personal/wagtail_hooks.py:58
+#: mpicms/templates/personal/contact_list.html:60
 msgid "Groups"
 msgstr "Gruppen"
 
-#: mpicms/personal/wagtail_hooks.py:31
+#: mpicms/personal/wagtail_hooks.py:65
 msgid "Positions"
 msgstr "Positionen"
 
@@ -337,27 +337,35 @@ msgstr "Telefonliste"
 msgid "Search contacts"
 msgstr "Telefonliste durchsuchen"
 
-#: mpicms/templates/personal/contact_list.html:26
+#: mpicms/templates/personal/contact_list.html:24
+msgid "Filter by group"
+msgstr "Gruppen"
+
+#: mpicms/templates/personal/contact_list.html:41
+msgid "Reset filter"
+msgstr "Filter zurücksetzen"
+
+#: mpicms/templates/personal/contact_list.html:54
 msgid "First Name"
 msgstr "Vorname"
 
-#: mpicms/templates/personal/contact_list.html:27
+#: mpicms/templates/personal/contact_list.html:55
 msgid "Last Name"
 msgstr "Nachname"
 
-#: mpicms/templates/personal/contact_list.html:28
+#: mpicms/templates/personal/contact_list.html:56
 msgid "Email"
 msgstr "Email-Adresse"
 
-#: mpicms/templates/personal/contact_list.html:29
+#: mpicms/templates/personal/contact_list.html:57
 msgid "Phone"
 msgstr "Telefon"
 
-#: mpicms/templates/personal/contact_list.html:30
+#: mpicms/templates/personal/contact_list.html:58
 msgid "Room"
 msgstr "Raum"
 
-#: mpicms/templates/personal/contact_list.html:31
+#: mpicms/templates/personal/contact_list.html:59
 msgid "Position"
 msgstr "Positionen"
 
