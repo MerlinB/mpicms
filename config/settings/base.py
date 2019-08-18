@@ -196,6 +196,15 @@ X_FRAME_OPTIONS = 'DENY'
 # ------------------------------------------------------------------------------
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
+# https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
+DEFAULT_FROM_EMAIL = 'MPI <info@molgen.mpg.de>'
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#server-email
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
+EMAIL_SUBJECT_PREFIX = '[Intranet]'
+
+
 # ADMIN
 # ------------------------------------------------------------------------------
 ADMIN_URL = 'admin/'

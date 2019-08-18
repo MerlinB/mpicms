@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-31 17:08+0200\n"
+"POT-Creation-Date: 2019-08-18 18:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:209
+#: config/settings/base.py:218
 msgid "English"
 msgstr "Englisch"
 
-#: config/settings/base.py:210
+#: config/settings/base.py:219
 msgid "German"
 msgstr "Deutsch"
 
@@ -38,7 +38,7 @@ msgstr "Markdown-Text"
 msgid "Table"
 msgstr "Tabelle"
 
-#: mpicms/base/blocks.py:18 mpicms/base/mixins.py:31
+#: mpicms/base/blocks.py:18 mpicms/base/mixins.py:42
 msgid "content"
 msgstr "Inhalt"
 
@@ -60,7 +60,7 @@ msgid "featured images"
 msgstr "Titelbilder"
 
 #: mpicms/base/models.py:69 mpicms/base/models.py:75 mpicms/base/models.py:78
-#: mpicms/templates/personal/contact_list.html:53
+#: mpicms/templates/personal/contact_list.html:51
 msgid "Title"
 msgstr "Titel"
 
@@ -128,15 +128,23 @@ msgstr "Wikiseite"
 msgid "wiki pages"
 msgstr "Wikiseiten"
 
-#: mpicms/base/wagtail_hooks.py:34
+#: mpicms/base/views.py:98
+msgid "Successfully subscribed to '{}'."
+msgstr "'{}' erfolgreich abboniert."
+
+#: mpicms/base/views.py:115
+msgid "Successfully unsubscribed from '{}'."
+msgstr "'{}' deabboniert."
+
+#: mpicms/base/wagtail_hooks.py:43
 msgid "View website"
 msgstr "Zur Webseite"
 
-#: mpicms/base/wagtail_hooks.py:39
+#: mpicms/base/wagtail_hooks.py:48
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: mpicms/base/wagtail_hooks.py:44
+#: mpicms/base/wagtail_hooks.py:69
 msgid "Featured Images"
 msgstr "Titelbilder"
 
@@ -249,7 +257,7 @@ msgid "Persons"
 msgstr "Personen"
 
 #: mpicms/personal/wagtail_hooks.py:46 mpicms/personal/wagtail_hooks.py:58
-#: mpicms/templates/personal/contact_list.html:60
+#: mpicms/templates/personal/contact_list.html:58
 msgid "Groups"
 msgstr "Gruppen"
 
@@ -333,39 +341,39 @@ msgstr "Blogs"
 msgid "Contact List"
 msgstr "Telefonliste"
 
-#: mpicms/templates/personal/contact_list.html:19
+#: mpicms/templates/personal/contact_list.html:17
 msgid "Search contacts"
 msgstr "Telefonliste durchsuchen"
 
-#: mpicms/templates/personal/contact_list.html:24
+#: mpicms/templates/personal/contact_list.html:22
 msgid "Filter by group"
 msgstr "Gruppen"
 
-#: mpicms/templates/personal/contact_list.html:41
+#: mpicms/templates/personal/contact_list.html:39
 msgid "Reset filter"
 msgstr "Filter zurücksetzen"
 
-#: mpicms/templates/personal/contact_list.html:54
+#: mpicms/templates/personal/contact_list.html:52
 msgid "First Name"
 msgstr "Vorname"
 
-#: mpicms/templates/personal/contact_list.html:55
+#: mpicms/templates/personal/contact_list.html:53
 msgid "Last Name"
 msgstr "Nachname"
 
-#: mpicms/templates/personal/contact_list.html:56
+#: mpicms/templates/personal/contact_list.html:54
 msgid "Email"
 msgstr "Email-Adresse"
 
-#: mpicms/templates/personal/contact_list.html:57
+#: mpicms/templates/personal/contact_list.html:55
 msgid "Phone"
 msgstr "Telefon"
 
-#: mpicms/templates/personal/contact_list.html:58
+#: mpicms/templates/personal/contact_list.html:56
 msgid "Room"
 msgstr "Raum"
 
-#: mpicms/templates/personal/contact_list.html:59
+#: mpicms/templates/personal/contact_list.html:57
 msgid "Position"
 msgstr "Positionen"
 
@@ -376,3 +384,23 @@ msgstr "Wilkommen im Intranet"
 #: mpicms/templates/wagtailadmin/login.html:6
 msgid "Login to the Intranet"
 msgstr "Im Intranet anmelden"
+
+#: mpicms/templates/wagtailadmin/pages/_subscription_switch.html:7
+msgid "Email notifications"
+msgstr "Email-Benachrichtigungen"
+
+#: mpicms/templates/wagtailadmin/pages/_subscription_switch.html:14
+msgid "Unsubscribe from email updates"
+msgstr "Email-Benachrichtigungen deabbonieren"
+
+#: mpicms/templates/wagtailadmin/pages/_subscription_switch.html:14
+msgid "Subscribe to email updates"
+msgstr "Email-Benachrichtigungen abbonieren"
+
+#: mpicms/templates/wagtailadmin/pages/_subscription_switch.html:16
+msgid "Subscribed"
+msgstr "Abboniert"
+
+#: mpicms/templates/wagtailadmin/pages/_subscription_switch.html:18
+msgid "Not subscribed"
+msgstr "Nicht Abboniert"

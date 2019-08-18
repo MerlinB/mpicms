@@ -2,7 +2,11 @@ from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect
 from django.core.exceptions import PermissionDenied
+from django.views.decorators.http import require_POST
+from django.utils.http import is_safe_url
+from django.utils.translation import gettext as _
 
+from wagtail.admin import messages
 from wagtail.core.models import Page
 from wagtail.core import hooks
 from wagtail.search.models import Query
@@ -82,3 +86,37 @@ def add_subpage(request, parent_page_id):
         'page_types': page_types,
         'next': get_valid_next_url_from_request(request),
     })
+
+
+@require_POST
+def subscribe(request, page_id):
+    # Get the page
+    page = get_object_or_404(Page, id=page_id).specific
+
+    # Lock the page
+    page.subscribers.add(request.user)
+    messages.success(request, _("Successfully subscribed to '{}'.").format(page.get_admin_display_title()))
+
+    # Redirect
+    redirect_to = request.POST.get('next', None)
+    if redirect_to and is_safe_url(url=redirect_to, allowed_hosts={request.get_host()}):
+        return redirect(redirect_to)
+    else:
+        return redirect('wagtailadmin_explore', page.get_parent().id)
+
+
+@require_POST
+def unsubscribe(request, page_id):
+    # Get the page
+    page = get_object_or_404(Page, id=page_id).specific
+
+    # Lock the page
+    page.subscribers.remove(request.user)
+    messages.success(request, _("Successfully unsubscribed from '{}'.").format(page.get_admin_display_title()))
+
+    # Redirect
+    redirect_to = request.POST.get('next', None)
+    if redirect_to and is_safe_url(url=redirect_to, allowed_hosts={request.get_host()}):
+        return redirect(redirect_to)
+    else:
+        return redirect('wagtailadmin_explore', page.get_parent().id)

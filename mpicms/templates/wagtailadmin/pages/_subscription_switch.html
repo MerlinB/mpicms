@@ -1,0 +1,21 @@
+{% load i18n wagtailadmin_tags base_tags %}
+
+
+{% is_subscribed page user as subscribed %}
+
+<form action="{% url subscribed|yesno:'wagtailadmin_pages_unsubscribe,wagtailadmin_pages_subscribe' page.id %}" method="POST" class="lock-indicator {{ subscribed|yesno:'locked,unlocked' }}">
+    {% trans "Email notifications" %}
+
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{% url 'wagtailadmin_pages:edit' page.id %}" />
+    <button
+        type="submit"
+        class="status-tag {{ subscribed|yesno:'primary,secondary' }}"
+        aria-label="{% if subscribed %}{% trans 'Unsubscribe from email updates' %}{% else %}{% trans 'Subscribe to email updates' %}{% endif %}">
+        {% if subscribed %}
+            {% trans "Subscribed" %}
+        {% else %}
+            {% trans "Not subscribed" %}
+        {% endif %}
+    </button>
+</form>

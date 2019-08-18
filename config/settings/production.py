@@ -96,16 +96,6 @@ AUTH_LDAP_USER_FLAGS_BY_GROUP = {
     # 'is_superuser': 'cn=superuser,ou=groups,dc=example,dc=com',
 }
 
-# EMAIL
-# ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
-DEFAULT_FROM_EMAIL = 'MPI <info@molgen.mpg.de>'
-
-# https://docs.djangoproject.com/en/dev/ref/settings/#server-email
-SERVER_EMAIL = DEFAULT_FROM_EMAIL
-# https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
-EMAIL_SUBJECT_PREFIX = '[MPI CMS]'
-
 # LOGGING
 # ------------------------------------------------------------------------------
 LOGGING = {

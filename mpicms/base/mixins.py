@@ -2,6 +2,7 @@ from django.utils import translation
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth import get_user_model
 
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.core.models import Page
@@ -15,13 +16,23 @@ from .blocks import ContentBlock
 
 
 class BasePage(Page):
-    """Enable multilingual preview capabilities"""
+    subscribers = models.ManyToManyField(get_user_model())
 
+    # Enable multilingual preview capabilities
     preview_modes = settings.LANGUAGES
 
     def serve_preview(self, request, mode_name):
         translation.activate(mode_name)
         return super().serve_preview(request, mode_name)
+
+    def serve(self, request):  # Not in use
+        if request.user.is_authenticated:
+            if 'subscribe' in request.GET:
+                self.subscribers.add(request.user)
+            elif 'unsubscribe' in request.GET:
+                self.subscribers.remove(request.user)
+
+        return super().serve(request)
 
     class Meta:  # noqa
         abstract = True

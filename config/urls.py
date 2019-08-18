@@ -10,7 +10,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.views import defaults as default_views, static as static_views
 
-from mpicms.base.views import search, LogoutView, account, add_subpage
+from mpicms.base.views import search, LogoutView, account, add_subpage, subscribe, unsubscribe
 from mpicms.base.api import api_router
 from mpicms.personal.views import ContactListView
 
@@ -35,6 +35,10 @@ urlpatterns = [
 
     # Override wagtail add_subpage view
     re_path(r'^admin/pages/(\d+)/add_subpage/$', add_subpage, name='wagtailadmin_pages:add_subpage'),
+
+    # Add subscribe views
+    re_path(r'^admin/pages/(\d+)/subscribe/$', subscribe, name='wagtailadmin_pages_subscribe'),
+    re_path(r'^admin/pages/(\d+)/unsubscribe/$', unsubscribe, name='wagtailadmin_pages_unsubscribe'),
 
     re_path('^docs/(?P<path>.*)$', static_views.serve, {'document_root': settings.DOCS_ROOT}),
     re_path(r'^admin/', include(wagtailadmin_urls)),
