@@ -56,6 +56,7 @@ def send_notifications(request, page):
         send_mail(
             f'Page {page.get_admin_display_title()} edited.',
             f'''<a href="{request.build_absolute_uri(reverse('wagtailadmin_pages:revisions_index', args=[page.id]))}">View changes</a>\n
+                Edited by {request.user}.
                 You are receiving this message because you subscribed to updates for page {page.get_admin_display_title()}.
                 Log in to the admin interface and click <a href="{request.build_absolute_uri(reverse('wagtailadmin_pages_unsubscribe', args=[page.id]))}">here</a> to unsubscribe.''',
             settings.DEFAULT_FROM_EMAIL,

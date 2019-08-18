@@ -310,7 +310,7 @@ msgstr "Keine Veranstaltungen gefunden"
 
 #: mpicms/templates/footer.html:37 mpicms/templates/menus/main.html:22
 msgid "Dashboard"
-msgstr "Dashboard"
+msgstr "Admin-Interface"
 
 #: mpicms/templates/footer.html:40 mpicms/templates/menus/main.html:23
 msgid "Settings"

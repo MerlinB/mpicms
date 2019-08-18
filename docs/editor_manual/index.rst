@@ -17,3 +17,4 @@ This section of the documentation is written for the users of the site. That is,
    managing_redirects
    multilingual_support
    news_events
+   email_notifications
