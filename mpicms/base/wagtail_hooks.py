@@ -61,7 +61,7 @@ Log in to the admin interface and click <a href="{request.build_absolute_uri(rev
 
         send_mail(
             f'Page {page.get_admin_display_title()} edited.',
-            strip_tags(htmL_message),
+            strip_tags(html_message),
             settings.DEFAULT_FROM_EMAIL,
             subscribers,
             html_message=html_message,
