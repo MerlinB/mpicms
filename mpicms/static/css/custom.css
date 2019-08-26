@@ -577,3 +577,24 @@ body {
 .contacts_table {
   overflow-x: auto; width: 100%; border-radius: 0;
 }
+
+
+/* Images */
+
+.right, .left, .full-width {
+  padding: 1em 0;
+}
+
+.right {
+  float: right !important;
+  padding-left: 1.5em;
+}
+
+.left {
+  float: left !important;
+  padding-right: 1.5em;
+}
+
+.full-width {
+  width: 100%;
+}
