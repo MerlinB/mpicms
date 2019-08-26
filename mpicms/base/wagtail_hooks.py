@@ -61,7 +61,7 @@ def send_notifications(request, page):
                 Log in to the admin interface and click <a href="{request.build_absolute_uri(reverse('wagtailadmin_pages_unsubscribe', args=[page.id]))}">here</a> to unsubscribe.''',
             settings.DEFAULT_FROM_EMAIL,
             subscribers,
-            fail_silently=False)
+            fail_silently=True)
         logger.debug(f'Send change notification to {subscribers}')
 
 

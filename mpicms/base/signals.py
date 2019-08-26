@@ -19,7 +19,7 @@ def notify_user(sender, instance, action, model, pk_set, **kwargs):
             f'An admin has added you to the following group/groups: {groups}. You are now granted all associated permissons.',
             settings.DEFAULT_FROM_EMAIL,
             [instance.email],
-            fail_silently=False,
+            fail_silently=True,
         )
         logger.debug(f'User {instance} added to {groups}. Email sent out.')
 
