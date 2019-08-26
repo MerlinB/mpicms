@@ -7,6 +7,7 @@ from django.templatetags.static import static
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.conf import settings
+from django.utils.html import strip_tags
 
 from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
 from wagtail.core import hooks
@@ -53,14 +54,17 @@ def send_notifications(request, page):
     subscribers = [user.email for user in page.subscribers.exclude(id=request.user.id)]
 
     if subscribers:
+        html_message = f'''<a href="{request.build_absolute_uri(reverse('wagtailadmin_pages:revisions_index', args=[page.id]))}">View changes</a>\n
+Edited by {request.user}.
+You are receiving this message because you subscribed to updates for page {page.get_admin_display_title()}.
+Log in to the admin interface and click <a href="{request.build_absolute_uri(reverse('wagtailadmin_pages_unsubscribe', args=[page.id]))}">here</a> to unsubscribe.'''
+
         send_mail(
             f'Page {page.get_admin_display_title()} edited.',
-            f'''<a href="{request.build_absolute_uri(reverse('wagtailadmin_pages:revisions_index', args=[page.id]))}">View changes</a>\n
-                Edited by {request.user}.
-                You are receiving this message because you subscribed to updates for page {page.get_admin_display_title()}.
-                Log in to the admin interface and click <a href="{request.build_absolute_uri(reverse('wagtailadmin_pages_unsubscribe', args=[page.id]))}">here</a> to unsubscribe.''',
+            strip_tags(htmL_message),
             settings.DEFAULT_FROM_EMAIL,
             subscribers,
+            html_message=html_message,
             fail_silently=True)
         logger.debug(f'Send change notification to {subscribers}')
 
