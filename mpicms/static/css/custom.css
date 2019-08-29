@@ -605,3 +605,13 @@ body {
   width: 100%;
   display: inline-block;
 }
+
+/* Links */
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: grey;
+}
