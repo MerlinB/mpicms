@@ -9,9 +9,6 @@
 
 {% block page_content %}
     <h2 class="title is-2">{{ page.title }}</h2>
-    {% if not page.body %}
-        {% include 'base/components/list_menu.html' with items=page.get_children.in_menu.live %}
-    {% endif %}
 
     <div id="toc" class="content"></div>
 
