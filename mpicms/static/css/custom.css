@@ -599,14 +599,12 @@ body {
   width: 100%;
 }
 
-/* Text content */
+/* Content */
 
 .content h1, .content h2, .content h3 {
   width: 100%;
   display: inline-block;
 }
-
-/* Links */
 
 a {
   color: inherit;
@@ -614,4 +612,12 @@ a {
 
 a:hover {
   color: grey;
+}
+
+.rich-text::after {
+  content: '';
+  width: 100%;
+  height: 0;
+  display: table;
+  clear: both;
 }
