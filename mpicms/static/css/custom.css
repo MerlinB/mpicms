@@ -598,3 +598,10 @@ body {
 .full-width {
   width: 100%;
 }
+
+/* Text content */
+
+.content h1, .content h2, .content h3 {
+  width: 100%;
+  display: inline-block;
+}
