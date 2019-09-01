@@ -219,6 +219,8 @@ LANGUAGES = (
     ('de', _('German')),
 )
 
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('en', 'de')
+
 LOCALE_PATHS = [
     os.path.join(ROOT_DIR, 'locale'),
 ]

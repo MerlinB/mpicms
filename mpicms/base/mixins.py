@@ -1,8 +1,9 @@
 from django.utils import translation
 from django.conf import settings
 from django.db import models
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, get_language_info
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.core.models import Page
@@ -63,6 +64,13 @@ class BodyMixin(Page):
                 'richtext',
                 'markdown'
             ] else None
+
+    def serve(self, request):
+        lang = request.LANGUAGE_CODE
+        if not getattr(self, 'body_' + lang):
+            messages.info(request, _('Page not available in ') + get_language_info(lang)['name_local'])
+
+        return super().serve(request)
 
     class Meta:  # noqa
         abstract = True
