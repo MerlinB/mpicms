@@ -1,0 +1,80 @@
+{% load static i18n wagtailcore_tags %}
+
+<h1 class="title has-text-centered">{% trans 'Contact List' %}</h1>
+
+    <div class="contact_search">
+        <input id="search_field" type="text" class="search input" placeholder="{% trans 'Search contacts' %}"/>
+
+        <div class="dropdown">
+            <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true">
+                <span>{% trans 'Filter by group' %}</span>
+                <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+                </button>
+            </div>
+            <div class="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+
+                {% for group in groups %}
+                    <a href="{% url 'contacts' %}?group={{ group.pk }}" class="{% if group.pk|stringformat:'d' == request.GET.group %}is-active {% endif %}dropdown-item">
+                        {{ group }}
+                    </a>
+                {% endfor %}
+                
+                <hr class="dropdown-divider">
+                <a href="{% url 'contacts' %}" class="dropdown-item">
+                    {% trans 'Reset filter' %}
+                </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="contacts" class="contacts_table">
+
+    <table class="table" style="width: 100%;">
+        <thead>
+            <tr>
+                <th class="sort" data-sort="degree"><a>{% trans 'Title' %}</a></th>
+                <th class="sort" data-sort="first_name"><a>{% trans 'First Name' %}</a></th>
+                <th class="sort" data-sort="last_name"><a>{% trans 'Last Name' %}</a></th>
+                <th class="sort" data-sort="email"><a>{% trans 'Email' %}</a></th>
+                <th class="sort" data-sort="phone"><a>{% trans 'Phone' %}</a></th>
+                <th class="sort" data-sort="room"><a>{% trans 'Room' %}</a></th>
+                <th class="sort" data-sort="positions"><a>{% trans 'Positions' %}</a></th>
+                <th class="sort" data-sort="groups"><a>{% trans 'Groups' %}</a></th>
+            </tr>
+        </thead>
+        <tbody class="jslist">
+            {% for contact in object_list %}
+            <tr>
+                <td class="degree">{{ contact.title }}</td>
+                <td class="first_name">{{ contact.first_name }}</td>
+                <td class="last_name">{{ contact.last_name }}</td>
+                <td class="email">{{ contact.email }}</td>
+                <td class="phone">{{ contact.phone }}</td>
+                <td class="room">{{ contact.room }}</td>
+                <td class="positions">{% for contactposition in contact.positions.all %}{{ contactposition.position }}<br>{% endfor %}</td>
+                <td class="groups">{% for contactgroup in contact.groups.all %}{{ contactgroup.group }}<br>{% endfor %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        var options = {
+            listClass: 'jslist',
+            valueNames: [ 'degree', 'first_name', 'last_name', 'email', 'phone', 'room', 'positions', 'groups' ]
+        };
+
+        var userList = new List('contacts', options);
+
+        var search_field = document.getElementById('search_field');
+        search_field.addEventListener('keyup', function() {
+            var searchString = search_field.value;
+            userList.search(searchString);
+        });
+
+    </script>

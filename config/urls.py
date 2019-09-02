@@ -12,7 +12,7 @@ from django.views import defaults as default_views, static as static_views
 
 from mpicms.base.views import search, LogoutView, account, add_subpage, subscribe, unsubscribe
 from mpicms.base.api import api_router
-from mpicms.personal.views import ContactListView
+from mpicms.personal.views import ContactListView, RawContactListView
 
 
 urlpatterns = [
@@ -46,7 +46,8 @@ urlpatterns = [
     re_path(r'^sitemap\.xml$', sitemap),
     path('api/v2/', api_router.urls),
     path('logout', LogoutView.as_view(), name='logout'),
-    path('contacts/', ContactListView.as_view(), name='contacts')
+    path('contacts/', ContactListView.as_view(), name='contacts'),
+    path('contactsraw/', RawContactListView.as_view(), name='contacts')
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )

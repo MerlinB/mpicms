@@ -18,3 +18,7 @@ class ContactListView(ListView):
         context = super().get_context_data(**kwargs)
         context['groups'] = Group.objects.all()
         return context
+
+
+class RawContactListView(ContactListView):
+    template_name = 'personal/contact_list_raw.html'
