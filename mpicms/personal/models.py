@@ -37,6 +37,25 @@ class ContactGroups(Orderable, models.Model):
     ]
 
 
+class ContactPositions(Orderable, models.Model):
+    """
+    This defines the relationship between the `Position` within the `Contact` model below.
+    """
+    contact = FilterableParentalKey(
+        'Contact', related_name=_('positions'), on_delete=models.CASCADE
+    )
+    position = models.ForeignKey(
+        'personal.Position',
+        related_name='contacts',
+        on_delete=models.CASCADE,
+        verbose_name=_('positions')
+    )
+
+    panels = [
+        SnippetChooserPanel('position'),
+    ]
+
+
 class ContactManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_active=True)
@@ -80,7 +99,6 @@ class Contact(index.Indexed, ClusterableModel):
     email = models.EmailField(_("email"), blank=True)
     phone = models.CharField(_("phone number"), blank=True, max_length=50)
     room = models.CharField(_("room"), max_length=25, blank=True)
-    position = models.ForeignKey('personal.Position', verbose_name=_("position"), blank=True, null=True, on_delete=models.SET_NULL)
     is_active = models.BooleanField(_("is active"), default=True)
     priority = models.PositiveSmallIntegerField(
         _("priority"), blank=True, default=0, validators=[MaxValueValidator(999)],
@@ -94,7 +112,9 @@ class Contact(index.Indexed, ClusterableModel):
             FieldPanel('first_name'),
             FieldPanel('last_name'),
         ], heading='Name'),
-        SnippetChooserPanel('position'),
+        InlinePanel(
+            'positions', label="Positions",
+            panels=None),
         FieldPanel('email'),
         FieldPanel('phone'),
         FieldPanel('room'),

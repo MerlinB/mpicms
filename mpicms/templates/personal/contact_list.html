@@ -54,7 +54,7 @@
                 <th class="sort" data-sort="email"><a>{% trans 'Email' %}</a></th>
                 <th class="sort" data-sort="phone"><a>{% trans 'Phone' %}</a></th>
                 <th class="sort" data-sort="room"><a>{% trans 'Room' %}</a></th>
-                <th class="sort" data-sort="position"><a>{% trans 'Position' %}</a></th>
+                <th class="sort" data-sort="positions"><a>{% trans 'Positions' %}</a></th>
                 <th class="sort" data-sort="groups"><a>{% trans 'Groups' %}</a></th>
             </tr>
         </thead>
@@ -67,7 +67,7 @@
                 <td class="email">{{ contact.email }}</td>
                 <td class="phone">{{ contact.phone }}</td>
                 <td class="room">{{ contact.room }}</td>
-                <td class="position">{% if contact.position %}{{ contact.position }}{% endif %}</td>
+                <td class="positions">{% for contactposition in contact.positions.all %}{{ contactposition.position }} {% endfor %}</td>
                 <td class="groups">{% for contactgroup in contact.groups.all %}{{ contactgroup.group }} {% endfor %}</td>
             </tr>
             {% endfor %}
@@ -77,7 +77,7 @@
     <script>
         var options = {
             listClass: 'jslist',
-            valueNames: [ 'degree', 'first_name', 'last_name', 'email', 'phone', 'room', 'position', 'groups' ]
+            valueNames: [ 'degree', 'first_name', 'last_name', 'email', 'phone', 'room', 'positions', 'groups' ]
         };
 
         var userList = new List('contacts', options);

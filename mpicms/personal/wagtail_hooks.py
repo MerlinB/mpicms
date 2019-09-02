@@ -33,9 +33,9 @@ class ContactAdmin(ModelAdmin):
     model = Contact
     menu_label = _('Persons')
     menu_icon = 'user'
-    list_display = ['title', 'first_name', 'last_name', 'position', 'email', 'phone', 'room', 'get_groups']
-    list_filter = ['groups__group', 'is_active', 'position']
-    search_fields = ['title', 'first_name', 'last_name', 'position__title', 'email', 'phone', 'room']
+    list_display = ['title', 'first_name', 'last_name', 'get_positions', 'email', 'phone', 'room', 'get_groups']
+    list_filter = ['groups__group', 'is_active', 'positions__position']
+    search_fields = ['title', 'first_name', 'last_name', 'email', 'phone', 'room']
 
     edit_view_class = ContactEditView
     inspect_view_class = ContactInspectView
@@ -44,6 +44,10 @@ class ContactAdmin(ModelAdmin):
     def get_groups(self, obj):
         return ", ".join([group.__str__() for group in Group.objects.filter(contacts__in=obj.groups.all()).distinct()])
     get_groups.short_description = _('Groups')
+
+    def get_positions(self, obj):
+        return ", ".join([position.__str__() for position in Position.objects.filter(contacts__in=obj.positions.all()).distinct()])
+    get_groups.short_description = _('Positions')
 
     def get_queryset(self, request):
         qs = self.model._default_manager.include_inactive()
