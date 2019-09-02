@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-18 18:30+0200\n"
+"POT-Creation-Date: 2019-09-02 10:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,9 +38,13 @@ msgstr "Markdown-Text"
 msgid "Table"
 msgstr "Tabelle"
 
-#: mpicms/base/blocks.py:18 mpicms/base/mixins.py:42
+#: mpicms/base/blocks.py:18 mpicms/base/mixins.py:43
 msgid "content"
 msgstr "Inhalt"
+
+#: mpicms/base/mixins.py:71
+msgid "Page not available in "
+msgstr "Seite nicht verfügbar in "
 
 #: mpicms/base/models.py:41 mpicms/personal/models.py:50
 #: mpicms/personal/models.py:77
@@ -136,15 +140,15 @@ msgstr "'{}' erfolgreich abboniert."
 msgid "Successfully unsubscribed from '{}'."
 msgstr "'{}' deabboniert."
 
-#: mpicms/base/wagtail_hooks.py:43
+#: mpicms/base/wagtail_hooks.py:44
 msgid "View website"
 msgstr "Zur Webseite"
 
-#: mpicms/base/wagtail_hooks.py:48
+#: mpicms/base/wagtail_hooks.py:49
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: mpicms/base/wagtail_hooks.py:69
+#: mpicms/base/wagtail_hooks.py:74
 msgid "Featured Images"
 msgstr "Titelbilder"
 
@@ -276,7 +280,7 @@ msgstr "Zurück zur Live-Version"
 #: mpicms/templates/base/components/search.html:3
 #: mpicms/templates/base/components/search_big.html:17
 #: mpicms/templates/base/search_results.html:9
-#: mpicms/templates/menus/main.html:103
+#: mpicms/templates/menus/main.html:115
 msgid "Search"
 msgstr "Suche"
 
@@ -291,10 +295,6 @@ msgstr "Intranet des Max-Planck-Instituts für molekulare Genetik"
 #: mpicms/templates/base/components/search_big.html:11
 msgid "Search the Intranet"
 msgstr "Das Intranet durchsuchen"
-
-#: mpicms/templates/base/home_page.html:19
-msgid "Content"
-msgstr "Inhalt"
 
 #: mpicms/templates/base/root_page.html:32
 msgid "Events this week"
@@ -404,3 +404,6 @@ msgstr "Abboniert"
 #: mpicms/templates/wagtailadmin/pages/_subscription_switch.html:18
 msgid "Not subscribed"
 msgstr "Nicht Abboniert"
+
+#~ msgid "Content"
+#~ msgstr "Inhalt"
