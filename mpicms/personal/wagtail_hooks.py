@@ -61,7 +61,7 @@ class GroupAdmin(ModelAdmin):
     model = Group
     menu_label = _('Groups')
     menu_icon = 'group'
-    search_fields = 'name'
+    search_fields = ['name', 'slug']
 
 
 class PositionAdmin(ModelAdmin):

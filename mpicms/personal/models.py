@@ -156,7 +156,8 @@ class Contact(index.Indexed, ClusterableModel):
 
 @register_snippet
 class Group(index.Indexed, ClusterableModel):
-    name = models.CharField(_("name"), max_length=254)
+    slug = models.CharField(_("slug"), max_length=254)
+    name = models.CharField(_("name"), max_length=254, blank=True)
     priority = models.PositiveSmallIntegerField(
         _("priority"), blank=True, default=0, validators=[MaxValueValidator(99)],
         help_text=_("Priority from 0-99 to determine the sorting order."))
@@ -168,6 +169,7 @@ class Group(index.Indexed, ClusterableModel):
 
     search_fields = [
         index.SearchField('name'),
+        index.SearchField('slug'),
     ]
 
     @property
@@ -175,7 +177,7 @@ class Group(index.Indexed, ClusterableModel):
         return [relation.contact for relation in self.contacts.select_related('contact')]
 
     def __str__(self):
-        return self.name
+        return self.name or self.slug
 
     class Meta:  # noqa
         verbose_name = 'Group'
