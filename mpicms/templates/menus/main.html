@@ -67,8 +67,8 @@
     <div class="navbar-menu" id="navMenu" style="flex-shrink: 1">
       <div class="navbar-start" style="flex-wrap: wrap;">
         {% for item in request.site.root_page.get_children.live.in_menu %}
-          {% with item.get_children.live.in_menu as children %}
-            {% if children %}
+          {% with item.get_children.live.in_menu as parents %}
+            {% if parents %}
               <div class="navbar-item has-dropdown is-hoverable">
                 <a href="{% pageurl item %}" class="navbar-link navbar-title is-hidden-touch">
                   {{ item }}
@@ -78,10 +78,22 @@
                 </a>
 
                 <div class="navbar-dropdown is-hidden-touch is-boxed">
-                  {% for child in children %}
-                  <a href="{% pageurl child %}" class="navbar-item">
-                    {{ child }}
+                  {% for parent in parents %}
+                  <a href="{% pageurl parent %}" class="navbar-item">
+                    <b>{{ parent }}</b>
                   </a>
+                    {% with parent.get_children.live.in_menu as children %}
+                      {% if children %}
+                        {% for child in children %}
+                          <a href="{% pageurl child %}" class="navbar-item">
+                            {{ child }}
+                          </a>
+                        {% endfor %}
+                      {% endif %}
+                    {% endwith %}
+                      {% if not forloop.last %}
+                        <hr class="dropdown-divider">
+                      {% endif %}
                   {% endfor %}
                 </div>
               </div>
