@@ -285,6 +285,14 @@ body {
   font-family: "Merriweather Sans", sans-serif;
 }
 
+.breadcrumb a {
+  color: #006c66;
+}
+
+.breadcrumb a:hover {
+  color: grey;
+}
+
 .navbar-link:not(.is-arrowless)::after {
   border-color: #006c66 !important;
 }
@@ -607,7 +615,7 @@ body {
 }
 
 a {
-  color: inherit;
+  color: #006c66;
 }
 
 a:hover {
@@ -620,4 +628,14 @@ a:hover {
   height: 0;
   display: table;
   clear: both;
+}
+
+/* Navbar */
+
+.navbar-dropdown a {
+  color: #006c66;
+}
+
+.navbar-dropdown a:hover {
+  color: grey !important;
 }
