@@ -131,6 +131,7 @@ class Contact(index.Indexed, ClusterableModel):
         index.SearchField('email', partial_match=True),
         index.SearchField('phone'),
         index.SearchField('room'),
+        index.FilterField('is_active')
         # index.SearchField('groups'),
     ]
 
