@@ -485,7 +485,7 @@ body {
 }
 
 .calendar-list .fc-scroller {
-  max-height: 30rem;
+  /* max-height: 30rem; */
   height: auto !important;
   min-height: 6rem;
 }
