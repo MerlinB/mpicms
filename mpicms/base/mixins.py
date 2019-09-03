@@ -67,7 +67,7 @@ class BodyMixin(Page):
 
     def serve(self, request):
         lang = request.LANGUAGE_CODE
-        if not getattr(self, 'body_' + lang):
+        if not getattr(self, 'body_' + lang) and self.body:
             messages.info(request, _('Page not available in ') + get_language_info(lang)['name_local'])
 
         return super().serve(request)
