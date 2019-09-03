@@ -18,6 +18,7 @@ class Event(BodyMixin, BasePage):
     end_date = models.DateField(_('end date'), blank=True, null=True)
     start_time = models.TimeField(_('start time'), blank=True, null=True)
     end_time = models.TimeField(_('end time'), blank=True, null=True)
+    room = models.CharField(_('Room'), max_length=10, blank=True)
 
     header_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -40,7 +41,8 @@ class Event(BodyMixin, BasePage):
                 FieldPanel('end_time'),
             ],
             heading=_('event dates')
-        )
+        ),
+        FieldPanel('room')
     ]
 
     api_fields = BodyMixin.api_fields + [
@@ -48,6 +50,7 @@ class Event(BodyMixin, BasePage):
         APIField('end_date'),
         APIField('start_time'),
         APIField('end_time'),
+        APIField('room')
     ]
 
     @property
@@ -62,6 +65,10 @@ class Event(BodyMixin, BasePage):
             date = self.end_date or self.start_date
             return datetime.combine(date, self.end_time)
         return self.end_date
+
+    @property
+    def room_link(self):
+        return 'https://twiki.molgen.mpg.de/foswiki/bin/room/' + self.room
 
     def get_dict(self, request=None):
         return {

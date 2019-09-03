@@ -647,3 +647,17 @@ a:hover {
     margin: 0;
   }
 }
+
+/* Tags */
+
+.tag {
+  border-radius: 0 !important;
+}
+
+a.tag {
+  color: #006c66;
+}
+
+a.tag:hover {
+  color: grey;
+}
