@@ -59,7 +59,8 @@ class Event(BodyMixin, BasePage):
     @property
     def end(self):
         if self.end_time:
-            return datetime.combine(self.end_date, self.end_time)
+            date = self.end_date or self.start_date
+            return datetime.combine(date, self.end_time)
         return self.end_date
 
     def get_dict(self, request=None):
