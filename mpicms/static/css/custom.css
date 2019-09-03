@@ -639,3 +639,11 @@ a:hover {
 .navbar-dropdown a:hover {
   color: grey !important;
 }
+
+/* Fix table overflow on mobile */
+
+@media screen and (max-width: 1087px) {
+  .container {
+    margin: 0;
+  }
+}
