@@ -16,7 +16,7 @@
         <div class="tag is-medium">
             <i class="fa fa-calendar"></i>
             {{ page.start_date | naturalday }}
-            {% if page.end_date %}
+            {% if page.end_date and page.end_date != page.start_date %}
                 - {{ page.end_date | naturalday }}
             {% endif %}
         </div>
@@ -27,6 +27,11 @@
             <div class="tag is-medium">
                 <i class="fa fa-clock"></i>
                 {{ page.start_time | naturaltime }}
+                {% if not page.end_date or page.start_date == page.end_date %}
+                    {% if page.end_time != page.start_time %}
+                        - {{ page.end_time | naturaltime }}
+                    {% endif %}
+                {% endif %}
             </div>
         </p>
     {% endif %}
