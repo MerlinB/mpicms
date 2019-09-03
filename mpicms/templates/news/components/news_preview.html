@@ -4,7 +4,7 @@
 {% for news_page in news %}
     {% with news_page.specific.news_items as news_entries %}
         {% if news_entries %}
-        <h3 class="title is-3">{{ news_page.title }}</h3>
+        <h3 class="title is-3 has-text-centered">{{ news_page.title }}</h3>
         {% include 'news/components/cards.html' with items=news_entries %}
         <div class="section-button">
             <a href="{% pageurl news_page %}"><button class="button">{% trans 'All news' %}&nbsp&nbsp<i class="fas fa-chevron-right"></i></button></a>

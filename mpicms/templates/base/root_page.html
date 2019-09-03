@@ -27,8 +27,8 @@
 
         {% if page.event_index %}
             <div class="column">
+                <h3 class="title is-3 has-text-centered">{% trans 'Events this week' %}</h3>
                 <div class="calendar-list">
-                    <h3 class="title is-3">{% trans 'Events this week' %}</h3>
                     {% include 'events/components/event_list.html' with event_index=page.event_index %}
 
                 </div>
@@ -40,7 +40,7 @@
 
         {% if page.featured_image %}
             <div class="column">
-                <h3 class="title is-3">{{ page.featured_image.title }}</h3>
+                <h3 class="title is-3 has-text-centered">{{ page.featured_image.title }}</h3>
                 <div class="card">
                     <div class="card-image">
                         <figure class="image">
