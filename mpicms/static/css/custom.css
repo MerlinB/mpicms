@@ -25,6 +25,10 @@ body {
   flex: 1;
 }
 
+.box {
+  border-radius: 0;
+}
+
 .footer-top {
   height:0;
   border-width:0 0 5vw 100vw;

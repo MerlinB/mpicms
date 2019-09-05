@@ -1,0 +1,24 @@
+{% load i18n wagtailcore_tags %}
+
+{% if publications %}
+    <h3 class="title is-3 has-text-centered">{% trans 'Publications' %}</h3>
+    <div class="box">
+        <table class="table is-fullwidth">
+            <tbody>
+                {% for publication in publications %}
+                    <tr><td>
+                        {% if publication.doi %}
+                            <a href="{{ publication.link }}"><b>{{ publication.title|richtext }}</b></a>
+                        {% else %}
+                            <b>{{ publication.title|richtext }}</b>
+                        {% endif %}
+
+                        {{ publication.groups|richtext }}
+                        {{ publication.authors|richtext }}
+                        {{ publication.source|richtext }}
+                    </td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}

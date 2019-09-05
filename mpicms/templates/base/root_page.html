@@ -1,6 +1,6 @@
 {% extends 'base/page_wide.html' %}
 
-{% load i18n wagtailcore_tags wagtailimages_tags %}
+{% load i18n wagtailcore_tags wagtailimages_tags publication_tags %}
 
 
 {% block page_content %}
@@ -55,6 +55,7 @@
         {% endif %}
     </div>
 
+    {% publication_list %}
 
 
 
