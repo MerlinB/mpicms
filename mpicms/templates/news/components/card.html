@@ -1,0 +1,23 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+<div class="card is-preview">
+    {% if item.specific.header_image %}
+        <div class="card-image">
+            <figure class="image">
+                {% image item.specific.header_image fill-1000x400 %}
+            </figure>
+        </div>
+    {% endif %}
+    <div class="card-content" style="padding-bottom: 0;">
+        <a href="{% pageurl item %}" class="title is-4">{{ item.title }}</a>
+        <time datetime="{{ item.specific.date }}">{{ item.specific.date }}</time>
+        <div class="content">
+            {% if item.specific.preview_text %}
+                {{ item.specific.preview_text|truncatewords_html:20 }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="card-bottom"></div>
+    <a href="{% pageurl item %}" class="card-footer-item card-link"><i class="fas fa-chevron-right"></i></a>
+</div>

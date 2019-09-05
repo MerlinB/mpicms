@@ -5,7 +5,11 @@
     {% with news_page.specific.news_items as news_entries %}
         {% if news_entries %}
         <h3 class="title is-3 has-text-centered">{{ news_page.title }}</h3>
-        {% include 'news/components/cards.html' with items=news_entries %}
+        <div class="flex-base news">
+            {% for item in news_entries|slice:amount %}
+                {% include 'news/components/card.html' with item=item %}
+            {% endfor %}
+        </div>
         <div class="section-button">
             <a href="{% pageurl news_page %}"><button class="button">{% trans 'All news' %}&nbsp&nbsp<i class="fas fa-chevron-right"></i></button></a>
         </div>

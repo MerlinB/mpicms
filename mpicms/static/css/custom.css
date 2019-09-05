@@ -354,7 +354,7 @@ body {
 
 .is-preview {
   /* max-width: 50%; */
-  flex-basis: 10rem;
+  flex-basis: 17rem;
   overflow: hidden;
 }
 
