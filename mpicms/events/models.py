@@ -66,10 +66,6 @@ class Event(BodyMixin, BasePage):
             return datetime.combine(date, self.end_time)
         return self.end_date
 
-    @property
-    def room_link(self):
-        return 'https://twiki.molgen.mpg.de/foswiki/bin/room/' + self.room
-
     def get_dict(self, request=None):
         return {
             'title': self.title,

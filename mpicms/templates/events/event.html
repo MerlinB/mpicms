@@ -1,6 +1,6 @@
 {% extends 'base/page.html' %}
 
-{% load wagtailcore_tags humanize wagtailimages_tags %}
+{% load wagtailcore_tags humanize wagtailimages_tags base_tags %}
 
 {% block page_content %}
     {% if page.header_image %}
@@ -37,7 +37,7 @@
 
 
         {% if page.room %}
-            <a href="{{ page.room_link }}" class="tag is-medium">
+            <a href="{% room_link page.room %}" class="tag is-medium">
                 <i class="fa fa-building"></i>
                 {{ page.room }}
             </a>

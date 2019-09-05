@@ -3,3 +3,6 @@ def can_create(request, model):
     if request.user.is_staff or request.user.is_superuser:
         return True
     return not getattr(model, 'creation_limited', False)
+
+def get_room_link(room):
+    return 'https://twiki.molgen.mpg.de/foswiki/bin/room/' + room
