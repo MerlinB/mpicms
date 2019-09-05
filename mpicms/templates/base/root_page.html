@@ -24,13 +24,21 @@
         <div class="column">
             {% include 'news/components/news_preview.html' with news=page.news %}
         </div>
+    </div>
+
+    <div class="columns is-desktop">
+        <div class="column" style="flex-grow: 2;">
+            {% publication_list %}
+        </div>
 
         {% if page.event_index %}
             <div class="column">
                 <h3 class="title is-3 has-text-centered">{% trans 'Events this week' %}</h3>
-                <div class="calendar-list">
-                    {% include 'events/components/event_list.html' with event_index=page.event_index %}
+                <div class="overflow-container">
+                    <div class="calendar-list">
+                        {% include 'events/components/event_list.html' with event_index=page.event_index %}
 
+                    </div>
                 </div>
                 <div class="section-button" >
                     <a href="{% pageurl page.event_index %}"><button class="button">{% trans 'All events' %}&nbsp&nbsp<i class="fas fa-chevron-right"></i></button></a>
@@ -38,26 +46,23 @@
             </div>
         {% endif %}
 
-        {% if page.featured_image %}
-            <div class="column">
-                <h3 class="title is-3 has-text-centered">{{ page.featured_image.title }}</h3>
-                <div class="card">
-                    <div class="card-image">
-                        <figure class="image">
-                            {% image page.featured_image.image original %}
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="content">{{ page.featured_image.text|richtext }}</div>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
     </div>
 
-    {% publication_list %}
-
-
+    {% if page.featured_image %}
+        <div class="column">
+            <h3 class="title is-3 has-text-centered">{{ page.featured_image.title }}</h3>
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image">
+                        {% image page.featured_image.image original %}
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="content">{{ page.featured_image.text|richtext }}</div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 
 
 {% endblock %}

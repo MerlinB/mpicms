@@ -2,7 +2,7 @@
 
 {% if publications %}
     <h3 class="title is-3 has-text-centered">{% trans 'Publications' %}</h3>
-    <div class="box">
+    <div class="box publication-box">
         <table class="table is-fullwidth">
             <tbody>
                 {% for publication in publications %}
@@ -20,5 +20,8 @@
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+    <div class="section-button" >
+        <a href="https://www.molgen.mpg.de/publikationen"><button class="button">{% trans 'More in RuPe' %}&nbsp&nbsp<i class="fas fa-chevron-right"></i></button></a>
     </div>
 {% endif %}

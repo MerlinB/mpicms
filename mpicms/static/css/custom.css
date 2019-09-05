@@ -354,7 +354,7 @@ body {
 
 .is-preview {
   /* max-width: 50%; */
-  flex-basis: 25rem;
+  flex-basis: 10rem;
   overflow: hidden;
 }
 
@@ -407,8 +407,14 @@ body {
   display: flex !important;
   flex-wrap: wrap;
   align-items: stretch;
-  width: 100%;
+  /* width: 100%; */
   justify-content: space-around;
+}
+
+@media (max-width: 1087px) {
+  .flex-base {
+    display: block !important;
+  }
 }
 
 .news .card {
@@ -435,8 +441,9 @@ body {
   text-transform: uppercase;
   font-weight: 400;
   color: #006c66;
-  position: relative;
-  float: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
   z-index: 10;
 }
 
@@ -484,8 +491,18 @@ body {
 }
 
 /* Full Calendar */
+
+.overflow-container {
+  overflow: auto;
+  width: inherit; 
+}
+
 .fc-button {
   border-radius: 0 !important;
+}
+
+.calendar-list {
+  min-width: 30rem;
 }
 
 .calendar-list .fc-scroller {
@@ -664,4 +681,10 @@ a.tag {
 
 a.tag:hover {
   color: grey;
+}
+
+/* Publications */
+
+.publication-box {
+  margin: 1rem;
 }
