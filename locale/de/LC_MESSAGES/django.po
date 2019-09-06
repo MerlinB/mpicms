@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-05 13:03+0200\n"
+"POT-Creation-Date: 2019-09-06 10:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -351,7 +351,7 @@ msgstr "Einloggen"
 msgid "See all"
 msgstr "Alle anzeigen"
 
-#: mpicms/templates/news/components/news_preview.html:10
+#: mpicms/templates/news/components/news_preview.html:14
 msgid "All news"
 msgstr "Alle Neuigkeiten"
 
@@ -394,8 +394,10 @@ msgid "Phone"
 msgstr "Telefon"
 
 #: mpicms/templates/publications/components/list.html:25
-msgid "More in RuPe"
-msgstr "Mehr in RuPe"
+#, fuzzy
+#| msgid "More in RuPe"
+msgid "More in PuRe"
+msgstr "Mehr in PuRe"
 
 #: mpicms/templates/wagtailadmin/home.html:5
 msgid "Welcome to the Intranet CMS"
