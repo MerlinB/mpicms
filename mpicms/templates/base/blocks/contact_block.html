@@ -1,41 +1,36 @@
 {% load i18n base_tags %}
 
-<h4 class="">{% trans 'Contact' %}</h4>
-
-{% for contact in value %}
-
-        <div class="card contact">
-            <header class="card-header">
-                <p class="card-header-title" style="font-weight: 400;">
-                    {{ contact.contact }}
-                </p>
-            </header>
-            <div class="card-content">
-                {% if contact.contact.position %}
-                    <p><b>{{ contact.contact.position }}</b></p>
-                    <br>
-                {% endif %}
-                <table>
-                    <tr>
-                        <td><i class="fas fa-at"></i></td>
-                        <td><a href="mailto:{{ contact.contact.email }}">{{ contact.contact.email }}</a></td>
-                    </tr>
-                    {% if contact.contact.phone %}
-                        <tr>
-                            <td><i class="fas fa-phone"></i></td>
-                            <td>{{ contact.contact.phone }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if contact.contact.room %}
-                        <tr>
-                            <td><i class="fas fa-building"></i></td>
-                            <td><a href="{% room_link contact.contact.room %}">{{ contact.contact.room }}</td>
-                        </tr>
-                    {% endif %}
-                </table>
-                {% if contact.information %}
-                    <p>{{ contact.information|linebreaks }}</p>
-                {% endif %}
-            </div>
-        </div>
-{% endfor %}
+<div class="card contact">
+    <header class="card-header">
+        <p class="card-header-title" style="font-weight: 400;">
+            {{ value.contact }}
+        </p>
+    </header>
+    <div class="card-content">
+        {% if value.contact.position %}
+            <p><b>{{ value.contact.position }}</b></p>
+            <br>
+        {% endif %}
+        <table>
+            <tr>
+                <td><i class="fas fa-at"></i></td>
+                <td><a href="mailto:{{ value.contact.email }}">{{ value.contact.email }}</a></td>
+            </tr>
+            {% if value.contact.phone %}
+                <tr>
+                    <td><i class="fas fa-phone"></i></td>
+                    <td>{{ value.contact.phone }}</td>
+                </tr>
+            {% endif %}
+            {% if value.contact.room %}
+                <tr>
+                    <td><i class="fas fa-building"></i></td>
+                    <td><a href="{% room_link value.contact.room %}">{{ value.contact.room }}</td>
+                </tr>
+            {% endif %}
+        </table>
+        {% if value.information %}
+            <p>{{ value.information|linebreaks }}</p>
+        {% endif %}
+    </div>
+</div>

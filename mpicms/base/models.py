@@ -108,7 +108,7 @@ class HomePage(NewsMixin, BodyMixin, BasePage):
             blocks.StructBlock([
                 ('contact', SnippetChooserBlock('personal.Contact', label=_("Contact"))),
                 ('information', blocks.TextBlock(required=False, label=_('Information'))),
-            ]), icon="user", template='base/blocks/contact_block.html', label=_('Contacts'))
+            ]), icon="user", template='base/blocks/contact_list_block.html', label=_('Contacts'))
         )
     ], blank=True, verbose_name=_("Sidebar Content"))
 

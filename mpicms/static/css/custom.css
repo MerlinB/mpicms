@@ -236,15 +236,21 @@ body {
 .contact {
   line-height: 90%;
   margin: 1rem 0 !important;
+  max-width: 22rem;
 }
 
 .contact .card-content {
   padding: 1em;
+  /* overflow: auto; */
 }
 
 .contact .card-content p {
   line-height: 120%;
   /* padding: 0.5em; */
+}
+
+.contact .card-content td {
+  word-break: break-all;
 }
 
 /* .contact table {

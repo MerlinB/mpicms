@@ -1,0 +1,7 @@
+{% load i18n base_tags %}
+
+<h4 class="">{% trans 'Contact' %}</h4>
+
+{% for contact in value %}
+    {% include 'base/blocks/contact_block.html' with value=contact%}
+{% endfor %}
