@@ -55,4 +55,32 @@ document.addEventListener('DOMContentLoaded', function () {
     function getAll(selector) {
         return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
     }
+
+    //Modals
+    document.querySelectorAll(['.richtext-image', '.modal-image']).forEach(function(el, index) {
+        document.body.insertAdjacentHTML('afterbegin', 
+            `<div id="modal-${index}" class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <p class="image has-ratio">
+                        <img src="${el.getAttribute('src')}" width="${el.getAttribute('width')}" height="${el.getAttribute('height')}" alt="${el.getAttribute('alt')}">
+                    </p>
+                </div>
+                <button class="modal-close is-large" aria-label="close"></button>
+            </div>`
+        );
+        el.addEventListener('click', function(event) {
+            event.preventDefault();
+            var modal = document.getElementById(`modal-${index}`);
+            modal.classList.add('is-active');
+        
+            modal.querySelectorAll(['.modal-background', '.modal-close']).forEach(function(el){
+                el.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.classList.remove('is-active');
+                });
+            });
+        });
+    });
+
 });

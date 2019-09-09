@@ -610,6 +610,22 @@ body {
 
 
 /* Images */
+.header-image {
+  height: 28rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.header-image > img {
+  /* margin-bottom: 20%;
+  transform: translateY(-20%); */
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+}
 
 .right, .left, .full-width {
   padding: 1em 0;

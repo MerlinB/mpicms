@@ -4,11 +4,7 @@
 
 {% block page_content %}
 
-    {% if page.header_image %}
-        <figure class="image">
-            {% image page.header_image fill-1000x400 %}
-        </figure>
-    {% endif %}
+    {% include 'base/components/header_image.html' %}
     <section class="section">
             {% if page.header_image %}
             {% endif %}

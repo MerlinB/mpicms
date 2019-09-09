@@ -3,11 +3,7 @@
 {% load wagtailcore_tags humanize wagtailimages_tags base_tags %}
 
 {% block page_content %}
-    {% if page.header_image %}
-    <figure class="image">
-        {% image page.header_image fill-1000x400 %}
-    </figure>
-    {% endif %}
+    {% include 'base/components/header_image.html' %}
 
     <div class="section">
     <h2 class="title is-2">{{ page.title }}</h2>

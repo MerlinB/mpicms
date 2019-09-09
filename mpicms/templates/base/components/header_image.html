@@ -1,0 +1,8 @@
+{% load wagtailimages_tags %}
+
+{% if page.header_image %}
+    {% image page.header_image original as header_image %}
+    <figure class="image header-image">
+        <img class="modal-image" src="{{ header_image.url }}" width="{{ header_image.width }}" height="{{ header_image.height }}" alt="{{ header_image.alt }}">
+    </figure>
+{% endif %}
