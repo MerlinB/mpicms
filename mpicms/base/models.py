@@ -17,6 +17,7 @@ from wagtail.core.fields import StreamField
 from mpicms.news.mixins import NewsMixin
 from mpicms.events.mixins import EventMixin
 from .mixins import BasePage, BodyMixin
+from .blocks import ContactBlock
 
 
 Page.show_in_menus_default = True
@@ -104,12 +105,7 @@ class HomePage(NewsMixin, BodyMixin, BasePage):
     sidebar = StreamField([
         ('editor', blocks.RichTextBlock(
             features=['h4', 'h5', 'h6', 'bold', 'italic', 'link', 'document-link'], label=_('Editor'))),
-        ('contacts', blocks.ListBlock(
-            blocks.StructBlock([
-                ('contact', SnippetChooserBlock('personal.Contact', label=_("Contact"))),
-                ('information', blocks.TextBlock(required=False, label=_('Information'))),
-            ]), icon="user", template='base/blocks/contact_list_block.html', label=_('Contacts'))
-        )
+        ('contacts', blocks.ListBlock(ContactBlock(), icon="user", template='base/blocks/contact_list_block.html', label=_('Contacts')))
     ], blank=True, verbose_name=_("Sidebar Content"))
 
     content_panels = Page.content_panels + BodyMixin.content_panels + [
