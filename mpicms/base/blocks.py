@@ -30,3 +30,17 @@ class ContentBlock(blocks.StreamBlock):
 
     class Meta:  # noqa
         label = _('content')
+
+
+class MenuBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label=_('Title'))
+    items = blocks.ListBlock(
+        blocks.StructBlock([
+            ('title', blocks.CharBlock(label=_('Title'))),
+            ('url', blocks.URLBlock(label=_('URL')))
+        ], label=_('Items'))
+    )
+    
+    class Meta:
+      icon = 'list-ul'
+      label = _('Menu')

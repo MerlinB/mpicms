@@ -20,7 +20,8 @@ class FeaturedImageTR(TranslationOptions):
 @register(RootPage)
 class RootPageTR(TranslationOptions):
     fields = {
-        'footer_items'
+        'footer_items',
+        'quick_links'
     }
 
 @register(HomePage)

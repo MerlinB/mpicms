@@ -17,7 +17,7 @@ from wagtail.core.fields import StreamField
 from mpicms.news.mixins import NewsMixin
 from mpicms.events.mixins import EventMixin
 from .mixins import BasePage, BodyMixin, SideBarMixin
-from .blocks import ContactBlock
+from .blocks import ContactBlock, MenuBlock
 
 
 Page.show_in_menus_default = True
@@ -72,16 +72,11 @@ class RootPage(EventMixin, NewsMixin, BasePage):
         ], icon='warning', label=_('Banner')))
     ], blank=True, verbose_name=_('Banner'))
     footer_items = StreamField([
-        ('menu', blocks.StructBlock([
-            ('title', blocks.CharBlock(label=_('Title'))),
-            ('items', blocks.ListBlock(
-                blocks.StructBlock([
-                    ('title', blocks.CharBlock(label=_('Title'))),
-                    ('url', blocks.URLBlock(label=_('URL')))
-                ], label=_('Items'))
-            ))
-        ], icon='list-ul', label=_('Menu')))
+        ('menu', MenuBlock())
     ], blank=True, verbose_name=_('Footer Items'))
+    quick_links = StreamField([
+        ('menu', MenuBlock())
+    ], blank=True, verbose_name=_('Quick Links'))
 
     parent_page_types = ['wagtailcore.Page']  # Restrict parent to be root
     max_count = 1
@@ -89,7 +84,8 @@ class RootPage(EventMixin, NewsMixin, BasePage):
     content_panels = Page.content_panels + [
         StreamFieldPanel('banner'),
         SnippetChooserPanel('featured_image'),
-        StreamFieldPanel('footer_items')
+        StreamFieldPanel('footer_items'),
+        StreamFieldPanel('quick_links')
     ]
 
     api_fields = [

@@ -109,6 +109,20 @@
       </div>
 
       <div class="navbar-end" style="flex-shrink: 0">
+        {% for menu in request.site.root_page.specific.quick_links %}
+          <div class="navbar-item has-dropdown is-hoverable">
+            <div class="navbar-link navbar-title">
+              {{ menu.value.title }}
+            </div>
+            <div class="navbar-dropdown is-hidden-touch is-boxed">
+              {% for item in menu.value.items %}
+                <a href="{{ item.url }}" class="navbar-item">
+                  {{ item.title }}
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
         <div class="navbar-item">
           <form action="{% url 'search' %}" method="get" class="field has-addons">
             <div class="control is-expanded">
