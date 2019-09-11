@@ -12,7 +12,7 @@
     <div class="card-content" style="padding-bottom: 0;">
         <a href="{% pageurl item %}" class="title is-4">{{ item.title }}</a>
         <time datetime="{{ item.specific.date }}">{{ item.specific.date }}</time>
-        <div class="content">
+        <div class="content no-images">
             {% if item.specific.preview_text %}
                 {{ item.specific.preview_text|truncatewords_html:20 }}
             {% endif %}
