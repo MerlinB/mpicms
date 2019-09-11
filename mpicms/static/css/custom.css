@@ -371,6 +371,7 @@ body {
 
 .is-preview .content {
   max-height: 7rem;
+  overflow: hidden;
 }
 
 .is-preview .card-bottom {
