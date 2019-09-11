@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -6,6 +8,7 @@ from wagtail.core.models import Page
 from wagtail.search import index
 from wagtail.api import APIField
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.edit_handlers import FieldPanel
 
 from mpicms.base.models import CategoryMixin
 from mpicms.base.mixins import BasePage, BodyMixin
@@ -43,9 +46,12 @@ class NewsPage(CategoryMixin, BasePage):
 
     @property
     def news_items(self):
+        items = NewsEntry.objects.child_of(self).live().order_by('-date')
         if self.is_news_root:
-            return NewsEntry.objects.live().order_by('-date')
-        return NewsEntry.objects.child_of(self).live().order_by('-date')
+            imported_news = NewsEntry.objects.live().filter(show_in_main_news=True)
+            combined_items = list(items) + list(imported_news)
+            items = sorted(combined_items, key=lambda x: x.date, reverse=True)
+        return items
 
 
     class Meta:  # noqa
@@ -54,7 +60,7 @@ class NewsPage(CategoryMixin, BasePage):
 
 
 class NewsEntry(CategoryMixin, BodyMixin, BasePage):
-    date = models.DateField(_("post date"), auto_now_add=True)
+    date = models.DateField(_("date"), default=date.today)
     header_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -62,11 +68,17 @@ class NewsEntry(CategoryMixin, BodyMixin, BasePage):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    show_in_main_news = models.BooleanField(default=False)
 
     show_in_menus_default = False
 
     content_panels = Page.content_panels + BodyMixin.content_panels + [
+        FieldPanel('date'),
         ImageChooserPanel('header_image'),
+    ]
+
+    promote_panels = Page.promote_panels + [
+        FieldPanel('show_in_main_news')
     ]
 
     search_fields = Page.search_fields + BodyMixin.search_fields + [
