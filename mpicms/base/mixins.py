@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _, get_language_info
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 
-from wagtail.admin.edit_handlers import StreamFieldPanel
+from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 from wagtail.search import index
@@ -42,9 +42,14 @@ class BasePage(Page):
 
 class BodyMixin(Page):
     body = StreamField(ContentBlock(), blank=True, verbose_name=_('content'))
+    show_toc = models.BooleanField(_('Show table of content'), default=True)
 
     content_panels = [
         StreamFieldPanel('body'),
+    ]
+
+    promote_panels = [
+        FieldPanel('show_toc')
     ]
 
     search_fields = [

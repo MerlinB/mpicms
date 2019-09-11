@@ -10,7 +10,9 @@
 {% block page_content %}
     <h2 class="title is-2">{{ page.title }}</h2>
 
-    <div id="toc" class="content"></div>
+    {% if page.show_toc %}
+        <div id="toc" class="content"></div>
+    {% endif %}
 
     <div id="content" class="content">
         <p>

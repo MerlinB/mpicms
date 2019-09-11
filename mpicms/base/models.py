@@ -99,6 +99,7 @@ class RootPage(EventMixin, NewsMixin, BasePage):
 
 class HomePage(NewsMixin, SideBarMixin, BodyMixin, BasePage):
     content_panels = Page.content_panels + BodyMixin.content_panels + SideBarMixin.content_panels
+    promote_panels = Page.promote_panels + BodyMixin.promote_panels
     search_fields = Page.search_fields + BodyMixin.search_fields + SideBarMixin.search_fields
     api_fields = BodyMixin.api_fields
 
@@ -115,6 +116,7 @@ class HomePage(NewsMixin, SideBarMixin, BodyMixin, BasePage):
 
 class WikiPage(CategoryMixin, SideBarMixin, BodyMixin, BasePage):
     content_panels = Page.content_panels + BodyMixin.content_panels + SideBarMixin.content_panels
+    promote_panels = Page.promote_panels + BodyMixin.promote_panels
     search_fields = Page.search_fields + BodyMixin.search_fields + SideBarMixin.search_fields
     api_fields = BodyMixin.api_fields
 

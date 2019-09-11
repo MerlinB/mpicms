@@ -45,6 +45,7 @@ class Event(BodyMixin, BasePage):
         ),
         FieldPanel('room')
     ]
+    promote_panels = Page.promote_panels + BodyMixin.promote_panels
 
     api_fields = BodyMixin.api_fields + [
         APIField('start_date'),

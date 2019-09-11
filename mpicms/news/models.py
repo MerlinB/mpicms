@@ -77,7 +77,7 @@ class NewsEntry(CategoryMixin, BodyMixin, BasePage):
         ImageChooserPanel('header_image'),
     ]
 
-    promote_panels = Page.promote_panels + [
+    promote_panels = Page.promote_panels + BodyMixin.promote_panels + [
         FieldPanel('show_in_main_news')
     ]
 

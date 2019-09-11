@@ -1,6 +1,11 @@
 {% extends 'base/page.html' %}
 
-{% load wagtailcore_tags humanize wagtailimages_tags base_tags %}
+{% load wagtailcore_tags humanize wagtailimages_tags base_tags static %}
+
+{% block head %}
+    {{ block.super }}
+    <script src="{% static 'js/toc.js' %}" defer></script>
+{% endblock %}
 
 {% block page_content %}
     {% include 'base/components/header_image.html' %}
@@ -41,7 +46,11 @@
 
     </div>
 
-    <div class="content">
+    {% if page.show_toc %}
+        <div id="toc" class="content"></div>
+    {% endif %}
+
+    <div id="content" class="content">
         <p>
             {% for block in page.body %}
                 {% include_block block %}

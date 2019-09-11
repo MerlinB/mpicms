@@ -543,6 +543,7 @@ body {
 /* TOC */
 #toc {
   font-size: 95%;
+  margin-top: 1rem;
 }
 
 #toc a::before {
