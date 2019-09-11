@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-06 10:04+0200\n"
+"POT-Creation-Date: 2019-09-11 17:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,109 +26,118 @@ msgstr "Englisch"
 msgid "German"
 msgstr "Deutsch"
 
-#: mpicms/base/blocks.py:17 mpicms/base/models.py:106
+#: mpicms/base/blocks.py:9 mpicms/base/blocks.py:29
+#: mpicms/templates/base/blocks/contact_list_block.html:3
+msgid "Contact"
+msgstr "Kontakt"
+
+#: mpicms/base/blocks.py:10
+msgid "Information"
+msgstr "Information"
+
+#: mpicms/base/blocks.py:26 mpicms/base/mixins.py:88
 msgid "Editor"
 msgstr "Editor"
 
-#: mpicms/base/blocks.py:18
+#: mpicms/base/blocks.py:27
 msgid "Raw Markdown"
 msgstr "Markdown-Text"
 
-#: mpicms/base/blocks.py:19
+#: mpicms/base/blocks.py:28
 msgid "Table"
 msgstr "Tabelle"
 
-#: mpicms/base/blocks.py:22 mpicms/base/mixins.py:43
+#: mpicms/base/blocks.py:32 mpicms/base/mixins.py:44
 msgid "content"
 msgstr "Inhalt"
 
-#: mpicms/base/mixins.py:71
-msgid "Page not available in "
-msgstr "Seite nicht verfügbar in "
-
-#: mpicms/base/models.py:41 mpicms/personal/models.py:69
-#: mpicms/personal/models.py:96 mpicms/publications/models.py:16
-msgid "title"
-msgstr "Titel"
-
-#: mpicms/base/models.py:42
-msgid "text"
-msgstr "Text"
-
-#: mpicms/base/models.py:54 mpicms/base/models.py:65
-msgid "featured image"
-msgstr "Titelbild"
-
-#: mpicms/base/models.py:55
-msgid "featured images"
-msgstr "Titelbilder"
-
-#: mpicms/base/models.py:69 mpicms/base/models.py:75 mpicms/base/models.py:78
+#: mpicms/base/blocks.py:36 mpicms/base/blocks.py:39 mpicms/base/models.py:70
 #: mpicms/templates/personal/list.html:40
 msgid "Title"
 msgstr "Titel"
 
-#: mpicms/base/models.py:70
-msgid "Text"
-msgstr "Text"
-
-#: mpicms/base/models.py:71 mpicms/base/models.py:72
-msgid "Banner"
-msgstr "Banner"
-
-#: mpicms/base/models.py:79
+#: mpicms/base/blocks.py:40
 msgid "URL"
 msgstr "URL"
 
-#: mpicms/base/models.py:80
+#: mpicms/base/blocks.py:41
 msgid "Items"
 msgstr "Items"
 
-#: mpicms/base/models.py:82
+#: mpicms/base/blocks.py:46
 msgid "Menu"
 msgstr "Menü"
 
-#: mpicms/base/models.py:83
-msgid "Footer Items"
-msgstr "Footer Menüs"
+#: mpicms/base/mixins.py:45
+msgid "Show table of content"
+msgstr "Generiere Inhaltsverzeichnis"
 
-#: mpicms/base/models.py:99
-msgid "root page"
-msgstr "Grundseite"
+#: mpicms/base/mixins.py:77
+msgid "Page not available in "
+msgstr "Seite nicht verfügbar in "
 
-#: mpicms/base/models.py:100
-msgid "root pages"
-msgstr "Grundseiten"
-
-#: mpicms/base/models.py:109 mpicms/templates/base/blocks/contact_block.html:3
-msgid "Contact"
-msgstr "Kontakt"
-
-#: mpicms/base/models.py:110
-msgid "Information"
-msgstr "Information"
-
-#: mpicms/base/models.py:111 mpicms/personal/wagtail_hooks.py:75
+#: mpicms/base/mixins.py:89 mpicms/personal/wagtail_hooks.py:75
 msgid "Contacts"
 msgstr "Kontakte"
 
-#: mpicms/base/models.py:113
+#: mpicms/base/mixins.py:90
 msgid "Sidebar Content"
 msgstr "Inhalt der Seitenleiste"
 
-#: mpicms/base/models.py:132
+#: mpicms/base/models.py:42 mpicms/personal/models.py:69
+#: mpicms/personal/models.py:96 mpicms/publications/models.py:16
+msgid "title"
+msgstr "Titel"
+
+#: mpicms/base/models.py:43
+msgid "text"
+msgstr "Text"
+
+#: mpicms/base/models.py:55 mpicms/base/models.py:66
+msgid "featured image"
+msgstr "Titelbild"
+
+#: mpicms/base/models.py:56
+msgid "featured images"
+msgstr "Titelbilder"
+
+#: mpicms/base/models.py:71
+msgid "Text"
+msgstr "Text"
+
+#: mpicms/base/models.py:72 mpicms/base/models.py:73
+msgid "Banner"
+msgstr "Banner"
+
+#: mpicms/base/models.py:76
+msgid "Footer Items"
+msgstr "Footer Menüs"
+
+#: mpicms/base/models.py:79
+msgid "Quick Links"
+msgstr "Quick Links"
+
+#: mpicms/base/models.py:96
+msgid "root page"
+msgstr "Grundseite"
+
+#: mpicms/base/models.py:97
+msgid "root pages"
+msgstr "Grundseiten"
+
+#: mpicms/base/models.py:113
 msgid "homepage"
 msgstr "Startseite"
 
-#: mpicms/base/models.py:133
+#: mpicms/base/models.py:114
 msgid "homepages"
 msgstr "Startseiten"
 
-#: mpicms/base/models.py:142
+#: mpicms/base/models.py:124
 msgid "wiki page"
 msgstr "Wikiseite"
 
-#: mpicms/base/models.py:143
+#: mpicms/base/models.py:125
 msgid "wiki pages"
 msgstr "Wikiseiten"
 
@@ -152,63 +161,63 @@ msgstr "Dokumentation"
 msgid "Featured Images"
 msgstr "Titelbilder"
 
-#: mpicms/events/models.py:17
+#: mpicms/events/models.py:18
 msgid "start date"
 msgstr "Anfangsdatum"
 
-#: mpicms/events/models.py:18
+#: mpicms/events/models.py:19
 msgid "end date"
 msgstr "Enddatum"
 
-#: mpicms/events/models.py:19
+#: mpicms/events/models.py:20
 msgid "start time"
 msgstr "Anfangszeit"
 
-#: mpicms/events/models.py:20
+#: mpicms/events/models.py:21
 msgid "end time"
 msgstr "Endzeit"
 
-#: mpicms/events/models.py:21 mpicms/templates/personal/list.html:45
+#: mpicms/events/models.py:22 mpicms/templates/personal/list.html:45
 msgid "Room"
 msgstr "Raum"
 
-#: mpicms/events/models.py:43
+#: mpicms/events/models.py:44
 msgid "event dates"
 msgstr "Veranstaltungsdaten"
 
-#: mpicms/events/models.py:98
+#: mpicms/events/models.py:100
 msgid "event"
 msgstr "Veranstaltung"
 
-#: mpicms/events/models.py:99
+#: mpicms/events/models.py:101
 msgid "events"
 msgstr "Veranstaltungen"
 
-#: mpicms/events/models.py:122
+#: mpicms/events/models.py:141
 msgid "event index"
 msgstr "Veranstaltungs-Index"
 
-#: mpicms/events/models.py:123
+#: mpicms/events/models.py:142
 msgid "event indexes"
 msgstr "Veranstaltungs-Indexes"
 
-#: mpicms/news/models.py:52
+#: mpicms/news/models.py:58
 msgid "news blog"
 msgstr "News Blog"
 
-#: mpicms/news/models.py:53
+#: mpicms/news/models.py:59
 msgid "news blogs"
 msgstr "News Blogs"
 
-#: mpicms/news/models.py:57
-msgid "post date"
-msgstr "Veröffentlichungsdatum"
+#: mpicms/news/models.py:63
+msgid "date"
+msgstr "Datum"
 
-#: mpicms/news/models.py:84
+#: mpicms/news/models.py:96
 msgid "news entry"
 msgstr "Neuigkeit"
 
-#: mpicms/news/models.py:85
+#: mpicms/news/models.py:97
 msgid "news entries"
 msgstr "Neuigkeiten"
 
@@ -303,7 +312,7 @@ msgstr "Zurück zur Live-Version"
 #: mpicms/templates/base/components/search.html:3
 #: mpicms/templates/base/components/search_big.html:17
 #: mpicms/templates/base/search_results.html:9
-#: mpicms/templates/menus/main.html:115
+#: mpicms/templates/menus/main.html:129
 msgid "Search"
 msgstr "Suche"
 
@@ -394,8 +403,6 @@ msgid "Phone"
 msgstr "Telefon"
 
 #: mpicms/templates/publications/components/list.html:25
-#, fuzzy
-#| msgid "More in RuPe"
 msgid "More in PuRe"
 msgstr "Mehr in PuRe"
 
@@ -426,6 +433,9 @@ msgstr "Abboniert"
 #: mpicms/templates/wagtailadmin/pages/_subscription_switch.html:18
 msgid "Not subscribed"
 msgstr "Nicht Abboniert"
+
+#~ msgid "post date"
+#~ msgstr "Veröffentlichungsdatum"
 
 #~ msgid "Position"
 #~ msgstr "Positionen"
