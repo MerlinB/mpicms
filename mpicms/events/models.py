@@ -1,4 +1,5 @@
 import json
+from ics import Calendar, Event as ICSEvent
 from datetime import datetime
 
 from django.db import models
@@ -107,7 +108,7 @@ class EventIndex(BasePage):
     def events(self):
         if self.depth <= 3:
             return Event.objects.live().specific()
-        return self.get_children().stype(Event).live().specific()
+        return self.get_children().type(Event).live().specific()
 
     def get_json_events(self, request=None):
         event_dicts = [event.get_dict(request) for event in self.events]
@@ -117,6 +118,23 @@ class EventIndex(BasePage):
         model = self.__class__
         if (model.objects.count() > 0 and self.pk != model.objects.get().id):
             raise ValidationError("Can only create 1 %s instance" % model.__name__)
+
+    @property
+    def ics(self):
+        c = Calendar()
+        for event in self.events:
+            print(event.url)
+            e = ICSEvent(
+                name = event.title,
+                begin = event.start,
+                end = event.end,
+                description = event.preview_text,
+                url = event.url,
+                location = event.room
+            )
+            c.events.add(e)
+        return '\n'.join(c)
+
 
     class Meta:  # noqa
         verbose_name = _('event index')
