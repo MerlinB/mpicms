@@ -28,8 +28,14 @@
     {% endif %}
 
     <div class="content">
-        {% for block in category.specific.sidebar %}
-            {% include_block block %}
-        {% endfor %}
+        {% if page.sidebar %}
+            {% for block in page.sidebar %}
+                {% include_block block %}
+            {% endfor %}
+        {% else %}
+            {% for block in category.specific.sidebar %}
+                {% include_block block %}
+            {% endfor %}
+        {% endif %}
     </div>
 {% endwith %}

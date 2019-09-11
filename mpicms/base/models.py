@@ -16,7 +16,7 @@ from wagtail.core.fields import StreamField
 
 from mpicms.news.mixins import NewsMixin
 from mpicms.events.mixins import EventMixin
-from .mixins import BasePage, BodyMixin
+from .mixins import BasePage, BodyMixin, SideBarMixin
 from .blocks import ContactBlock
 
 
@@ -101,21 +101,9 @@ class RootPage(EventMixin, NewsMixin, BasePage):
         verbose_name_plural = _("root pages")
 
 
-class HomePage(NewsMixin, BodyMixin, BasePage):
-    sidebar = StreamField([
-        ('editor', blocks.RichTextBlock(
-            features=['h4', 'h5', 'h6', 'bold', 'italic', 'link', 'document-link'], label=_('Editor'))),
-        ('contacts', blocks.ListBlock(ContactBlock(), icon="user", template='base/blocks/contact_list_block.html', label=_('Contacts')))
-    ], blank=True, verbose_name=_("Sidebar Content"))
-
-    content_panels = Page.content_panels + BodyMixin.content_panels + [
-        StreamFieldPanel('sidebar'),
-    ]
-
-    search_fields = Page.search_fields + BodyMixin.search_fields + [
-        index.SearchField('sidebar'),
-    ]
-
+class HomePage(NewsMixin, SideBarMixin, BodyMixin, BasePage):
+    content_panels = Page.content_panels + BodyMixin.content_panels + SideBarMixin.content_panels
+    search_fields = Page.search_fields + BodyMixin.search_fields + SideBarMixin.search_fields
     api_fields = BodyMixin.api_fields
 
     creation_limited = True  # limits creation to staff/superusers
@@ -129,9 +117,9 @@ class HomePage(NewsMixin, BodyMixin, BasePage):
         verbose_name_plural = _("homepages")
 
 
-class WikiPage(CategoryMixin, BodyMixin, BasePage):
-    search_fields = Page.search_fields + BodyMixin.content_panels
-    content_panels = Page.content_panels + BodyMixin.content_panels
+class WikiPage(CategoryMixin, SideBarMixin, BodyMixin, BasePage):
+    content_panels = Page.content_panels + BodyMixin.content_panels + SideBarMixin.content_panels
+    search_fields = Page.search_fields + BodyMixin.search_fields + SideBarMixin.search_fields
     api_fields = BodyMixin.api_fields
 
     class Meta: # noqa

@@ -30,9 +30,9 @@ class HomePageTR(TranslationOptions):
         'sidebar'
     )
 
-
 @register(WikiPage)
 class WikiPageTR(TranslationOptions):
     fields = (
         'body',
+        'sidebar'
     )

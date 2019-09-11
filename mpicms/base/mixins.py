@@ -10,10 +10,11 @@ from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 from wagtail.search import index
 from wagtail.api import APIField
+from wagtail.core import blocks
 
 from mpicms.base.serializers import OptionalStreamField
 
-from .blocks import ContentBlock
+from .blocks import ContentBlock, ContactBlock
 
 
 class BasePage(Page):
@@ -71,6 +72,25 @@ class BodyMixin(Page):
             messages.info(request, _('Page not available in ') + get_language_info(lang)['name_local'])
 
         return super().serve(request)
+
+    class Meta:  # noqa
+        abstract = True
+
+
+class SideBarMixin(Page):
+    sidebar = StreamField([
+        ('editor', blocks.RichTextBlock(
+            features=['h4', 'h5', 'h6', 'bold', 'italic', 'link', 'document-link'], label=_('Editor'))),
+        ('contacts', blocks.ListBlock(ContactBlock(), icon="user", template='base/blocks/contact_list_block.html', label=_('Contacts')))
+    ], blank=True, verbose_name=_("Sidebar Content"))
+
+    content_panels = [
+        StreamFieldPanel('sidebar'),
+    ]
+
+    search_fields = [
+        index.SearchField('sidebar'),
+    ]
 
     class Meta:  # noqa
         abstract = True
