@@ -3,7 +3,6 @@ from ics import Calendar, Event as ICSEvent
 from datetime import datetime
 
 from django.db import models
-from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -129,7 +128,6 @@ class EventIndex(BasePage):
 
     @property
     def ics(self):
-        site = Site.objects.get_current()
         c = Calendar()
         for event in self.events:
             print(event.url)
@@ -138,7 +136,7 @@ class EventIndex(BasePage):
                 begin = event.start,
                 end = event.end,
                 description = event.search_description,
-                url = 'https://' + site.domain + event.url,
+                url = event.full_url,
                 location = event.room
             )
             c.events.add(e)
