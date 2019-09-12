@@ -135,7 +135,7 @@ class EventIndex(BasePage):
                 name = event.title,
                 begin = event.start,
                 end = event.end,
-                description = event.preview_text,
+                description = event.search_description,
                 url = event.url,
                 location = event.room
             )
