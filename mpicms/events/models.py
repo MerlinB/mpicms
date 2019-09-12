@@ -84,6 +84,12 @@ class Event(BodyMixin, BasePage):
         if self.end_date and self.end_date < self.start_date:
             raise ValidationError({'end_date': 'The end date cannot be before the start date.'})
 
+        if self.end_time and not self.start_time:
+            raise ValidationError({'end_time': 'The end time cannot be set without a start time.'})
+
+        if self.end and self.end < self.start:
+            raise ValidationError({'end_time': 'The end time cannot be before the start time.'})
+
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
 
