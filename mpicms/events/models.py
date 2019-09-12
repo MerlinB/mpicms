@@ -130,7 +130,6 @@ class EventIndex(BasePage):
     def ics(self):
         c = Calendar()
         for event in self.events:
-            print(event.url)
             e = ICSEvent(
                 name = event.title,
                 begin = event.start,
