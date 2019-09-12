@@ -719,3 +719,7 @@ a.tag:hover {
 .no-images img {
   display: none;
 }
+
+.modal-image:hover, .richtext-image:hover {
+  cursor: pointer;
+}
