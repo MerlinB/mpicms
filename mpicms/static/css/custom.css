@@ -556,14 +556,15 @@ body {
 #toc {
   font-size: 95%;
   margin-top: 1rem;
+  line-height: 1.7rem;
 }
 
-#toc a::before {
+/* #toc a::before {
   content: '\2193';
   padding-right: 0.5em;
   font-size: 120%;
   vertical-align: bottom;
-}
+} */
 
 #toc .h2 {
   text-indent: .25in;
