@@ -1,4 +1,4 @@
-{% load static i18n wagtailcore_tags %}
+{% load static i18n wagtailcore_tags base_tags %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -37,6 +37,7 @@
               {% else %}
                 <form action="{% url 'set_language' %}" method="post" id=language_form>
                   {% csrf_token %}
+                  <input type="hidden" name="next" value="{{ page.get_url|remove_i18n }}" />
                   <select name="language" onchange="language_form.submit()">
               {% endif %}
                     {% get_available_languages as LANGUAGES %}
