@@ -1,5 +1,5 @@
 {% extends 'base/page.html' %}
-{% load event_tags %}
+{% load event_tags i18n %}
 
 {% block content %}
     <div class="section">
@@ -7,6 +7,9 @@
         <h2 class="title is-2">{{ page.title }}</h2>
 
         <div id="calendar"></div>
+        <br>
+        <a href="{% url 'ics' %}" class="button cal-button">{% trans 'Download ICS' %}</a>
+
 
     </div>
 
