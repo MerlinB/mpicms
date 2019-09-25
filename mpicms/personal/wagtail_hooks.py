@@ -3,7 +3,6 @@ from django.contrib.admin.utils import (quote, unquote)
 from django.shortcuts import get_object_or_404
 
 from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register, ModelAdminGroup
-from wagtail.contrib.modeladmin.helpers import PermissionHelper
 from wagtail.contrib.modeladmin.views import EditView, InspectView, DeleteView, InstanceSpecificView
 
 from .models import Contact, Group, Position
@@ -20,14 +19,18 @@ class ContactInstanceView(InstanceSpecificView):
             **filter_kwargs)
         self.instance = get_object_or_404(object_qs)
 
+
 class ContactEditView(ContactInstanceView, EditView):
     pass
+
 
 class ContactInspectView(ContactInstanceView, InspectView):
     pass
 
+
 class ContactDeleteView(ContactInstanceView, DeleteView):
     pass
+
 
 class ContactAdmin(ModelAdmin):
     model = Contact

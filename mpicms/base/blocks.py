@@ -10,12 +10,14 @@ class ContactBlock(blocks.StructBlock):
     information = blocks.TextBlock(required=False, label=_('Information'))
 
     class Meta:  # noqa
-        icon="user"
-        template='base/blocks/contact_block.html'
+        icon = "user"
+        template = 'base/blocks/contact_block.html'
+
 
 class MarkdownBlock(blocks.TextBlock):
     class Meta:  # noqa
         template = 'base/blocks/markdown_block.html'
+
 
 class TableBlock(WagtailTableBlock):
     class Meta:  # noqa

@@ -10,6 +10,7 @@ class PositionTR(TranslationOptions):
         'title',
     )
 
+
 @register(Group)
 class GroupTR(TranslationOptions):
     fields = (

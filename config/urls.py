@@ -24,12 +24,8 @@ urlpatterns = [
 
     # Disable email/password views
     path('admin/account/', account, name='wagtailadmin_account'),
-    # path('admin/account/change_password/', default_views.page_not_found,
-    #      kwargs={"exception": Exception("Page not Found")}, name='wagtailadmin_account_change_password'),
     path('admin/account/change_email/', default_views.page_not_found,
          kwargs={"exception": Exception("Page not Found")}, name='wagtailadmin_account_change_email'),
-    # path('admin/password_reset/', default_views.page_not_found,
-    #      kwargs={"exception": Exception("Page not Found")}),
 
     # Override wagtail user views
     path('admin/users/', include('mpicms.users.urls')),

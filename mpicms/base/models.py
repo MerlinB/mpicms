@@ -4,12 +4,9 @@ from django.utils.translation import gettext_lazy as _
 from wagtail.core import blocks
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
-from wagtail.search import index
-from wagtail.snippets.blocks import SnippetChooserBlock
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
-from wagtail.api import APIField
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.fields import StreamField
@@ -17,7 +14,7 @@ from wagtail.core.fields import StreamField
 from mpicms.news.mixins import NewsMixin
 from mpicms.events.mixins import EventMixin
 from .mixins import BasePage, BodyMixin, SideBarMixin
-from .blocks import ContactBlock, MenuBlock
+from .blocks import MenuBlock
 
 
 Page.show_in_menus_default = True
@@ -88,9 +85,6 @@ class RootPage(EventMixin, NewsMixin, BasePage):
         StreamFieldPanel('quick_links')
     ]
 
-    api_fields = [
-        # APIField('banner')
-    ]
 
     class Meta: # noqa
         verbose_name = _("root page")

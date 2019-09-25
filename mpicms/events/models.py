@@ -1,6 +1,6 @@
 import json
-from ics import Calendar, Event as ICSEvent
 from datetime import datetime
+from ics import Calendar, Event as ICSEvent
 
 from django.db import models
 from django.core.exceptions import ValidationError
@@ -131,12 +131,12 @@ class EventIndex(BasePage):
         c = Calendar()
         for event in self.events:
             e = ICSEvent(
-                name = event.title,
-                begin = event.start,
-                end = event.end,
-                description = event.search_description,
-                url = event.full_url,
-                location = event.room
+                name=event.title,
+                begin=event.start,
+                end=event.end,
+                description=event.search_description,
+                url=event.full_url,
+                location=event.room
             )
             c.events.add(e)
         return '\n'.join(c)

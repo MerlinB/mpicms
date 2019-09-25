@@ -27,12 +27,12 @@ class BasePage(Page):
         translation.activate(mode_name)
         return super().serve_preview(request, mode_name)
 
-    def serve(self, request):  # Not in use
-        if request.user.is_authenticated:
-            if 'subscribe' in request.GET:
-                self.subscribers.add(request.user)
-            elif 'unsubscribe' in request.GET:
-                self.subscribers.remove(request.user)
+    # def serve(self, request):  # Not in use, may be useful in the future for subscribing per GET request.
+    #     if request.user.is_authenticated:
+    #         if 'subscribe' in request.GET:
+    #             self.subscribers.add(request.user)
+    #         elif 'unsubscribe' in request.GET:
+    #             self.subscribers.remove(request.user)
 
         return super().serve(request)
 
@@ -86,7 +86,8 @@ class SideBarMixin(Page):
     sidebar = StreamField([
         ('editor', blocks.RichTextBlock(
             features=['h4', 'h5', 'h6', 'bold', 'italic', 'link', 'document-link'], label=_('Editor'))),
-        ('contacts', blocks.ListBlock(ContactBlock(), icon="user", template='base/blocks/contact_list_block.html', label=_('Contacts')))
+        ('contacts', blocks.ListBlock(
+            ContactBlock(), icon="user", template='base/blocks/contact_list_block.html', label=_('Contacts')))
     ], blank=True, verbose_name=_("Sidebar Content"))
 
     content_panels = [

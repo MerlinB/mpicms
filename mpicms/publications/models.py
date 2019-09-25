@@ -2,7 +2,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import strip_tags
 
-from wagtail.core.models import Orderable
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.search import index
 from wagtail.core.fields import RichTextField

@@ -1,7 +1,6 @@
 from django.views.generic.list import ListView
-from django.db.models import OuterRef, Subquery
 
-from .models import Contact, Group, ContactGroups
+from .models import Contact, Group
 
 
 class ContactListView(ListView):

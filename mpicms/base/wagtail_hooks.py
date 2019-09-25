@@ -4,7 +4,6 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.utils.html import format_html
 from django.templatetags.static import static
-from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.conf import settings
 from django.utils.html import strip_tags
@@ -12,14 +11,11 @@ from django.utils.html import strip_tags
 from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
 from wagtail.core import hooks
 from wagtail.admin.menu import MenuItem
-from wagtail.contrib.modeladmin.helpers import PermissionHelper
-from wagtail.admin.action_menu import ActionMenuItem
 
 from .models import FeaturedImage
 
 
 logger = logging.getLogger(__name__)
-
 
 
 @hooks.register('insert_global_admin_css')
