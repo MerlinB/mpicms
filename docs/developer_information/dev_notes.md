@@ -10,8 +10,5 @@ Empty fields (excluding StreamFields) are automatically populated with the the d
 ## Imports
 Django lets you import `<app_label>`, which will result in errors later. Only import `mpicms.<app_label>`, as specified in the app configs.
 
-## Migrations
-Due to an [issue](https://github.com/infoportugal/wagtail-modeltranslation/issues/240) with wagtail-modeltranslation when using a custom user model, `makemigrations` has to run twice, first without wagtail-modelmigrations and the second time, with it. For details see the issue.
-
 ## Search Index
 After objects have been created through a script, `manage.py update_index` sould be run. See [Wagtail docs](https://docs.wagtail.io/en/latest/topics/search/indexing.html#the-update-index-command).
