@@ -42,37 +42,4 @@ See [django-auth-ldap docs](https://django-auth-ldap.readthedocs.io/en/latest/au
 - `python manage.py collectstatic`. See [Django docs](https://docs.djangoproject.com/en/2.2/ref/contrib/staticfiles/#collectstatic)
 
 # Deployment with Apache and mod_wsgi
-For details see [Django docs](https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/).
-
-## Example configuration
-```
-# Load wsgi module
-LoadModule wsgi_module modules/mod_wsgi.so
-
-Alias /media/ /path/to/mpicms/mpicms/media/
-Alias /static/ /path/to/mpicms/staticfiles/
-
-# Static files should be access seperately
-<Directory /path/to/mpicms/staticfiles>
-    Require all granted
-</Directory>
-
-<Directory /path/to/mpicms/mpicms/media>
-    Require all granted
-</Directory>
-
-WSGIPythonHome /path/to/venv
-WSGIScriptAlias / /path/to/mpicms/config/wsgi.py
-
-<Directory /path/to/mpicms/config>
-    <Files wsgi.py>
-        Require all granted
-    </Files>
-</Directory>
-```
-
-# LDAP population
-To populate the database with an existing LDAP user, run `django_auth_ldap.backend.LDAPBackend.populate_user()`. See [django-auth-ldap docs](https://django-auth-ldap.readthedocs.io/en/latest/users.html#updating-users) for details.
-
-# Python shell
-Access with `python manage.py shell --settings=config.settings.production`.
+See [Django docs](https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/).
