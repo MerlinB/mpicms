@@ -20,7 +20,7 @@ html5lib==1.0.1
 ics==0.5
 idna==2.8
 markdown==3.1.1
-pillow==6.1.0
+pillow==6.2.0
 psycopg2-binary==2.8.3
 pyasn1-modules==0.2.5     # via python-ldap
 pyasn1==0.4.5             # via pyasn1-modules, python-ldap
@@ -38,4 +38,4 @@ webencodings==0.5.1
 willow==1.1
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==41.2.0        # via markdown
+# setuptools==41.6.0        # via markdown
