@@ -12,7 +12,7 @@ django-modelcluster==4.4  # via wagtail
 django-modeltranslation==0.13.3  # via wagtail-modeltranslation
 django-taggit==0.24.0     # via wagtail
 django-treebeard==4.3     # via wagtail
-django==2.2.4
+django==2.2.10
 djangorestframework==3.10.2  # via wagtail
 draftjs-exporter==2.1.6   # via wagtail
 html5lib==1.0.1           # via wagtail
@@ -34,4 +34,4 @@ webencodings==0.5.1       # via html5lib
 willow==1.1               # via wagtail
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==41.2.0        # via markdown
+# setuptools
